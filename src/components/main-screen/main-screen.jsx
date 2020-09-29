@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const MainScreen = (props) => {
-  const {promoName, promoGenre, promoRelease} = props;
+  const {promoTitle, promoGenre, promoRelease} = props;
 
   return (
     <React.Fragment>
@@ -36,7 +36,7 @@ const MainScreen = (props) => {
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{promoName}</h2>
+              <h2 className="movie-card__title">{promoTitle}</h2>
               <p className="movie-card__meta">
                 <span className="movie-card__genre">{promoGenre}</span>
                 <span className="movie-card__year">{promoRelease}</span>
@@ -59,7 +59,7 @@ const MainScreen = (props) => {
             </div>
           </div>
         </div>
-      </section >
+      </section>
 
       <div className="page-content">
         <section className="catalog">
@@ -309,7 +309,7 @@ const MainScreen = (props) => {
 };
 
 MainScreen.propTypes = {
-  promoName: PropTypes.string.isRequired,
+  promoTitle: PropTypes.string.isRequired,
   promoGenre: PropTypes.string.isRequired,
   promoRelease: PropTypes.number.isRequired
 };
