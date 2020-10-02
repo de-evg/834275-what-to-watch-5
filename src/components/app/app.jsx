@@ -1,15 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {BrowserRouter, Switch, Router} from "react-router-dom";
+
 import MainScreen from "../main-screen/main-screen";
 
 const App = (props) => {
   const {promoTitle, promoGenre, promoRelease} = props;
   return (
-    <MainScreen
-      promoTitle={promoTitle}
-      promoGenre={promoGenre}
-      promoRelease={promoRelease}
-    />
+    <BrowserRouter>
+      <Switch>
+        <Router exact path="/">
+          <MainScreen
+            promoTitle={promoTitle}
+            promoGenre={promoGenre}
+            promoRelease={promoRelease}
+          />
+        </Router>
+      </Switch>
+    </BrowserRouter>
+
   );
 };
 
