@@ -11,7 +11,7 @@ import PlayerScreen from "../player-screen/player-screen";
 
 
 const App = (props) => {
-  const {promoTitle, promoGenre, promoRelease} = props;
+  const {promoTitle, promoGenre, promoRelease, films} = props;
   return (
     <BrowserRouter>
       <Switch>
@@ -20,6 +20,7 @@ const App = (props) => {
             promoTitle={promoTitle}
             promoGenre={promoGenre}
             promoRelease={promoRelease}
+            films={films}
           />
         </Route>
 
