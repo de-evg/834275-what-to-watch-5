@@ -1,9 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import SmallMovieCard from "../small-movie-card";
+import MovieList from "../movie-list/movie-list";
+
+import {moviesType} from "../../prop-types/prop-types";
 
 const MainScreen = (props) => {
-  const {promoTitle, promoGenre, promoRelease, films} = props;
+  const {promoTitle, promoGenre, promoRelease, movies} = props;
 
   return (
     <React.Fragment>
@@ -99,11 +101,7 @@ const MainScreen = (props) => {
             </li>
           </ul>
 
-          <div className="catalog__movies-list">
-            {
-              films.map((film, i) => <SmallMovieCard key={`movie-${i}`} title={film.title} poster={film.poster}/>)
-            }
-          </div>
+          <MovieList movies={movies} />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
@@ -132,18 +130,7 @@ MainScreen.propTypes = {
   promoTitle: PropTypes.string.isRequired,
   promoGenre: PropTypes.string.isRequired,
   promoRelease: PropTypes.number.isRequired,
-  films: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    release: PropTypes.number.isRequired,
-    poster: PropTypes.string.isRequired,
-    rating: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    actors: PropTypes.array.isRequired,
-    video: PropTypes.string.isRequired
-  }))
+  movies: moviesType
 };
 
 export default MainScreen;

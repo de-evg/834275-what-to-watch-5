@@ -1,7 +1,7 @@
 import React from "react";
 import {render} from "react-dom";
 import App from "./components/app/app";
-import {films} from "./mocks/films";
+import {movies} from "./mocks/movies";
 
 const promoMovie = {
   TITLE: `The Grand Budapest Hotel`,
@@ -14,7 +14,7 @@ render(
       promoTitle={promoMovie.TITLE}
       promoGenre={promoMovie.GENRE}
       promoRelease={promoMovie.RELEASE}
-      films={films}
+      movies={movies}
     />,
     document.getElementById(`root`)
 );

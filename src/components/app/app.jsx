@@ -9,9 +9,11 @@ import MovieScreen from "../movie-screen/movie-screen";
 import AddReviewScreen from "../add-review-screen/add-review-screen";
 import PlayerScreen from "../player-screen/player-screen";
 
+import {moviesType} from "../../prop-types/prop-types";
+
 
 const App = (props) => {
-  const {promoTitle, promoGenre, promoRelease, films} = props;
+  const {promoTitle, promoGenre, promoRelease, movies} = props;
   return (
     <BrowserRouter>
       <Switch>
@@ -20,7 +22,7 @@ const App = (props) => {
             promoTitle={promoTitle}
             promoGenre={promoGenre}
             promoRelease={promoRelease}
-            films={films}
+            movies={movies}
           />
         </Route>
 
@@ -29,11 +31,11 @@ const App = (props) => {
         </Route>
 
         <Route exact path="/myList">
-          <MyListScreen />
+          <MyListScreen movies={movies.filter((movie) => movie.isInWhatchList)} />
         </Route>
 
         <Route exact path="/films/:id">
-          <MovieScreen />
+          <MovieScreen movies={movies}/>
         </Route>
 
         <Route exact path="/films/:id/review">
@@ -51,7 +53,8 @@ const App = (props) => {
 App.propTypes = {
   promoTitle: PropTypes.string.isRequired,
   promoGenre: PropTypes.string.isRequired,
-  promoRelease: PropTypes.number.isRequired
+  promoRelease: PropTypes.number.isRequired,
+  movies: moviesType
 };
 
 export default App;
