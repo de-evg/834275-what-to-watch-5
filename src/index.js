@@ -4,16 +4,16 @@ import App from "./components/app/app";
 import {movies} from "./mocks/movies";
 
 const promoMovie = {
-  TITLE: `The Grand Budapest Hotel`,
-  GENRE: `Drama`,
-  RELEASE: 2014
+  title: `The Grand Budapest Hotel`,
+  genre: `Drama`,
+  release: 2014,
+  previewURL: `/img/bg-the-grand-budapest-hotel.jpg`,
+  posterURL: `/img/the-grand-budapest-hotel-poster.jpg`
 };
 
 render(
     <App
-      promoTitle={promoMovie.TITLE}
-      promoGenre={promoMovie.GENRE}
-      promoRelease={promoMovie.RELEASE}
+      promoMovie={promoMovie}
       movies={movies}
     />,
     document.getElementById(`root`)

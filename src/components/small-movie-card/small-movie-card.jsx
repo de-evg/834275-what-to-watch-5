@@ -18,7 +18,7 @@ class SmallMovieCard extends PureComponent {
   }
 
   render() {
-    const {id, title, poster, onMouseLeave} = this.props;
+    const {id, title, previewURL, onMouseLeave} = this.props;
     return (
       <article
         id={id}
@@ -26,8 +26,8 @@ class SmallMovieCard extends PureComponent {
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={onMouseLeave}>
         <div className="small-movie-card__image">
-          <Link to={`/films/${id}`} style={{display: `block`}} className="small-movie-card__image">
-            <img src={poster} alt={title} width="280" height="175" />
+          <Link to={`/films/${id}`} style={{display: `block`, zIndex: 4}} className="small-movie-card__image">
+            <img src={previewURL} alt={title} width="280" height="175" />
           </Link>
         </div>
         <h3 className="small-movie-card__title">
@@ -41,7 +41,7 @@ class SmallMovieCard extends PureComponent {
 SmallMovieCard.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  poster: PropTypes.string.isRequired,
+  previewURL: PropTypes.string.isRequired,
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired
 };

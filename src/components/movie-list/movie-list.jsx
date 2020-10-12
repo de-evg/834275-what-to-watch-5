@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
+import {typesMap} from "../../prop-types/prop-types";
 
 import SmallMovieCard from "../small-movie-card/small-movie-card";
 
@@ -37,7 +37,7 @@ class MovieList extends PureComponent {
               key={`movie-${i}`}
               id={i}
               title={film.title}
-              poster={film.poster}
+              previewURL={film.previewURL}
               onMouseEnter={this.handleMouseEnter}
               onMouseLeave={this.handleMouseLeave}
             />);
@@ -49,18 +49,7 @@ class MovieList extends PureComponent {
 }
 
 MovieList.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    release: PropTypes.number.isRequired,
-    poster: PropTypes.string.isRequired,
-    rating: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    actors: PropTypes.array.isRequired,
-    video: PropTypes.string.isRequired
-  }))
+  movies: typesMap.movies
 };
 
 export default MovieList;

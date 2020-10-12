@@ -1,18 +1,22 @@
 import React, {PureComponent} from "react";
+import {Link} from "react-router-dom";
 import {typesMap} from "../../prop-types/prop-types";
 
 class MovieScreen extends PureComponent {
   constructor(props) {
     super(props);
-
   }
+
   render() {
-    const movie = this.props.movies.filter((film) => film.id === 0)[0];
+    const currentMovieID = this.props.match.params.id;
+    const movie = this.props.movies.filter((film) => film.id === +currentMovieID)[0];
     const {
+      id,
       title,
       genre,
       release,
-      poster,
+      posterURL,
+      previewURL,
       rating,
       ratingLevel,
       ratingCount,
@@ -26,18 +30,18 @@ class MovieScreen extends PureComponent {
         <section className="movie-card movie-card--full">
           <div className="movie-card__hero">
             <div className="movie-card__bg">
-              <img src={poster} alt={title} />
+              <img src={previewURL} alt={title} />
             </div>
 
             <h1 className="visually-hidden">WTW</h1>
 
             <header className="page-header movie-card__head">
               <div className="logo">
-                <a href="main.html" className="logo__link">
+                <Link to="/" className="logo__link">
                   <span className="logo__letter logo__letter--1">W</span>
                   <span className="logo__letter logo__letter--2">T</span>
                   <span className="logo__letter logo__letter--3">W</span>
-                </a>
+                </Link>
               </div>
 
               <div className="user-block">
@@ -68,7 +72,7 @@ class MovieScreen extends PureComponent {
                     </svg>
                     <span>My list</span>
                   </button>
-                  <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                  <Link to={`/films/${id}/review`} className="btn movie-card__button">Add review</Link>
                 </div>
               </div>
             </div>
@@ -77,7 +81,7 @@ class MovieScreen extends PureComponent {
           <div className="movie-card__wrap movie-card__translate-top">
             <div className="movie-card__info">
               <div className="movie-card__poster movie-card__poster--big">
-                <img src={poster} alt={title} width="218" height="327" />
+                <img src={posterURL} alt={title} width="218" height="327" />
               </div>
 
               <div className="movie-card__desc">
@@ -160,11 +164,11 @@ class MovieScreen extends PureComponent {
 
           <footer className="page-footer">
             <div className="logo">
-              <a href="main.html" className="logo__link logo__link--light">
+              <Link to="/l" className="logo__link logo__link--light">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
-              </a>
+              </Link>
             </div>
 
             <div className="copyright">
@@ -178,8 +182,9 @@ class MovieScreen extends PureComponent {
 }
 
 MovieScreen.propTypes = {
-  movies: typesMap.moviesType,
-  movie: typesMap.movieType
+  movies: typesMap.movies,
+  movie: typesMap.movie,
+  match: typesMap.movieID
 };
 
 export default MovieScreen;

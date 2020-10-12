@@ -1,5 +1,4 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, {PureComponent} from "react";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 
 import MainScreen from "../main-screen/main-screen";
@@ -12,49 +11,45 @@ import PlayerScreen from "../player-screen/player-screen";
 import {typesMap} from "../../prop-types/prop-types";
 
 
-const App = (props) => {
-  const {promoTitle, promoGenre, promoRelease, movies} = props;
-  return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/">
-          <MainScreen
-            promoTitle={promoTitle}
-            promoGenre={promoGenre}
-            promoRelease={promoRelease}
-            movies={movies}
-          />
-        </Route>
+class App extends PureComponent {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            <MainScreen
+              promoMovie={this.props.promoMovie}
+              movies={this.props.movies}
+            />
+          </Route>
 
-        <Route exact path="/login">
-          <AuthScreen />
-        </Route>
+          <Route exact path="/login">
+            <AuthScreen />
+          </Route>
 
-        <Route exact path="/myList">
-          <MyListScreen movies={movies.filter((movie) => movie.isInWhatchList)} />
-        </Route>
+          <Route exact path="/myList">
+            <MyListScreen movies={this.props.movies.filter((movie) => movie.isInWhatchList)} />
+          </Route>
 
-        <Route exact path="/films/:id">
-          <MovieScreen movies={movies}/>
-        </Route>
+          <Route exact path="/films/:id" render={(props) => <MovieScreen movies={this.props.movies} {...props}/>} />
+          <Route exact path="/films/:id/review" render={(props) => <AddReviewScreen movies={this.props.movies} {...props} />} />
 
-        <Route exact path="/films/:id/review">
-          <AddReviewScreen />
-        </Route>
 
-        <Route exact path="/player/:id">
-          <PlayerScreen />
-        </Route>
-      </Switch>
-    </BrowserRouter>
-  );
-};
+          <Route exact path="/player/:id">
+            <PlayerScreen />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    );
+  }
+}
 
 App.propTypes = {
-  promoTitle: PropTypes.string.isRequired,
-  promoGenre: PropTypes.string.isRequired,
-  promoRelease: PropTypes.number.isRequired,
-  movies: typesMap.moviesType
+  promoMovie: typesMap.promo,
+  movies: typesMap.movies
 };
 
 export default App;
