@@ -1,5 +1,6 @@
 
 import React, {PureComponent} from "react";
+import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 
 class SmallMovieCard extends PureComponent {
@@ -25,10 +26,12 @@ class SmallMovieCard extends PureComponent {
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={onMouseLeave}>
         <div className="small-movie-card__image">
-          <img src={poster} alt={title} width="280" height="175" />
+          <Link to={`/films/${id}`} style={{display: `block`}} className="small-movie-card__image">
+            <img src={poster} alt={title} width="280" height="175" />
+          </Link>
         </div>
         <h3 className="small-movie-card__title">
-          <a className="small-movie-card__link" href="movie-page.html">{title}</a>
+          <Link to={`/films/${id}`} className="small-movie-card__link">{title}</Link>
         </h3>
       </article>
     );

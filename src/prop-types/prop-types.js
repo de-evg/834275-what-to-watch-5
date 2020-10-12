@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 
-
 const movieType = PropTypes.shape({
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
@@ -16,6 +15,9 @@ const movieType = PropTypes.shape({
   video: PropTypes.string.isRequired
 });
 
-const moviesType = PropTypes.arrayOf(movieType);
+const typesMap = {
+  movieType,
+  moviesType: PropTypes.arrayOf(movieType)
+};
 
-export {moviesType, movieType};
+export {typesMap};

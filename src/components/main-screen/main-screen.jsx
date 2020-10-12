@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import MovieList from "../movie-list/movie-list";
 
-import {moviesType} from "../../prop-types/prop-types";
+import {typesMap} from "../../prop-types/prop-types";
 
 const MainScreen = (props) => {
   const {promoTitle, promoGenre, promoRelease, movies} = props;
@@ -130,7 +130,7 @@ MainScreen.propTypes = {
   promoTitle: PropTypes.string.isRequired,
   promoGenre: PropTypes.string.isRequired,
   promoRelease: PropTypes.number.isRequired,
-  movies: moviesType
+  movies: typesMap.moviesType
 };
 
 export default MainScreen;

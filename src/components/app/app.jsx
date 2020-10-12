@@ -9,7 +9,7 @@ import MovieScreen from "../movie-screen/movie-screen";
 import AddReviewScreen from "../add-review-screen/add-review-screen";
 import PlayerScreen from "../player-screen/player-screen";
 
-import {moviesType} from "../../prop-types/prop-types";
+import {typesMap} from "../../prop-types/prop-types";
 
 
 const App = (props) => {
@@ -54,7 +54,7 @@ App.propTypes = {
   promoTitle: PropTypes.string.isRequired,
   promoGenre: PropTypes.string.isRequired,
   promoRelease: PropTypes.number.isRequired,
-  movies: moviesType
+  movies: typesMap.moviesType
 };
 
 export default App;

@@ -1,6 +1,5 @@
 import React, {PureComponent} from "react";
-import {movieTypes} from "../../mocks/movies";
-import {moviesType} from "../../prop-types/prop-types";
+import {typesMap} from "../../prop-types/prop-types";
 
 class MovieScreen extends PureComponent {
   constructor(props) {
@@ -179,8 +178,8 @@ class MovieScreen extends PureComponent {
 }
 
 MovieScreen.propTypes = {
-  movies: moviesType,
-  movie: movieTypes
+  movies: typesMap.moviesType,
+  movie: typesMap.movieType
 };
 
 export default MovieScreen;

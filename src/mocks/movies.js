@@ -1,10 +1,24 @@
+import {getRandomInteger} from "../utils/common";
+
 const MOVIES_COUNT = 10;
+
+const genres = [
+  `Drama`,
+  `Comedies`,
+  `Crime`,
+  `Documentary`,
+  `Horror`,
+  `Kids & Family`,
+  `Romance`,
+  `Sci-fi`,
+  `Thrillers`
+];
 
 const generateMovie = (id) => {
   return {
     id,
     title: `The Grand Budapest - ${id}`,
-    genre: `drama`,
+    genre: genres[getRandomInteger(0, genres.length - 1)],
     release: 2014,
     poster: `/img/the-grand-budapest-hotel-poster.jpg`,
     rating: `8,9`,

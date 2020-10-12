@@ -1,5 +1,5 @@
 import React from "react";
-import {moviesType} from "../../prop-types/prop-types";
+import {typesMap} from "../../prop-types/prop-types";
 import MovieList from "../movie-list/movie-list";
 
 const MyListScreen = (props) => {
@@ -47,7 +47,7 @@ const MyListScreen = (props) => {
 };
 
 MyListScreen.propTypes = {
-  movies: moviesType
+  movies: typesMap.moviesType
 };
 
 export default MyListScreen;
