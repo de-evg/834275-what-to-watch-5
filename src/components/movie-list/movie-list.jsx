@@ -12,19 +12,19 @@ class MovieList extends PureComponent {
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
 
     this.state = {
-      hoveredMovie: null
+      activeMovie: null
     };
   }
 
   handleMouseEnter(movieID) {
     this.setState({
-      hoveredMovie: movieID
+      activeMovie: movieID
     });
   }
 
   handleMouseLeave() {
     this.setState({
-      hoveredMovie: null
+      activeMovie: null
     });
   }
 
