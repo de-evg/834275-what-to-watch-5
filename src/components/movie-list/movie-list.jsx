@@ -30,12 +30,10 @@ class MovieList extends PureComponent {
     return (
       <div className="catalog__movies-list">
         {
-          this.props.movies.map((film, i) => {
+          this.props.movies.map((movie, i) => {
             return (<SmallMovieCard
               key={`movie-${i}`}
-              id={i}
-              title={film.title}
-              previewURL={film.previewURL}
+              movie={movie}
               onMouseEnter={this.handleMouseEnter}
               onMouseLeave={this.handleMouseLeave}
             />);

@@ -2,6 +2,7 @@
 import React, {PureComponent} from "react";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
+import {typesMap} from "../../prop-types/prop-types";
 
 class SmallMovieCard extends PureComponent {
   constructor(props) {
@@ -18,7 +19,8 @@ class SmallMovieCard extends PureComponent {
   }
 
   render() {
-    const {id, title, previewURL, onMouseLeave} = this.props;
+    const {movie} = this.props;
+    const {id, title, previewURL, onMouseLeave} = movie;
 
     return (
       <article
@@ -27,12 +29,24 @@ class SmallMovieCard extends PureComponent {
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={onMouseLeave}>
         <div className="small-movie-card__image">
-          <Link to={`/films/${id}`} style={{display: `block`, zIndex: 4}} className="small-movie-card__image">
+          <Link
+            to={{
+              pathname: `/films/${id}`,
+              movieProps: {movie}
+            }}
+            style={{display: `block`, zIndex: 4}}
+            className="small-movie-card__image" >
             <img src={previewURL} alt={title} width="280" height="175" />
           </Link>
         </div>
         <h3 className="small-movie-card__title">
-          <Link to={`/films/${id}`} className="small-movie-card__link">{title}</Link>
+          <Link
+            to={{
+              pathname: `/films/${id}`,
+              movieProps: {movie}
+            }}
+            className="small-movie-card__link">{title}
+          </Link>
         </h3>
       </article>
     );
@@ -40,9 +54,7 @@ class SmallMovieCard extends PureComponent {
 }
 
 SmallMovieCard.propTypes = {
-  id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  previewURL: PropTypes.string.isRequired,
+  movie: typesMap.movie,
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired
 };

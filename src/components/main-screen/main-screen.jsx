@@ -9,7 +9,7 @@ class MainScreen extends PureComponent {
     const {movies} = this.props;
 
     return (
-      <React.Fragment>
+      <>
         <section className="movie-card">
           <div className="movie-card__bg">
             <img src={previewURL} alt={title} />
@@ -123,7 +123,7 @@ class MainScreen extends PureComponent {
             </div>
           </footer>
         </div>
-      </React.Fragment>
+      </>
     );
   }
 }

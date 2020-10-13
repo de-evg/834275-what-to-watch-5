@@ -26,6 +26,11 @@ const typesMap = {
     posterURL: PropTypes.string.isRequired,
     previewURL: PropTypes.string.isRequired,
   }),
+  location: PropTypes.shape({
+    movieProps: PropTypes.shape({
+      movie
+    })
+  }),
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string.isRequired

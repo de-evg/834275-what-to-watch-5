@@ -8,9 +8,7 @@ class MovieScreen extends PureComponent {
   }
 
   render() {
-    const {match, movies} = this.props;
-    const currentMovieID = match.params.id;
-    const movie = movies.filter((film) => film.id === +currentMovieID)[0];
+    const {movie} = this.props.location.movieProps;
     const {
       id,
       title,
@@ -73,7 +71,13 @@ class MovieScreen extends PureComponent {
                     </svg>
                     <span>My list</span>
                   </button>
-                  <Link to={`/films/${id}/review`} className="btn movie-card__button">Add review</Link>
+                  <Link
+                    to={{
+                      pathname: `/films/${id}/review`,
+                      movieProps: {movie}
+                    }}
+                    className="btn movie-card__button">Add review
+                  </Link>
                 </div>
               </div>
             </div>
@@ -165,7 +169,7 @@ class MovieScreen extends PureComponent {
 
           <footer className="page-footer">
             <div className="logo">
-              <Link to="/l" className="logo__link logo__link--light">
+              <Link to="/" className="logo__link logo__link--light">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
@@ -183,9 +187,9 @@ class MovieScreen extends PureComponent {
 }
 
 MovieScreen.propTypes = {
-  movies: typesMap.movies,
   movie: typesMap.movie,
-  match: typesMap.movieID
+  location: typesMap.location,
+  match: typesMap.match
 };
 
 export default MovieScreen;

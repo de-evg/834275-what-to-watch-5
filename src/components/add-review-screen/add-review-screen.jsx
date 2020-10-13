@@ -37,8 +37,7 @@ class AddReviewScreen extends PureComponent {
   }
 
   render() {
-    const currentMovieID = this.props.match.params.id;
-    const movie = this.props.movies.filter((film) => film.id === +currentMovieID)[0];
+    const {movie} = this.props.location.movieProps;
     const {id, title, previewURL, posterURL} = movie;
 
     return (
@@ -62,7 +61,13 @@ class AddReviewScreen extends PureComponent {
             <nav className="breadcrumbs">
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
-                  <Link to={`/films/${id}`} className="breadcrumbs__link">{title}</Link>
+                  <Link
+                    to={{
+                      pathname: `/films/${id}`,
+                      movieProps: {movie}
+                    }}
+                    className="breadcrumbs__link">{title}
+                  </Link>
                 </li>
                 <li className="breadcrumbs__item">
                   <a className="breadcrumbs__link">Add review</a>
@@ -128,9 +133,8 @@ class AddReviewScreen extends PureComponent {
 }
 
 AddReviewScreen.propTypes = {
-  movies: typesMap.movies,
   movie: typesMap.movie,
-  match: typesMap.match
+  location: typesMap.location
 };
 
 export default AddReviewScreen;
