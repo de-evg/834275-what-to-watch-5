@@ -8,8 +8,9 @@ class MovieScreen extends PureComponent {
   }
 
   render() {
-    const currentMovieID = this.props.match.params.id;
-    const movie = this.props.movies.filter((film) => film.id === +currentMovieID)[0];
+    const {match, movies} = this.props;
+    const currentMovieID = match.params.id;
+    const movie = movies.filter((film) => film.id === +currentMovieID)[0];
     const {
       id,
       title,
@@ -26,7 +27,7 @@ class MovieScreen extends PureComponent {
     } = movie;
 
     return (
-      <React.Fragment>
+      <>
         <section className="movie-card movie-card--full">
           <div className="movie-card__hero">
             <div className="movie-card__bg">
@@ -176,7 +177,7 @@ class MovieScreen extends PureComponent {
             </div>
           </footer>
         </div>
-      </React.Fragment>
+      </>
     );
   }
 }

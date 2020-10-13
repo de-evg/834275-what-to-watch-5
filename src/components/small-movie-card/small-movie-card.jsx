@@ -19,6 +19,7 @@ class SmallMovieCard extends PureComponent {
 
   render() {
     const {id, title, previewURL, onMouseLeave} = this.props;
+
     return (
       <article
         id={id}

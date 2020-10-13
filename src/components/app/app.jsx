@@ -15,6 +15,19 @@ class App extends PureComponent {
   constructor(props) {
     super(props);
   }
+
+  filterMovieInWhatchList() {
+    return this.props.movies.filter((movie) => movie.isInWhatchList);
+  }
+
+  getMovieScreenComponent() {
+    return (props) => <MovieScreen movies={this.props.movies} {...props}/>;
+  }
+
+  getAddReviewScreenComponent() {
+    return (props) => <AddReviewScreen movies={this.props.movies} {...props} />;
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -25,19 +38,14 @@ class App extends PureComponent {
               movies={this.props.movies}
             />
           </Route>
-
           <Route exact path="/login">
             <AuthScreen />
           </Route>
-
           <Route exact path="/myList">
-            <MyListScreen movies={this.props.movies.filter((movie) => movie.isInWhatchList)} />
+            <MyListScreen movies={this.filterMovieInWhatchList()} />
           </Route>
-
-          <Route exact path="/films/:id" render={(props) => <MovieScreen movies={this.props.movies} {...props}/>} />
-          <Route exact path="/films/:id/review" render={(props) => <AddReviewScreen movies={this.props.movies} {...props} />} />
-
-
+          <Route exact path="/films/:id" render={this.getMovieScreenComponent()} />
+          <Route exact path="/films/:id/review" render={this.getAddReviewScreenComponent()} />
           <Route exact path="/player/:id">
             <PlayerScreen />
           </Route>

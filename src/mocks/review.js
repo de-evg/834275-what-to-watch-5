@@ -1,8 +1,6 @@
 const REVIEW_COUNT = 10;
 
-const generateReview = (id) => {
-  return `Some text review ${id}`;
-};
+const generateReview = (id) => `Some text review ${id}`;
 
 const genereteReviews = () => {
   const reviews = [];
