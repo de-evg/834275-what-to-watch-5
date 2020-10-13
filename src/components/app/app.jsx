@@ -33,9 +33,9 @@ class App extends PureComponent {
           <Route exact path="/login">
             <AuthScreen />
           </Route>
-          {/* <Route exact path="/myList" component={MyListScreen}>
-            < movies={this.filterMovieInWhatchList()} />
-          </Route> */}
+          <Route exact path="/myList">
+            <MyListScreen movies={this.filterMovieInWhatchList()} />
+          </Route>
           <Route exact path="/films/:id" component={MovieScreen} />
           <Route exact path="/films/:id/review" component={AddReviewScreen} />
           <Route exact path="/player/:id">
