@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import {Link} from "react-router-dom";
 import {typesMap} from "../../prop-types/prop-types";
+import {movies} from "../../mocks/movies";
 
 const reviewLength = {
   MIN: 50,
@@ -37,8 +38,9 @@ class AddReviewScreen extends PureComponent {
   }
 
   render() {
-    const {movie} = this.props.location.movieProps;
-    const {id, title, previewURL, posterURL} = movie;
+    const {id} = this.props.match.params;
+    const currentMovie = movies.filter((movie) => movie.id === +id)[0];
+    const {title, previewURL, posterURL} = currentMovie;
 
     return (
       <section className="movie-card movie-card--full">
@@ -62,10 +64,7 @@ class AddReviewScreen extends PureComponent {
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
                   <Link
-                    to={{
-                      pathname: `/films/${id}`,
-                      movieProps: {movie}
-                    }}
+                    to={`/films/${id}`}
                     className="breadcrumbs__link">{title}
                   </Link>
                 </li>
@@ -133,8 +132,7 @@ class AddReviewScreen extends PureComponent {
 }
 
 AddReviewScreen.propTypes = {
-  movie: typesMap.movie,
-  location: typesMap.location
+  match: typesMap.match
 };
 
 export default AddReviewScreen;

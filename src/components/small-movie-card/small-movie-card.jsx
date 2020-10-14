@@ -30,10 +30,7 @@ class SmallMovieCard extends PureComponent {
         onMouseLeave={onMouseLeave}>
         <div className="small-movie-card__image">
           <Link
-            to={{
-              pathname: `/films/${id}`,
-              movieProps: {movie}
-            }}
+            to={`/films/${id}`}
             style={{display: `block`, zIndex: 4}}
             className="small-movie-card__image" >
             <img src={previewURL} alt={title} width="280" height="175" />
@@ -41,10 +38,7 @@ class SmallMovieCard extends PureComponent {
         </div>
         <h3 className="small-movie-card__title">
           <Link
-            to={{
-              pathname: `/films/${id}`,
-              movieProps: {movie}
-            }}
+            to={`/films/${id}`}
             className="small-movie-card__link">{title}
           </Link>
         </h3>

@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import {Link} from "react-router-dom";
 import {typesMap} from "../../prop-types/prop-types";
+import {movies} from "../../mocks/movies";
 
 class MovieScreen extends PureComponent {
   constructor(props) {
@@ -8,9 +9,9 @@ class MovieScreen extends PureComponent {
   }
 
   render() {
-    const {movie} = this.props.location.movieProps;
+    const {id} = this.props.match.params;
+    const currentMovie = movies.filter((movie) => movie.id === +id)[0];
     const {
-      id,
       title,
       genre,
       release,
@@ -22,7 +23,7 @@ class MovieScreen extends PureComponent {
       description,
       director,
       actors
-    } = movie;
+    } = currentMovie;
 
     return (
       <>
@@ -72,10 +73,7 @@ class MovieScreen extends PureComponent {
                     <span>My list</span>
                   </button>
                   <Link
-                    to={{
-                      pathname: `/films/${id}/review`,
-                      movieProps: {movie}
-                    }}
+                    to={`/films/${id}/review`}
                     className="btn movie-card__button">Add review
                   </Link>
                 </div>
@@ -187,8 +185,6 @@ class MovieScreen extends PureComponent {
 }
 
 MovieScreen.propTypes = {
-  movie: typesMap.movie,
-  location: typesMap.location,
   match: typesMap.match
 };
 
