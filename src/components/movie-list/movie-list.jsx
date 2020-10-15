@@ -48,7 +48,6 @@ class MovieList extends PureComponent {
                 key={`movie-${i}`}
                 movie={movie}
                 isPlaying={this.state.isPlaying}
-                onMouseEnter={this.handleMouseEnter}
                 onMouseLeave={this.handleMouseLeave}
               />
           ))

@@ -27,7 +27,6 @@ class SmallVideoPlayer extends PureComponent {
       <article
         id={id}
         className="small-movie-card catalog__movies-card"
-        onMouseEnter={this.handleMouseEnter}
         onMouseLeave={onMouseLeave}>
         <Link
           to={`/films/${id}`}
@@ -50,7 +49,6 @@ class SmallVideoPlayer extends PureComponent {
 
 SmallVideoPlayer.propTypes = {
   movie: typesMap.movie,
-  onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired
 };
 
