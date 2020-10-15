@@ -10,7 +10,7 @@ class MovieScreen extends PureComponent {
 
   render() {
     const {id} = this.props.match.params;
-    const currentMovie = movies.filter((movie) => movie.id === +id)[0];
+    const currentMovie = movies.find((movie) => movie.id === +id);
     const {
       title,
       genre,
