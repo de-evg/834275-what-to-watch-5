@@ -15,12 +15,12 @@ class SmallMovieCard extends PureComponent {
     if (target.tagName === `IMG` || target.tagName === `A`) {
       target = evt.target.parentElement;
     }
-    this.props.onMouseEnter(target.parentElement.id);
+    this.props.onMouseEnter(+target.parentElement.id);
   }
 
   render() {
-    const {movie} = this.props;
-    const {id, title, previewURL, onMouseLeave} = movie;
+    const {movie, onMouseLeave} = this.props;
+    const {id, title, previewURL} = movie;
 
     return (
       <article
