@@ -33,24 +33,27 @@ class MovieList extends PureComponent {
 
   render() {
     const {activeMovieID} = this.state;
+
     return (
       <div className="catalog__movies-list">
         {
-          this.props.movies.map((movie, i) => (
-            activeMovieID !== i
-              ? <SmallMovieCard
-                key={`movie-${i}`}
-                movie={movie}
-                onMouseEnter={this.handleMouseEnter}
-                onMouseLeave={this.handleMouseLeave}
-              />
-              : <SmallVideoPlayer
-                key={`movie-${i}`}
-                movie={movie}
-                isPlaying={this.state.isPlaying}
-                onMouseLeave={this.handleMouseLeave}
-              />
-          ))
+          this.props.movies.map((movie, i) => {
+            return (
+              activeMovieID !== i
+                ? <SmallMovieCard
+                  key={`movie-${i}`}
+                  movie={movie}
+                  onMouseEnter={this.handleMouseEnter}
+                  onMouseLeave={this.handleMouseLeave}
+                />
+                : <SmallVideoPlayer
+                  key={`movie-${i}`}
+                  movie={movie}
+                  isPlaying={this.state.isPlaying}
+                  onMouseLeave={this.handleMouseLeave}
+                />
+            );
+          })
         }
       </div>
     );

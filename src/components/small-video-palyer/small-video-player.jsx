@@ -27,20 +27,22 @@ class SmallVideoPlayer extends PureComponent {
       <article
         id={id}
         className="small-movie-card catalog__movies-card"
-        onMouseLeave={onMouseLeave}>
+        onMouseLeave={onMouseLeave}
+      >
         <Link
           to={`/films/${id}`}
-          style={{display: `block`, zIndex: 4}}
-          className="small-movie-card__image" >
-          {isPlaying &&
-          <video
-            className="small-movie-card__image"
-            poster={previewURL}
-            autoPlay={isPlaying}
-            muted
-          >
-            <source src={videoURL} width={480} type={`video/mp4`}/>
-          </video>}
+          className="small-movie-card__image"
+        >
+          {
+            <video
+              className="small-movie-card__image"
+              poster={previewURL}
+              autoPlay={isPlaying}
+              muted
+            >
+              <source src={videoURL} width={480} type={`video/mp4`}/>
+            </video>
+          }
         </Link>
       </article>
     );
