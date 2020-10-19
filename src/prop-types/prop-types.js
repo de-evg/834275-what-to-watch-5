@@ -36,6 +36,12 @@ const typesMap = {
       id: PropTypes.string.isRequired
     })
   }),
+  genre: PropTypes.string.isRequired,
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+  isActive: PropTypes.bool.isRequired,
+  onGenreFilterChange: PropTypes.func.isRequired,
+  currentGenre: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired
 };
 
 export {typesMap};

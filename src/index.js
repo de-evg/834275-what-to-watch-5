@@ -1,20 +1,18 @@
 import React from "react";
 import {render} from "react-dom";
+import {createStore} from "redux";
+import {Provider} from "react-redux";
 import App from "./components/app/app";
-import {movies} from "./mocks/movies";
+import {reducer} from "./store/reducer";
 
-const promoMovie = {
-  title: `The Grand Budapest Hotel`,
-  genre: `Drama`,
-  release: 2014,
-  previewURL: `/img/bg-the-grand-budapest-hotel.jpg`,
-  posterURL: `/img/the-grand-budapest-hotel-poster.jpg`
-};
+const store = createStore(
+    reducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
+);
 
 render(
-    <App
-      promoMovie={promoMovie}
-      movies={movies}
-    />,
+    <Provider store={store}>
+      <App />
+    </Provider>,
     document.getElementById(`root`)
 );

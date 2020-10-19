@@ -1,5 +1,6 @@
 import React, {PureComponent} from "react";
 import {typesMap} from "../../prop-types/prop-types";
+
 import SmallMovieCard from "../small-movie-card/small-movie-card";
 import SmallVideoPlayer from "../small-video-palyer/small-video-player";
 
@@ -42,12 +43,14 @@ class MovieList extends PureComponent {
               activeMovieID !== i
                 ? <SmallMovieCard
                   key={`movie-${i}`}
+                  id={i}
                   movie={movie}
                   onMouseEnter={this.handleMouseEnter}
                   onMouseLeave={this.handleMouseLeave}
                 />
                 : <SmallVideoPlayer
                   key={`movie-${i}`}
+                  id={i}
                   movie={movie}
                   isPlaying={this.state.isPlaying}
                   onMouseLeave={this.handleMouseLeave}
