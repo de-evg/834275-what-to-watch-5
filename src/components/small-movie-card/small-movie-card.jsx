@@ -19,8 +19,8 @@ class SmallMovieCard extends PureComponent {
   }
 
   render() {
-    const {movie, onMouseLeave} = this.props;
-    const {id, title, previewURL} = movie;
+    const {movie, onMouseLeave, id} = this.props;
+    const {title, previewURL} = movie;
 
     return (
       <article
@@ -50,7 +50,8 @@ class SmallMovieCard extends PureComponent {
 SmallMovieCard.propTypes = {
   movie: typesMap.movie,
   onMouseEnter: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired
+  onMouseLeave: PropTypes.func.isRequired,
+  id: typesMap.id
 };
 
 export default SmallMovieCard;

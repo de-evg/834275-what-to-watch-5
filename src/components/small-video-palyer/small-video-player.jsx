@@ -20,14 +20,13 @@ class SmallVideoPlayer extends PureComponent {
 
   render() {
     const {isPlaying} = this.state;
-    const {movie, onMouseLeave} = this.props;
-    const {id, videoURL, previewURL} = movie;
+    const {movie, onMouseLeave, id} = this.props;
+    const {videoURL, previewURL} = movie;
 
     return (
       <article
         id={id}
         className="small-movie-card catalog__movies-card"
-        onMouseLeave={onMouseLeave}
       >
         <Link
           to={`/films/${id}`}
@@ -39,6 +38,7 @@ class SmallVideoPlayer extends PureComponent {
               poster={previewURL}
               autoPlay={isPlaying}
               muted
+              onMouseLeave={onMouseLeave}
             >
               <source src={videoURL} width={480} type={`video/mp4`}/>
             </video>
@@ -51,7 +51,8 @@ class SmallVideoPlayer extends PureComponent {
 
 SmallVideoPlayer.propTypes = {
   movie: typesMap.movie,
-  onMouseLeave: PropTypes.func.isRequired
+  onMouseLeave: PropTypes.func.isRequired,
+  id: typesMap.id
 };
 
 export default SmallVideoPlayer;

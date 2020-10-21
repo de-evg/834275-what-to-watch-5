@@ -1,12 +1,21 @@
 import React, {PureComponent} from "react";
+import {connect} from "react-redux";
+
 import MovieList from "../movie-list/movie-list";
+import GenreList from "../genre-list/genre-list";
 
 import {typesMap} from "../../prop-types/prop-types";
+import {ActionCreator} from "../../store/action";
+
 
 class MainScreen extends PureComponent {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
-    const {title, genre, release, posterURL, previewURL} = this.props.promoMovie;
-    const {movies} = this.props;
+    const {movies, promo, currentGenre, genres, onGenreFilterChange} = this.props;
+    const {title, genre, release, posterURL, previewURL} = promo;
 
     return (
       <>
@@ -69,38 +78,10 @@ class MainScreen extends PureComponent {
           <section className="catalog">
             <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-            <ul className="catalog__genres-list">
-              <li className="catalog__genres-item catalog__genres-item--active">
-                <a href="#" className="catalog__genres-link">All genres</a>
-              </li>
-              <li className="catalog__genres-item">
-                <a href="#" className="catalog__genres-link">Comedies</a>
-              </li>
-              <li className="catalog__genres-item">
-                <a href="#" className="catalog__genres-link">Crime</a>
-              </li>
-              <li className="catalog__genres-item">
-                <a href="#" className="catalog__genres-link">Documentary</a>
-              </li>
-              <li className="catalog__genres-item">
-                <a href="#" className="catalog__genres-link">Dramas</a>
-              </li>
-              <li className="catalog__genres-item">
-                <a href="#" className="catalog__genres-link">Horror</a>
-              </li>
-              <li className="catalog__genres-item">
-                <a href="#" className="catalog__genres-link">Kids & Family</a>
-              </li>
-              <li className="catalog__genres-item">
-                <a href="#" className="catalog__genres-link">Romance</a>
-              </li>
-              <li className="catalog__genres-item">
-                <a href="#" className="catalog__genres-link">Sci-Fi</a>
-              </li>
-              <li className="catalog__genres-item">
-                <a href="#" className="catalog__genres-link">Thrillers</a>
-              </li>
-            </ul>
+            <GenreList
+              genres={genres}
+              currentGenre={currentGenre}
+              onGenreFilterChange={onGenreFilterChange} />
 
             <MovieList movies={movies} />
 
@@ -127,9 +108,28 @@ class MainScreen extends PureComponent {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  movies: state.movies,
+  promo: state.promo,
+  genres: state.genres,
+  currentGenre: state.currentGenre
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onGenreFilterChange(filter) {
+    dispatch(ActionCreator.changeFilter(filter));
+    dispatch(ActionCreator.filterMovies(filter));
+  }
+});
+
 MainScreen.propTypes = {
-  promoMovie: typesMap.promo,
-  movies: typesMap.movies
+  currentGenre: typesMap.currentGenre,
+  promo: typesMap.promo,
+  movies: typesMap.movies,
+  genres: typesMap.genres,
+  onGenreFilterChange: typesMap.onGenreFilterChange
 };
 
-export default MainScreen;
+export {MainScreen};
+export default connect(mapStateToProps, mapDispatchToProps)(MainScreen);
