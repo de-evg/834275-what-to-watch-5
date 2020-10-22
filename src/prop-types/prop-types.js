@@ -41,7 +41,8 @@ const typesMap = {
   isActive: PropTypes.bool.isRequired,
   onGenreFilterChange: PropTypes.func.isRequired,
   currentGenre: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired
+  id: PropTypes.number.isRequired,
+  onNavItemChange: PropTypes.func.isRequired
 };
 
 export {typesMap};

@@ -1,6 +1,11 @@
 const REVIEW_COUNT = 10;
 
-const generateReview = (id) => `Some text review ${id}`;
+const generateReview = (id) => ({
+  text: `Some text review ${id}`,
+  date: new Date(),
+  author: `User ${id}`,
+  userRating: `8,9`
+});
 
 const genereteReviews = () => {
   const reviews = [];
