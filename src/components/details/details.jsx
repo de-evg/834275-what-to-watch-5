@@ -3,7 +3,7 @@ import {typesMap} from "../../prop-types/prop-types";
 
 const Details = (props) => {
   const {release, genre, runTime, director, actors} = props.movie;
-  const hours = runTime % 60;
+  const hours = Math.floor(runTime / 60);
   const minutes = runTime - hours * 60;
   const updatedTime = `${hours}h ${minutes}m`;
   return (
@@ -15,7 +15,9 @@ const Details = (props) => {
         </p>
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Starring</strong>
-          <span className="movie-card__details-value">{actors.map((actor) => <>{actor} <br /></>)}</span>
+          <span className="movie-card__details-value">
+            {actors.map((actor, i) => <React.Fragment key={`actors-${i}`}>{actor} <br /></React.Fragment>)}
+          </span>
         </p>
       </div>
 

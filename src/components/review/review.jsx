@@ -2,11 +2,11 @@ import React from "react";
 import {typesMap} from "../../prop-types/prop-types";
 
 const Review = (props) => {
-  const {text, date, author, userRating} = props.review;
+  const {text, date, author, userRating} = props.movieReview;
   const month = date.getMonth();
   const day = date.getDate();
-  const yeat = date.getYear();
-  const updatedData = `${month} ${day}, ${year}`;
+  const year = date.getFullYear();
+  const updatedData = date.toLocaleDateString(`en-US`, {year: `numeric`, month: `long`, day: `numeric`});  
 
   return (
     <div className="review">
@@ -14,14 +14,18 @@ const Review = (props) => {
         <p className="review__text">{text}</p>
 
         <footer className="review__details">
-          <cite className="review__author">{author}}</cite>
-          <time className="review__date" dateTime="2016-12-24">{updatedData}</time>
+          <cite className="review__author">{author}</cite>
+          <time className="review__date" dateTime={`${year}-${month}-${day}`}>{updatedData}</time>
         </footer>
       </blockquote>
 
       <div className="review__rating">{userRating}</div>
     </div>
   );
+};
+
+Review.propTypes = {
+  movieReview: typesMap.movieReview
 };
 
 export default Review;

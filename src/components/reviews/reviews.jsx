@@ -3,12 +3,12 @@ import {typesMap} from "../../prop-types/prop-types";
 import Review from "../review/review";
 
 const Reviews = (props) => {
-  const {reviews} = props;
+  const {movieReviews} = props;
   return (
     <div className="movie-card__reviews movie-card__row">
       <div className="movie-card__reviews-col">
         {
-          reviews.map((review, i) => <Review review={review} key={`review-${i}`} />)
+          movieReviews.map((movieReview, i) => <Review movieReview={movieReview} key={`review-${i}`} />)
         }
       </div>
     </div>
@@ -17,7 +17,7 @@ const Reviews = (props) => {
 
 
 Reviews.propTypes = {
-  reviews: typesMap.reviews
+  movieReviews: typesMap.movieReviews
 };
 
 export default Reviews;

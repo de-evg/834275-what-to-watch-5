@@ -8,12 +8,16 @@ class Nav extends PureComponent {
   }
 
   render() {
-    const {navItmes} = this.props;
+    const {navItems, activeItem} = this.props;
     return (
       <nav className="movie-nav movie-card__nav">
         <ul className="movie-nav__list">
           {
-            navItmes.map((item, i) => <NavItem title={item} key={`nav_item-${i}`} />)
+            navItems.map((item, i) => <NavItem
+              title={item}
+              onNavItemChange={this.props.onNavItemChange}
+              isActive={activeItem === item}
+              key={`nav_item-${i}`} />)
           }
         </ul>
       </nav>
@@ -22,7 +26,8 @@ class Nav extends PureComponent {
 }
 
 Nav.propTypes = {
-  navItmes: typesMap.navItmes,
+  navItems: typesMap.navItems,
+  activeItem: typesMap.activeItem,
   onNavItemChange: typesMap.onNavItemChange
 };
 
