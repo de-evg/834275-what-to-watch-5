@@ -15,7 +15,6 @@ const Reviews = (props) => {
   );
 };
 
-
 Reviews.propTypes = {
   movieReviews: typesMap.movieReviews
 };

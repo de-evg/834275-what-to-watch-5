@@ -66,7 +66,10 @@ const typesMap = {
   title: PropTypes.string.isRequired,
   review,
   movieReviews,
-  movieReview
+  movieReview,
+  renderTab: PropTypes.func.isRequired,
+  activeNavItem: PropTypes.string.isRequired,
+  handleNavItemChange: PropTypes.func.isRequired
 };
 
 export {typesMap};

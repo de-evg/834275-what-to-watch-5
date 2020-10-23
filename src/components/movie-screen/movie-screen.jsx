@@ -3,7 +3,10 @@ import {Link} from "react-router-dom";
 import {typesMap} from "../../prop-types/prop-types";
 import {movies} from "../../mocks/movies";
 
+import withActiveTab from "../../hocs/with-active-tab";
 import Tabs from "../tabs/tabs";
+
+const TabsHOC = withActiveTab(Tabs);
 
 class MovieScreen extends PureComponent {
   constructor(props) {
@@ -18,13 +21,7 @@ class MovieScreen extends PureComponent {
       genre,
       release,
       posterURL,
-      previewURL,
-      rating,
-      ratingLevel,
-      ratingCount,
-      description,
-      director,
-      actors
+      previewURL
     } = currentMovie;
 
     return (
@@ -89,7 +86,7 @@ class MovieScreen extends PureComponent {
                 <img src={posterURL} alt={title} width="218" height="327" />
               </div>
 
-              <Tabs movie={currentMovie}/>
+              <TabsHOC movie={currentMovie}/>
             </div>
           </div>
         </section>

@@ -22,7 +22,6 @@ const Overview = (props) => {
   );
 };
 
-
 Overview.propTypes = {
   movie: typesMap.movie
 };
