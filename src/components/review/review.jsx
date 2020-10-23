@@ -6,7 +6,7 @@ const Review = (props) => {
   const month = date.getMonth();
   const day = date.getDate();
   const year = date.getFullYear();
-  const updatedData = date.toLocaleDateString(`en-US`, {year: `numeric`, month: `long`, day: `numeric`});  
+  const updatedData = date.toLocaleDateString(`en-US`, {year: `numeric`, month: `long`, day: `numeric`});
 
   return (
     <div className="review">

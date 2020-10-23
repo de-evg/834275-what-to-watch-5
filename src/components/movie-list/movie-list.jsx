@@ -43,14 +43,14 @@ class MovieList extends PureComponent {
               activeMovieID !== i
                 ? <SmallMovieCard
                   key={`movie-${i}`}
-                  id={i}
+                  id={movie.id}
                   movie={movie}
                   onMouseEnter={this.handleMouseEnter}
                   onMouseLeave={this.handleMouseLeave}
                 />
                 : <SmallVideoPlayer
                   key={`movie-${i}`}
-                  id={i}
+                  id={movie.id}
                   movie={movie}
                   isPlaying={this.state.isPlaying}
                   onMouseLeave={this.handleMouseLeave}
