@@ -7,27 +7,27 @@ import {typesMap} from "../../prop-types/prop-types";
 class SmallMovieCard extends PureComponent {
   constructor(props) {
     super(props);
-    this.handleMouseEnter = this.handleMouseEnter.bind(this);
+    this.handleMouseOver = this.handleMouseOver.bind(this);
   }
 
-  handleMouseEnter(evt) {
+  handleMouseOver(evt) {
     let target = evt.target;
     if (target.tagName === `IMG` || target.tagName === `A`) {
       target = evt.target.parentElement;
     }
-    this.props.onMouseEnter(+target.parentElement.id);
+    this.props.onMouseOver(+target.parentElement.id);
   }
 
   render() {
-    const {movie, onMouseLeave, id} = this.props;
+    const {movie, onMouseOut, id} = this.props;
     const {title, previewURL} = movie;
 
     return (
       <article
         id={id}
         className="small-movie-card catalog__movies-card"
-        onMouseEnter={this.handleMouseEnter}
-        onMouseLeave={onMouseLeave}>
+        onMouseOver={this.handleMouseOver}
+        onMouseOut={onMouseOut}>
         <div className="small-movie-card__image">
           <Link
             to={`/films/${id}`}
@@ -49,8 +49,8 @@ class SmallMovieCard extends PureComponent {
 
 SmallMovieCard.propTypes = {
   movie: typesMap.movie,
-  onMouseEnter: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired,
+  onMouseOver: PropTypes.func.isRequired,
+  onMouseOut: PropTypes.func.isRequired,
   id: typesMap.id
 };
 

@@ -3,6 +3,14 @@ import {Link} from "react-router-dom";
 import {typesMap} from "../../prop-types/prop-types";
 import {movies} from "../../mocks/movies";
 
+import MovieList from "../movie-list/movie-list";
+import withActiveTab from "../../hocs/with-active-tab";
+import Tabs from "../tabs/tabs";
+
+const TabsHOC = withActiveTab(Tabs);
+
+const SIMILAR_COUNT = 4;
+
 class MovieScreen extends PureComponent {
   constructor(props) {
     super(props);
@@ -16,14 +24,9 @@ class MovieScreen extends PureComponent {
       genre,
       release,
       posterURL,
-      previewURL,
-      rating,
-      ratingLevel,
-      ratingCount,
-      description,
-      director,
-      actors
+      previewURL
     } = currentMovie;
+    const similarMovies = movies.filter((movie) => movie.genre === genre).slice(0, SIMILAR_COUNT);
 
     return (
       <>
@@ -87,37 +90,7 @@ class MovieScreen extends PureComponent {
                 <img src={posterURL} alt={title} width="218" height="327" />
               </div>
 
-              <div className="movie-card__desc">
-                <nav className="movie-nav movie-card__nav">
-                  <ul className="movie-nav__list">
-                    <li className="movie-nav__item movie-nav__item--active">
-                      <a href="#" className="movie-nav__link">Overview</a>
-                    </li>
-                    <li className="movie-nav__item">
-                      <a href="#" className="movie-nav__link">Details</a>
-                    </li>
-                    <li className="movie-nav__item">
-                      <a href="#" className="movie-nav__link">Reviews</a>
-                    </li>
-                  </ul>
-                </nav>
-
-                <div className="movie-rating">
-                  <div className="movie-rating__score">{rating}</div>
-                  <p className="movie-rating__meta">
-                    <span className="movie-rating__level">{ratingLevel}</span>
-                    <span className="movie-rating__count">{ratingCount} ratings</span>
-                  </p>
-                </div>
-
-                <div className="movie-card__text">
-                  <p>{description}</p>
-
-                  <p className="movie-card__director"><strong>Director: {director}</strong></p>
-
-                  <p className="movie-card__starring"><strong>Starring: {actors.join(`, `)} and other</strong></p>
-                </div>
-              </div>
+              <TabsHOC movie={currentMovie}/>
             </div>
           </div>
         </section>
@@ -126,43 +99,7 @@ class MovieScreen extends PureComponent {
           <section className="catalog catalog--like-this">
             <h2 className="catalog__title">More like this</h2>
 
-            <div className="catalog__movies-list">
-              <article className="small-movie-card catalog__movies-card">
-                <div className="small-movie-card__image">
-                  <img src="/img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
-                </div>
-                <h3 className="small-movie-card__title">
-                  <a className="small-movie-card__link" href="movie-page.html">Fantastic Beasts: The Crimes of Grindelwald</a>
-                </h3>
-              </article>
-
-              <article className="small-movie-card catalog__movies-card">
-                <div className="small-movie-card__image">
-                  <img src="/img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280" height="175" />
-                </div>
-                <h3 className="small-movie-card__title">
-                  <a className="small-movie-card__link" href="movie-page.html">Bohemian Rhapsody</a>
-                </h3>
-              </article>
-
-              <article className="small-movie-card catalog__movies-card">
-                <div className="small-movie-card__image">
-                  <img src="/img/macbeth.jpg" alt="Macbeth" width="280" height="175" />
-                </div>
-                <h3 className="small-movie-card__title">
-                  <a className="small-movie-card__link" href="movie-page.html">Macbeth</a>
-                </h3>
-              </article>
-
-              <article className="small-movie-card catalog__movies-card">
-                <div className="small-movie-card__image">
-                  <img src="/img/aviator.jpg" alt="Aviator" width="280" height="175" />
-                </div>
-                <h3 className="small-movie-card__title">
-                  <a className="small-movie-card__link" href="movie-page.html">Aviator</a>
-                </h3>
-              </article>
-            </div>
+            <MovieList movies={similarMovies} />
           </section>
 
           <footer className="page-footer">

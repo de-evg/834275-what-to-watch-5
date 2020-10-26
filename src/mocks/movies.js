@@ -28,7 +28,8 @@ const generateMovie = (id) => ({
   director: `Wes Andreson`,
   actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
   videoURL: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-  isInWhatchList: Math.random() <= 1
+  isInWhatchList: Math.random() <= 1,
+  runTime: 146
 });
 
 const generateMovies = () => {

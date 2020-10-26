@@ -20,7 +20,7 @@ class SmallVideoPlayer extends PureComponent {
 
   render() {
     const {isPlaying} = this.state;
-    const {movie, onMouseLeave, id} = this.props;
+    const {movie, onMouseOut, id} = this.props;
     const {videoURL, previewURL} = movie;
 
     return (
@@ -38,7 +38,7 @@ class SmallVideoPlayer extends PureComponent {
               poster={previewURL}
               autoPlay={isPlaying}
               muted
-              onMouseLeave={onMouseLeave}
+              onMouseOut={onMouseOut}
             >
               <source src={videoURL} width={480} type={`video/mp4`}/>
             </video>
@@ -51,7 +51,7 @@ class SmallVideoPlayer extends PureComponent {
 
 SmallVideoPlayer.propTypes = {
   movie: typesMap.movie,
-  onMouseLeave: PropTypes.func.isRequired,
+  onMouseOut: PropTypes.func.isRequired,
   id: typesMap.id
 };
 

@@ -13,7 +13,20 @@ const movie = PropTypes.shape({
   description: PropTypes.string.isRequired,
   director: PropTypes.string.isRequired,
   actors: PropTypes.array.isRequired,
-  videoURL: PropTypes.string.isRequired
+  videoURL: PropTypes.string.isRequired,
+});
+
+const movieReview = PropTypes.shape({
+  text: PropTypes.string.isRequired,
+  date: PropTypes.object.isRequired,
+  author: PropTypes.string.isRequired,
+  userRating: PropTypes.string.isRequired
+});
+
+const movieReviews = PropTypes.arrayOf(movieReview);
+
+const review = PropTypes.shape({
+  movieReviews
 });
 
 const typesMap = {
@@ -41,7 +54,22 @@ const typesMap = {
   isActive: PropTypes.bool.isRequired,
   onGenreFilterChange: PropTypes.func.isRequired,
   currentGenre: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired
+  id: PropTypes.number.isRequired,
+  onNavItemChange: PropTypes.func.isRequired,
+  navItem: PropTypes.shape({
+    activeItem: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    onNavItemChange: PropTypes.func.isRequired
+  }),
+  navItems: PropTypes.arrayOf(PropTypes.string),
+  activeItem: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  review,
+  movieReviews,
+  movieReview,
+  renderTab: PropTypes.func.isRequired,
+  activeNavItem: PropTypes.string.isRequired,
+  handleNavItemChange: PropTypes.func.isRequired
 };
 
 export {typesMap};

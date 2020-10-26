@@ -8,8 +8,8 @@ class MovieList extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.handleMouseEnter = this.handleMouseEnter.bind(this);
-    this.handleMouseLeave = this.handleMouseLeave.bind(this);
+    this.handleMouseOver = this.handleMouseOver.bind(this);
+    this.handleMouseOut = this.handleMouseOut.bind(this);
 
     this.state = {
       activeMovieID: -1,
@@ -17,8 +17,16 @@ class MovieList extends PureComponent {
     };
   }
 
-  handleMouseEnter(movieID) {
-    setTimeout(() => {
+  componentWillUnmount() {
+    clearTimeout(this.delay);
+  }
+
+  handleMouseOver(movieID) {
+    this.timeDelay(movieID);
+  }
+
+  timeDelay(movieID) {
+    this.delay = setTimeout(() => {
       this.setState({
         activeMovieID: movieID,
         isPlaying: true
@@ -26,7 +34,7 @@ class MovieList extends PureComponent {
     }, 1000);
   }
 
-  handleMouseLeave() {
+  handleMouseOut() {
     this.setState({
       activeMovieID: -1
     });
@@ -40,20 +48,20 @@ class MovieList extends PureComponent {
         {
           this.props.movies.map((movie, i) => {
             return (
-              activeMovieID !== i
+              activeMovieID !== movie.id
                 ? <SmallMovieCard
                   key={`movie-${i}`}
-                  id={i}
+                  id={movie.id}
                   movie={movie}
-                  onMouseEnter={this.handleMouseEnter}
-                  onMouseLeave={this.handleMouseLeave}
+                  onMouseOver={this.handleMouseOver}
+                  onMouseOut={this.handleMouseOut}
                 />
                 : <SmallVideoPlayer
                   key={`movie-${i}`}
-                  id={i}
+                  id={movie.id}
                   movie={movie}
                   isPlaying={this.state.isPlaying}
-                  onMouseLeave={this.handleMouseLeave}
+                  onMouseOut={this.handleMouseOut}
                 />
             );
           })
