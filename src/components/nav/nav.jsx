@@ -8,11 +8,13 @@ const Nav = (props) => {
     <nav className="movie-nav movie-card__nav">
       <ul className="movie-nav__list">
         {
-          navItems.map((item, i) => <NavItem
-            title={item}
-            onNavItemChange={onNavItemChange}
-            isActive={activeItem === item}
-            key={`nav_item-${i}`} />)
+          navItems.map((item, i) => 
+            <NavItem
+              title={item}
+              onNavItemChange={onNavItemChange}
+              isActive={activeItem === item}
+              key={`nav_item-${i}`} />
+          )
         }
       </ul>
     </nav>

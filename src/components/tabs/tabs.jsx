@@ -5,7 +5,6 @@ import Nav from "../nav/nav";
 
 const NAV_ITEMS = [`Overview`, `Details`, `Reviews`];
 
-
 class Tabs extends PureComponent {
   constructor(props) {
     super(props);
