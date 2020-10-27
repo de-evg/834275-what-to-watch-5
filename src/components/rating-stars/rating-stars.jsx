@@ -2,7 +2,12 @@ import React from "react";
 import {typesMap} from "../../prop-types/prop-types";
 import Star from "../rating-star/rating-star";
 
-const stars = new Array(5).fill(``);
+const stars = new Array(5)
+  .fill()
+  .map((star, i) => {
+    star = {value: i + 1};
+    return star;
+  });
 
 const RatingStars = (props) => {
   const {activeStar, onRatingInputChange} = props;
@@ -12,10 +17,10 @@ const RatingStars = (props) => {
         stars.map((star, i) => (
           <Star
             key={`star-${i}`}
-            isActive={+activeStar === i}
+            isActive={+activeStar === star.value}
             onRatingInputChange={onRatingInputChange}
             starId={`star-${i}`}
-            starValue={i}
+            starValue={star.value}
           />)
         )
       }
