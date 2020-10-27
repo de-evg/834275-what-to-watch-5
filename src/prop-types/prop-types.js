@@ -69,7 +69,18 @@ const typesMap = {
   movieReview,
   renderTab: PropTypes.func.isRequired,
   activeNavItem: PropTypes.string.isRequired,
-  handleNavItemChange: PropTypes.func.isRequired
+  handleNavItemChange: PropTypes.func.isRequired,
+  renderRatingStars: PropTypes.func.isRequired,
+  renderReviewText: PropTypes.func.isRequired,
+  textReview: PropTypes.string.isRequired,
+  rating: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  onTextInput: PropTypes.func.isRequired,
+  activeStar: PropTypes.string.isRequired,
+  onRatingInputChange: PropTypes.func.isRequired,
+  starId: PropTypes.string.isRequired,
+  starValue: PropTypes.number.isRequired,
+  defaultValue: PropTypes.string.isRequired
 };
 
 export {typesMap};

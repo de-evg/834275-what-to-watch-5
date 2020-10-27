@@ -8,6 +8,10 @@ import MovieScreen from "../movie-screen/movie-screen";
 import AddReviewScreen from "../add-review-screen/add-review-screen";
 import PlayerScreen from "../player-screen/player-screen";
 
+import withReviewState from "../../hocs/with-review-state";
+
+const AddReviewScreenHOC = withReviewState(AddReviewScreen);
+
 class App extends PureComponent {
   constructor(props) {
     super(props);
@@ -27,7 +31,7 @@ class App extends PureComponent {
             <MyListScreen />
           </Route>
           <Route exact path="/films/:id" component={MovieScreen} />
-          <Route exact path="/films/:id/review" component={AddReviewScreen} />
+          <Route exact path="/films/:id/review" component={AddReviewScreenHOC} />
           <Route exact path="/player/:id">
             <PlayerScreen />
           </Route>
