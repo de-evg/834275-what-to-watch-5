@@ -4,10 +4,14 @@ import {typesMap} from "../../prop-types/prop-types";
 import {movies} from "../../mocks/movies";
 
 import MovieList from "../movie-list/movie-list";
-import withActiveTab from "../../hocs/with-active-tab";
 import Tabs from "../tabs/tabs";
 
+import withActiveTab from "../../hocs/with-active-tab";
+import withActiveMovie from "../../hocs/with-active-movie";
+
 const TabsHOC = withActiveTab(Tabs);
+const MovieListHOC = withActiveMovie(MovieList);
+
 
 const SIMILAR_COUNT = 4;
 
@@ -99,7 +103,7 @@ class MovieScreen extends PureComponent {
           <section className="catalog catalog--like-this">
             <h2 className="catalog__title">More like this</h2>
 
-            <MovieList movies={similarMovies} />
+            <MovieListHOC movies={similarMovies} />
           </section>
 
           <footer className="page-footer">

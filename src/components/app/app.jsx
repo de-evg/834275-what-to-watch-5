@@ -7,10 +7,10 @@ import MyListScreen from "../my-list-screen/my-list-screen";
 import MovieScreen from "../movie-screen/movie-screen";
 import AddReviewScreen from "../add-review-screen/add-review-screen";
 import PlayerScreen from "../player-screen/player-screen";
-
 import withReviewState from "../../hocs/with-review-state";
 
 const AddReviewScreenHOC = withReviewState(AddReviewScreen);
+
 
 class App extends PureComponent {
   constructor(props) {

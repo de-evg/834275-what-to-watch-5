@@ -4,6 +4,10 @@ import {connect} from "react-redux";
 import MovieList from "../movie-list/movie-list";
 import GenreList from "../genre-list/genre-list";
 
+import withActiveMovie from "../../hocs/with-active-movie";
+
+const MovieListHOC = withActiveMovie(MovieList);
+
 import {typesMap} from "../../prop-types/prop-types";
 import {ActionCreator} from "../../store/action";
 
@@ -83,7 +87,7 @@ class MainScreen extends PureComponent {
               currentGenre={currentGenre}
               onGenreFilterChange={onGenreFilterChange} />
 
-            <MovieList movies={movies} />
+            <MovieListHOC movies={movies} />
 
             <div className="catalog__more">
               <button className="catalog__button" type="button">Show more</button>
