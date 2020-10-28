@@ -24,7 +24,7 @@ const MovieScreen = (props) => {
     posterURL,
     previewURL
   } = currentMovie;
-  const similarMovies = movies.filter((movie) => movie.genre === genre).slice(0, SIMILAR_COUNT);
+  const similarMovies = movies.filter((movie) => movie.genre === genre && movie.id !== currentMovie.id).slice(0, SIMILAR_COUNT);
 
   return (
     <>
