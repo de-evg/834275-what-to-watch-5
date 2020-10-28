@@ -80,7 +80,11 @@ const typesMap = {
   onRatingInputChange: PropTypes.func.isRequired,
   starId: PropTypes.string.isRequired,
   starValue: PropTypes.number.isRequired,
-  defaultValue: PropTypes.string.isRequired
+  defaultValue: PropTypes.string.isRequired,
+  activeMovieID: PropTypes.number.isRequired,
+  renderSmallVideoPlayer: PropTypes.func.isRequired,
+  renderSmallMovieCard: PropTypes.func.isRequired,
+  removeTimeDelay: PropTypes.func.isRequired
 };
 
 export {typesMap};

@@ -30,6 +30,10 @@ const withActiveMovie = (Component) => {
       }, 1000);
     }
 
+    removeTimeDelay() {
+      clearTimeout(this.delay);
+    }
+
     handleMouseOut() {
       this.setState({
         activeMovieID: -1
@@ -41,22 +45,25 @@ const withActiveMovie = (Component) => {
       return (
         <Component
           {...this.props}
-          activeNavItem={this.state.activeNavItem}
-          onMouseOver={this.handleMouseOver}
-          onMouseOut={this.handleMouseOut}
           activeMovieID={activeMovieID}
-          isPlaying={isPlaying}
-
-          renderVideoPlayer={(currentMovie, id) => (
+          renderSmallVideoPlayer={(currentMovie, id) => (
             <SmallVideoPlayer
               movie={currentMovie}
               id={id}
+              key={`player-${id}`}
+              isPlaying={isPlaying}
+              onMouseOut={this.handleMouseOut}
+              removeTimeDelay={this.removeTimeDelay}
             />
           )}
           renderSmallMovieCard={(currentMovie, id) => (
             <SmallMovieCard
               movie={currentMovie}
               id={id}
+              key={`card-${id}`}
+              onMouseOver={this.handleMouseOver}
+              onMouseOut={this.handleMouseOut}
+              removeTimeDelay={this.removeTimeDelay}
             />
           )}
         />

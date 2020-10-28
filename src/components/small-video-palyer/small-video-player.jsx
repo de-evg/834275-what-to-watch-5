@@ -6,21 +6,19 @@ import {typesMap} from "../../prop-types/prop-types";
 class SmallVideoPlayer extends PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
-      isPlaying: false
-    };
+    this.handleMouseOut = this.handleMouseOut.bind(this);
   }
 
-  componentDidMount() {
-    this.setState({
-      isPlaying: true
-    });
+  componentWillUnmount() {
+    this.props.removeTimeDelay();
+  }
+
+  handleMouseOut() {
+    this.props.onMouseOut();
   }
 
   render() {
-    const {isPlaying} = this.state;
-    const {movie, onMouseOut, id} = this.props;
+    const {movie, isPlaying, onMouseOut, id} = this.props;
     const {videoURL, previewURL} = movie;
 
     return (
@@ -52,7 +50,9 @@ class SmallVideoPlayer extends PureComponent {
 SmallVideoPlayer.propTypes = {
   movie: typesMap.movie,
   onMouseOut: PropTypes.func.isRequired,
-  id: typesMap.id
+  id: typesMap.id,
+  isPlaying: PropTypes.bool.isRequired,
+  removeTimeDelay: PropTypes.func.isRequired
 };
 
 export default SmallVideoPlayer;

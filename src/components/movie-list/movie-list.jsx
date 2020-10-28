@@ -1,9 +1,6 @@
 import React, {PureComponent} from "react";
 import {typesMap} from "../../prop-types/prop-types";
 
-import SmallMovieCard from "../small-movie-card/small-movie-card";
-import SmallVideoPlayer from "../small-video-palyer/small-video-player";
-
 class MovieList extends PureComponent {
   constructor(props) {
     super(props);
