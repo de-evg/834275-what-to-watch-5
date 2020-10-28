@@ -12,7 +12,6 @@ import withActiveMovie from "../../hocs/with-active-movie";
 const TabsHOC = withActiveTab(Tabs);
 const MovieListHOC = withActiveMovie(MovieList);
 
-
 const SIMILAR_COUNT = 4;
 
 class MovieScreen extends PureComponent {

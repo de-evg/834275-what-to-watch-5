@@ -84,7 +84,11 @@ const typesMap = {
   activeMovieID: PropTypes.number.isRequired,
   renderSmallVideoPlayer: PropTypes.func.isRequired,
   renderSmallMovieCard: PropTypes.func.isRequired,
-  removeTimeDelay: PropTypes.func.isRequired
+  removeTimeDelay: PropTypes.func.isRequired,
+  showedMoviesCount: PropTypes.number.isRequired,
+  onShowMoreClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
+  renderBtn: PropTypes.func.isRequired
 };
 
 export {typesMap};

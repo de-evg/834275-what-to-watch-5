@@ -3,22 +3,28 @@ import {connect} from "react-redux";
 
 import MovieList from "../movie-list/movie-list";
 import GenreList from "../genre-list/genre-list";
+import ShowMore from "../show-more/show-more";
 
 import withActiveMovie from "../../hocs/with-active-movie";
-
-const MovieListHOC = withActiveMovie(MovieList);
 
 import {typesMap} from "../../prop-types/prop-types";
 import {ActionCreator} from "../../store/action";
 
+const MovieListHOC = withActiveMovie(MovieList);
 
 class MainScreen extends PureComponent {
   constructor(props) {
     super(props);
+    this.handleShowMoreClick = this.handleShowMoreClick.bind(this);
+  }
+
+  handleShowMoreClick() {
+    const {showedMoviesCount} = this.props;
+    this.props.onShowMoreClick(showedMoviesCount);
   }
 
   render() {
-    const {movies, promo, currentGenre, genres, onGenreFilterChange} = this.props;
+    const {movies, promo, currentGenre, genres, onGenreFilterChange, showedMoviesCount} = this.props;
     const {title, genre, release, posterURL, previewURL} = promo;
 
     return (
@@ -87,11 +93,12 @@ class MainScreen extends PureComponent {
               currentGenre={currentGenre}
               onGenreFilterChange={onGenreFilterChange} />
 
-            <MovieListHOC movies={movies} />
-
-            <div className="catalog__more">
-              <button className="catalog__button" type="button">Show more</button>
-            </div>
+            <MovieListHOC movies={movies.slice(0, showedMoviesCount)} />
+            {
+              movies.length > showedMoviesCount 
+                ? <ShowMore onClick={this.handleShowMoreClick} /> 
+                : null
+            }
           </section>
 
           <footer className="page-footer">
@@ -132,7 +139,9 @@ MainScreen.propTypes = {
   promo: typesMap.promo,
   movies: typesMap.movies,
   genres: typesMap.genres,
-  onGenreFilterChange: typesMap.onGenreFilterChange
+  onGenreFilterChange: typesMap.onGenreFilterChange,
+  onShowMoreClick: typesMap.onShowMoreClick,
+  showedMoviesCount: typesMap.showedMoviesCount
 };
 
 export {MainScreen};

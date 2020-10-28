@@ -2,23 +2,16 @@ import React, {PureComponent} from "react";
 import {Link} from "react-router-dom";
 import {typesMap} from "../../prop-types/prop-types";
 import MovieList from "../movie-list/movie-list";
-import {movies as films} from "../../mocks/movies";
 
 class MyListScreen extends PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
-      movies: films
-    };
-  }
-
-  filterMovieInWhatchList() {
-    return this.state.movies.filter((movie) => movie.isInWhatchList);
   }
 
   render() {
-    const movies = this.filterMovieInWhatchList();
+    const {movies} = this.props;
+    movies = movies.filter((movie) => movie.isInWhatchList);
+
     return (
       <div className="user-page">
         <header className="page-header user-page__head">

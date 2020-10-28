@@ -7,9 +7,12 @@ import MyListScreen from "../my-list-screen/my-list-screen";
 import MovieScreen from "../movie-screen/movie-screen";
 import AddReviewScreen from "../add-review-screen/add-review-screen";
 import PlayerScreen from "../player-screen/player-screen";
+
 import withReviewState from "../../hocs/with-review-state";
+import withShowMoreCount from "../../hocs/with-show-more-count";
 
 const AddReviewScreenHOC = withReviewState(AddReviewScreen);
+const MainScreenHOC = withShowMoreCount(MainScreen);
 
 
 class App extends PureComponent {
@@ -22,7 +25,7 @@ class App extends PureComponent {
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            <MainScreen />
+            <MainScreenHOC />
           </Route>
           <Route exact path="/login">
             <AuthScreen />
