@@ -9,11 +9,6 @@ class SmallMovieCard extends PureComponent {
     super(props);
 
     this.handleMouseOver = this.handleMouseOver.bind(this);
-    this.handleMouseOut = this.handleMouseOut.bind(this);
-  }
-
-  handleMouseOut() {
-    this.props.onMouseOut();
   }
 
   handleMouseOver(evt) {

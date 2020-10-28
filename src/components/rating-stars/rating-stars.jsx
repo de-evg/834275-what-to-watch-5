@@ -9,24 +9,21 @@ const stars = new Array(5)
     return star;
   });
 
-const RatingStars = (props) => {
-  const {activeStar, onRatingInputChange} = props;
-  return (
-    <div className="rating__stars">
-      {
-        stars.map((star, i) => (
-          <Star
-            key={`star-${i}`}
-            isActive={+activeStar === star.value}
-            onRatingInputChange={onRatingInputChange}
-            starId={`star-${i}`}
-            starValue={star.value}
-          />)
-        )
-      }
-    </div>
-  );
-};
+const RatingStars = ({activeStar, onRatingInputChange}) => (
+  <div className="rating__stars">
+    {
+      stars.map((star, i) => (
+        <Star
+          key={`star-${i}`}
+          isActive={+activeStar === star.value}
+          onRatingInputChange={onRatingInputChange}
+          starId={`star-${i}`}
+          starValue={star.value}
+        />)
+      )
+    }
+  </div>
+);
 
 RatingStars.propTypes = {
   activeStar: typesMap.activeStar,

@@ -1,9 +1,7 @@
 import React, {useCallback} from "react";
 import {typesMap} from "../../prop-types/prop-types";
 
-const RatingStar = (props) => {
-  const {starId, starValue, isActive, onRatingInputChange} = props;
-
+const RatingStar = ({starId, starValue, isActive, onRatingInputChange}) => {
   const handlerRatingInputChange = useCallback((evt) => {
     onRatingInputChange(evt.target.value);
   });

@@ -6,9 +6,7 @@ const reviewLength = {
   MAX: 400
 };
 
-const ReviewText = (props) => {
-  const {value, onTextInput} = props;
-
+const ReviewText = ({value, onTextInput}) => {
   const handleTextReviewChange = useCallback((evt) => {
     onTextInput(evt.target.value);
   });

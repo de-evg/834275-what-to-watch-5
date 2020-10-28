@@ -18,10 +18,9 @@ class AddReviewScreen extends PureComponent {
   }
 
   render() {
-    const {id} = this.props.match.params;
     const currentMovie = movies.find((movie) => movie.id === +id);
     const {title, previewURL, posterURL} = currentMovie;
-    const {renderRatingStars, renderReviewText, textReview, rating} = this.props;
+    const {renderRatingStars, renderReviewText, textReview, rating, match: {params: {id}}} = this.props;
 
     return (
       <section className="movie-card movie-card--full">

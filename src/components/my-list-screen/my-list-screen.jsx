@@ -3,8 +3,7 @@ import {Link} from "react-router-dom";
 import {typesMap} from "../../prop-types/prop-types";
 import MovieList from "../movie-list/movie-list";
 
-const MyListScreen = (props) => {
-  const {movies} = props;
+const MyListScreen = ({movies}) => {
   movies = movies.filter((movie) => movie.isInWhatchList);
 
   return (
