@@ -1,33 +1,23 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import {typesMap} from "../../prop-types/prop-types";
 
-class MovieList extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
+const MovieList = (props) => {
+  const {movies, activeMovieID, renderSmallMovieCard, renderSmallVideoPlayer} = props;
 
-  componentWillUnmount() {
-    clearTimeout(this.delay);
-  }
-
-  render() {
-    const {activeMovieID, renderSmallMovieCard, renderSmallVideoPlayer} = this.props;
-
-    return (
-      <div className="catalog__movies-list">
-        {
-          this.props.movies.map((movie) => {
-            return (
-              activeMovieID !== movie.id
-                ? renderSmallMovieCard(movie, movie.id)
-                : renderSmallVideoPlayer(movie, movie.id)
-            );
-          })
-        }
-      </div>
-    );
-  }
-}
+  return (
+    <div className="catalog__movies-list">
+      {
+        movies.map((movie) => {
+          return (
+            activeMovieID !== movie.id
+              ? renderSmallMovieCard(movie, movie.id)
+              : renderSmallVideoPlayer(movie, movie.id)
+          );
+        })
+      }
+    </div>
+  );
+};
 
 MovieList.propTypes = {
   activeMovieID: typesMap.activeMovieID,

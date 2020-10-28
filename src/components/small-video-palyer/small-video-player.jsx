@@ -9,10 +9,6 @@ class SmallVideoPlayer extends PureComponent {
     this.handleMouseOut = this.handleMouseOut.bind(this);
   }
 
-  componentWillUnmount() {
-    this.props.removeTimeDelay();
-  }
-
   handleMouseOut() {
     this.props.onMouseOut();
   }

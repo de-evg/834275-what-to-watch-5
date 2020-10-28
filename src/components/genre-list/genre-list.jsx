@@ -1,33 +1,29 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import {typesMap} from "../../prop-types/prop-types";
 import Genre from "../genre/genre";
 
-class GenreList extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
+const MAX_GENRES_COUNT = 11;
 
-  render() {
-    const {currentGenre, genres, onGenreFilterChange} = this.props;
+const GenreList = (props) => {
+  const {currentGenre, genres, onGenreFilterChange} = props;
 
-    return (
-      <ul className="catalog__genres-list">
-        {
-          genres.map((genre, i) => {
-            return (
-              <Genre
-                key={`genre-${i}`}
-                genre={genre}
-                isActive={currentGenre === genre}
-                onGenreFilterChange={onGenreFilterChange}
-              />
-            );
-          })
-        }
-      </ul>
-    );
-  }
-}
+  return (
+    <ul className="catalog__genres-list">
+      {
+        genres.slice(0, MAX_GENRES_COUNT).map((genre, i) => {
+          return (
+            <Genre
+              key={`genre-${i}`}
+              genre={genre}
+              isActive={currentGenre === genre}
+              onGenreFilterChange={onGenreFilterChange}
+            />
+          );
+        })
+      }
+    </ul>
+  );
+};
 
 GenreList.propTypes = {
   genres: typesMap.genres,

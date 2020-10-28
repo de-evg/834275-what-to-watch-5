@@ -21,6 +21,14 @@ const withActiveMovie = (Component) => {
       this.timeDelay(movieID);
     }
 
+    handleMouseOut() {
+      this.removeTimeDelay();
+      this.setState({
+        activeMovieID: -1,
+        isPlaying: false
+      });
+    }
+
     timeDelay(movieID) {
       this.delay = setTimeout(() => {
         this.setState({
@@ -32,12 +40,6 @@ const withActiveMovie = (Component) => {
 
     removeTimeDelay() {
       clearTimeout(this.delay);
-    }
-
-    handleMouseOut() {
-      this.setState({
-        activeMovieID: -1
-      });
     }
 
     render() {

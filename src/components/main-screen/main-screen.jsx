@@ -19,8 +19,8 @@ class MainScreen extends PureComponent {
   }
 
   handleShowMoreClick() {
-    const {showedMoviesCount} = this.props;
-    this.props.onShowMoreClick(showedMoviesCount);
+    const {showedMoviesCount, onShowMoreClick} = this.props;
+    onShowMoreClick(showedMoviesCount);
   }
 
   render() {
@@ -95,8 +95,8 @@ class MainScreen extends PureComponent {
 
             <MovieListHOC movies={movies.slice(0, showedMoviesCount)} />
             {
-              movies.length > showedMoviesCount 
-                ? <ShowMore onClick={this.handleShowMoreClick} /> 
+              movies.length > showedMoviesCount
+                ? <ShowMore onClick={this.handleShowMoreClick} />
                 : null
             }
           </section>
