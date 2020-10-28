@@ -16,6 +16,7 @@ class MainScreen extends PureComponent {
   constructor(props) {
     super(props);
     this.handleShowMoreClick = this.handleShowMoreClick.bind(this);
+    this.handleFilterChange = this.handleFilterChange.bind(this);
   }
 
   handleShowMoreClick() {
@@ -23,8 +24,14 @@ class MainScreen extends PureComponent {
     onShowMoreClick(showedMoviesCount);
   }
 
+  handleFilterChange(id) {
+    const {onGenreFilterChange, resetShowedMovies} = this.props;
+    resetShowedMovies();
+    onGenreFilterChange(id);
+  }
+
   render() {
-    const {movies, promo, currentGenre, genres, onGenreFilterChange, showedMoviesCount} = this.props;
+    const {movies, promo, currentGenre, genres, showedMoviesCount} = this.props;
     const {title, genre, release, posterURL, previewURL} = promo;
 
     return (
@@ -91,7 +98,7 @@ class MainScreen extends PureComponent {
             <GenreList
               genres={genres}
               currentGenre={currentGenre}
-              onGenreFilterChange={onGenreFilterChange} />
+              onGenreFilterChange={this.handleFilterChange} />
 
             <MovieListHOC movies={movies.slice(0, showedMoviesCount)} />
             {
@@ -141,7 +148,8 @@ MainScreen.propTypes = {
   genres: typesMap.genres,
   onGenreFilterChange: typesMap.onGenreFilterChange,
   onShowMoreClick: typesMap.onShowMoreClick,
-  showedMoviesCount: typesMap.showedMoviesCount
+  showedMoviesCount: typesMap.showedMoviesCount,
+  resetShowedMovies: typesMap.resetShowedMovies
 };
 
 export {MainScreen};

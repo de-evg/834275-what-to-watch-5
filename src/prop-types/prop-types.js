@@ -88,7 +88,8 @@ const typesMap = {
   showedMoviesCount: PropTypes.number.isRequired,
   onShowMoreClick: PropTypes.func.isRequired,
   onClick: PropTypes.func.isRequired,
-  renderBtn: PropTypes.func.isRequired
+  renderBtn: PropTypes.func.isRequired,
+  resetShowedMovies: PropTypes.func.isRequired
 };
 
 export {typesMap};

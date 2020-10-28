@@ -9,6 +9,7 @@ const withShowMoreCount = (Component) => {
       super(props);
 
       this.handleShowMoreClick = this.handleShowMoreClick.bind(this);
+      this.resetShowedMovies = this.resetShowedMovies.bind(this);
 
       this.state = {
         showedMoviesCount: DEFAULT_MOVIES_COUNT
@@ -21,12 +22,19 @@ const withShowMoreCount = (Component) => {
       });
     }
 
+    resetShowedMovies() {
+      this.setState({
+        showedMoviesCount: DEFAULT_MOVIES_COUNT
+      });
+    }
+
     render() {
       const {showedMoviesCount} = this.state;
       return (
         <Component
           {...this.props}
           onShowMoreClick={this.handleShowMoreClick}
+          resetShowedMovies={this.resetShowedMovies}
           showedMoviesCount={showedMoviesCount}
         />
       );
