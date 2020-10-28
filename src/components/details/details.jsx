@@ -6,6 +6,7 @@ const Details = (props) => {
   const hours = Math.floor(runTime / 60);
   const minutes = runTime - hours * 60;
   const updatedTime = `${hours}h ${minutes}m`;
+
   return (
     <div className="movie-card__text movie-card__row">
       <div className="movie-card__text-col">
@@ -38,7 +39,6 @@ const Details = (props) => {
     </div>
   );
 };
-
 
 Details.propTypes = {
   movie: typesMap.movie

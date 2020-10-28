@@ -7,6 +7,7 @@ import {typesMap} from "../../prop-types/prop-types";
 class SmallMovieCard extends PureComponent {
   constructor(props) {
     super(props);
+
     this.handleMouseOver = this.handleMouseOver.bind(this);
   }
 
@@ -51,7 +52,8 @@ SmallMovieCard.propTypes = {
   movie: typesMap.movie,
   onMouseOver: PropTypes.func.isRequired,
   onMouseOut: PropTypes.func.isRequired,
-  id: typesMap.id
+  id: typesMap.id,
+  removeTimeDelay: PropTypes.func.isRequired
 };
 
 export default SmallMovieCard;

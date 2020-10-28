@@ -14,6 +14,9 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case ActionType.RESET:
+      return Object.assign({}, state, initialState);
+
     case ActionType.CHANGE_GENRE_FILTER:
       return Object.assign({}, state, {currentGenre: action.payload});
 

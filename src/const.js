@@ -1,3 +1,4 @@
 const DEFAULT_GENRE = `All genres`;
+const DEFAULT_MOVIES_COUNT = 8;
 
-export {DEFAULT_GENRE};
+export {DEFAULT_GENRE, DEFAULT_MOVIES_COUNT};

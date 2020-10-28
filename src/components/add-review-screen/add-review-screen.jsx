@@ -11,26 +11,6 @@ const reviewLength = {
 class AddReviewScreen extends PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
-      textReview: ``,
-      rating: null
-    };
-
-    this.handleTextReviewChange = this.handleTextReviewChange.bind(this);
-    this.handlerRatingInputChange = this.handlerRatingInputChange.bind(this);
-  }
-
-  handleTextReviewChange(evt) {
-    this.setState({
-      textReview: evt.target.value
-    });
-  }
-
-  handlerRatingInputChange(evt) {
-    this.setState({
-      rating: evt.target.value
-    });
   }
 
   handleFormSubmit(evt) {
@@ -38,9 +18,9 @@ class AddReviewScreen extends PureComponent {
   }
 
   render() {
-    const {id} = this.props.match.params;
     const currentMovie = movies.find((movie) => movie.id === +id);
     const {title, previewURL, posterURL} = currentMovie;
+    const {renderRatingStars, renderReviewText, textReview, rating, match: {params: {id}}} = this.props;
 
     return (
       <section className="movie-card movie-card--full">
@@ -89,36 +69,20 @@ class AddReviewScreen extends PureComponent {
         <div className="add-review">
           <form action="#" className="add-review__form" onSubmit={this.handleFormSubmit}>
             <div className="rating">
-              <div className="rating__stars">
-                <input className="rating__input" id="star-1" type="radio" name="rating" value="1" onChange={this.handlerRatingInputChange} />
-                <label className="rating__label" htmlFor="star-1">Rating 1</label>
-
-                <input className="rating__input" id="star-2" type="radio" name="rating" value="2" onChange={this.handlerRatingInputChange} />
-                <label className="rating__label" htmlFor="star-2">Rating 2</label>
-
-                <input className="rating__input" id="star-3" type="radio" name="rating" value="3" onChange={this.handlerRatingInputChange} />
-                <label className="rating__label" htmlFor="star-3">Rating 3</label>
-
-                <input className="rating__input" id="star-4" type="radio" name="rating" value="4" onChange={this.handlerRatingInputChange} />
-                <label className="rating__label" htmlFor="star-4">Rating 4</label>
-
-                <input className="rating__input" id="star-5" type="radio" name="rating" value="5" onChange={this.handlerRatingInputChange} />
-                <label className="rating__label" htmlFor="star-5">Rating 5</label>
-              </div>
+              {renderRatingStars(rating)}
             </div>
 
             <div className="add-review__text">
-              <textarea
-                className="add-review__textarea"
-                name="review-text" id="review-text"
-                onInput={this.handleTextReviewChange}
-                minLength={reviewLength.MIN}
-                maxLength={reviewLength.MAX}
-                placeholder="Review text">{this.state.value}</textarea>
+              {renderReviewText(textReview)}
               <div className="add-review__submit">
-                {this.state.textReview.length > reviewLength.MIN && this.state.textReview.length <= reviewLength.MAX
-                  ? <button className="add-review__btn" type="submit">Post</button>
-                  : <button className="add-review__btn" type="submit" disabled>Post</button>
+                {
+                  <button
+                    className="add-review__btn"
+                    type="submit"
+                    disabled={textReview.length < reviewLength.MIN || textReview.length >= reviewLength.MAX}
+                  >
+                    Post
+                  </button>
                 }
               </div>
 
@@ -132,7 +96,11 @@ class AddReviewScreen extends PureComponent {
 }
 
 AddReviewScreen.propTypes = {
-  match: typesMap.match
+  match: typesMap.match,
+  renderRatingStars: typesMap.renderRatingStars,
+  renderReviewText: typesMap.renderReviewText,
+  textReview: typesMap.textReview,
+  rating: typesMap.rating
 };
 
 export default AddReviewScreen;

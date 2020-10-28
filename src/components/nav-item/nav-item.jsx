@@ -1,15 +1,14 @@
-import React from "react";
+import React, {useCallback} from "react";
 import {typesMap} from "../../prop-types/prop-types";
 
-const NavItem = (props) => {
-  const {isActive, title} = props;
+const NavItem = ({isActive, title, onNavItemChange}) => {
   const acitveClass = isActive ? `movie-nav__item--active` : ``;
   const classes = [`movie-nav__item`, acitveClass];
 
-  const handleNavItemClick = (evt) => {
+  const handleNavItemClick = useCallback((evt) => {
     evt.preventDefault();
-    props.onNavItemChange(title);
-  };
+    onNavItemChange(title);
+  }, [title]);
 
   return (
     <li className={classes.join(` `)}>
