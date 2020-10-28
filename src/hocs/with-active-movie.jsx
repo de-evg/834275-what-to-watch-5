@@ -17,7 +17,7 @@ const withActiveMovie = (Component) => {
       };
     }
 
-    componentWillUnmount() {      
+    componentWillUnmount() {
       this.removeTimeDelay();
     }
 
