@@ -17,6 +17,10 @@ const withActiveMovie = (Component) => {
       };
     }
 
+    componentWillUnmount() {      
+      this.removeTimeDelay();
+    }
+
     handleMouseOver(movieID) {
       this.timeDelay(movieID);
     }
