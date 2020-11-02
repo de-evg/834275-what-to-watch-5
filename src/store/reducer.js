@@ -1,6 +1,5 @@
 
 import {promoMovie} from "../mocks/promo";
-import {filterMovies} from "../utils/filter";
 import {getGenres} from "../utils/movies";
 import {ActionType} from "./action";
 import {DEFAULT_GENRE} from "../const";
@@ -21,10 +20,6 @@ const reducer = (state = initialState, action) => {
 
     case ActionType.CHANGE_GENRE_FILTER:
       return Object.assign({}, state, {currentGenre: action.payload});
-
-    case ActionType.FILTER_MOVIES:
-      const filteredMovies = filterMovies(state.movies, action.payload);
-      return Object.assign({}, state, {filteredMovies});
 
     case ActionType.LOAD_MOVIES:
       const adaptedMovies = action.payload.map((movie) => adaptServerToClient(movie));

@@ -1,5 +1,6 @@
 import React, {PureComponent} from "react";
 import {connect} from "react-redux";
+import {getFilteredMovies} from "../../store/selectors";
 
 import MovieList from "../movie-list/movie-list";
 import GenreList from "../genre-list/genre-list";
@@ -128,7 +129,7 @@ class MainScreen extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  filteredMovies: state.filteredMovies,
+  filteredMovies: getFilteredMovies(state),
   promo: state.promo,
   genres: state.genres,
   currentGenre: state.currentGenre
