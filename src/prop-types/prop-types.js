@@ -32,6 +32,7 @@ const review = PropTypes.shape({
 const typesMap = {
   movie,
   movies: PropTypes.arrayOf(movie),
+  filteredMovies: PropTypes.arrayOf(movie),
   promo: PropTypes.shape({
     title: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,

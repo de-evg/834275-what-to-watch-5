@@ -1,7 +1,7 @@
 import React from "react";
+import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {typesMap} from "../../prop-types/prop-types";
-import {movies} from "../../mocks/movies";
 
 import MovieList from "../movie-list/movie-list";
 import Tabs from "../tabs/tabs";
@@ -14,8 +14,7 @@ const MovieListHOC = withActiveMovie(MovieList);
 
 const SIMILAR_COUNT = 4;
 
-const MovieScreen = (props) => {
-  const {id} = props.match.params;
+const MovieScreen = ({movies, match: {params: {id}}}) => {
   const currentMovie = movies.find((movie) => movie.id === +id);
   const {
     title,
@@ -119,7 +118,14 @@ const MovieScreen = (props) => {
 };
 
 MovieScreen.propTypes = {
-  match: typesMap.match
+  match: typesMap.match,
+  movies: typesMap.movies
 };
 
-export default MovieScreen;
+
+const mapStateToProps = (state) => ({
+  movies: state.movies
+});
+
+export {MovieScreen};
+export default connect(mapStateToProps)(MovieScreen);
