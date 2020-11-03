@@ -1,18 +1,37 @@
 import React from "react";
 import {render} from "react-dom";
-import {createStore} from "redux";
+import {createStore, applyMiddleware} from "redux";
+import {composeWithDevTools} from "redux-devtools-extension";
 import {Provider} from "react-redux";
 import App from "./components/app/app";
 import {reducer} from "./store/reducer";
+import thunk from "redux-thunk";
+import {createAPI} from "./services/api";
+import {ActionCreator} from "./store/action";
+import {AuthorizationStatus} from "./const";
+import {fetchMovieList} from "./store/api-actions";
+
+const api = createAPI(
+    () => store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH))
+);
 
 const store = createStore(
     reducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
+    composeWithDevTools(
+        applyMiddleware(thunk.withExtraArgument(api))
+    )
 );
 
-render(
-    <Provider store={store}>
-      <App />
-    </Provider>,
-    document.getElementById(`root`)
-);
+Promise.all([
+  store.dispatch(fetchMovieList())
+])
+  .then(() => {
+    render(
+        <Provider store={store}>
+          <App />
+        </Provider>,
+        document.getElementById(`root`)
+    );
+  });
+
+

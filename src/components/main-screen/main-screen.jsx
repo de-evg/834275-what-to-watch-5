@@ -1,5 +1,6 @@
 import React, {PureComponent} from "react";
 import {connect} from "react-redux";
+import {getFilteredMovies} from "../../store/selectors";
 
 import MovieList from "../movie-list/movie-list";
 import GenreList from "../genre-list/genre-list";
@@ -31,7 +32,7 @@ class MainScreen extends PureComponent {
   }
 
   render() {
-    const {movies, promo, currentGenre, genres, showedMoviesCount} = this.props;
+    const {filteredMovies, promo, currentGenre, genres, showedMoviesCount} = this.props;
     const {title, genre, release, posterURL, previewURL} = promo;
 
     return (
@@ -100,9 +101,9 @@ class MainScreen extends PureComponent {
               currentGenre={currentGenre}
               onGenreFilterChange={this.handleFilterChange} />
 
-            <MovieListHOC movies={movies.slice(0, showedMoviesCount)} />
+            <MovieListHOC movies={filteredMovies.slice(0, showedMoviesCount)} />
             {
-              movies.length > showedMoviesCount
+              filteredMovies.length > showedMoviesCount
                 ? <ShowMore onClick={this.handleShowMoreClick} />
                 : null
             }
@@ -128,7 +129,7 @@ class MainScreen extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  movies: state.movies,
+  filteredMovies: getFilteredMovies(state),
   promo: state.promo,
   genres: state.genres,
   currentGenre: state.currentGenre
@@ -144,7 +145,7 @@ const mapDispatchToProps = (dispatch) => ({
 MainScreen.propTypes = {
   currentGenre: typesMap.currentGenre,
   promo: typesMap.promo,
-  movies: typesMap.movies,
+  filteredMovies: typesMap.filteredMovies,
   genres: typesMap.genres,
   onGenreFilterChange: typesMap.onGenreFilterChange,
   onShowMoreClick: typesMap.onShowMoreClick,
