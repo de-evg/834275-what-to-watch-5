@@ -2,23 +2,19 @@ import {Rating, RatingRange} from "../const";
 
 const adaptServerToClient = (movie) => {
   const getRatingLevel = (rating) => {
-    let textRating = ``;
-    if (rating <= RatingRange.BAD) {
-      textRating = Rating.BAD;
+    if (rating >= RatingRange.VERY_GOOD) {
+      return Rating.AWESOME;
     }
-    if (rating > RatingRange.BAD && rating <= RatingRange.NORMAL) {
-      textRating = Rating.NORMAL;
+    if (rating >= RatingRange.GOOD) {
+      return Rating.VERY_GOOD;
     }
-    if (rating > RatingRange.NORMAL && rating <= RatingRange.GOOD) {
-      textRating = Rating.GOOD;
+    if (rating >= RatingRange.NORMAL) {
+      return Rating.GOOD;
     }
-    if (rating > RatingRange.GOOD && rating <= RatingRange.VERY_GOOD) {
-      textRating = Rating.VERY_GOOD;
+    if (rating >= RatingRange.BAD) {
+      return Rating.NORMAL;
     }
-    if (rating > RatingRange.VERY_GOOD) {
-      textRating = Rating.AWESOME;
-    }
-    return textRating;
+    return Rating.BAD;
   };
 
   const adaptedMovie = Object.assign(
@@ -38,7 +34,7 @@ const adaptServerToClient = (movie) => {
         bgColor: movie.background_color,
         previewVideoLink: movie.preview_video_link,
         rating: `${movie.rating}`,
-        ratingLevel: getRatingLevel(movie.scores_count)
+        ratingLevel: getRatingLevel(movie.rating)
       }
   );
 
