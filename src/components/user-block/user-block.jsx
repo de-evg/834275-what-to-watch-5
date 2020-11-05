@@ -10,7 +10,9 @@ const UserBlock = ({authorizationStatus, userAvatar}) => {
     case AuthorizationStatus.AUTH:
       userBlock = (
         <div className="user-block__avatar">
-          <img src={userAvatar} alt="User avatar" width="63" height="63" />
+          <Link to={`/myList`} >
+            <img src={userAvatar} alt="User avatar" width="63" height="63" />
+          </Link>
         </div>
       );
       break;
