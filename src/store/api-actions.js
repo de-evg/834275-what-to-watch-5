@@ -17,6 +17,7 @@ const checkAuth = (dispatch, _getState, api) => (
 
 const login = ({login: email, password}) => (dispatch, _getState, api) => (
   api.post(APIRoute.LOGIN, {email, password})
+    .then((response) => dispatch(ActionCreator.onSuccessAuthorization(response.data)))
     .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
     .then(()=> dispatch(ActionCreator.redirectToRoute(AppRoute.ROOT)))
 );

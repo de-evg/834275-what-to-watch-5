@@ -90,7 +90,9 @@ const typesMap = {
   onShowMoreClick: PropTypes.func.isRequired,
   onClick: PropTypes.func.isRequired,
   renderBtn: PropTypes.func.isRequired,
-  resetShowedMovies: PropTypes.func.isRequired
+  resetShowedMovies: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func.isRequired
 };
 
 export {typesMap};

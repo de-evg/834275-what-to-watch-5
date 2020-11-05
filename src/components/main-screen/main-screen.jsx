@@ -5,6 +5,7 @@ import {getFilteredMovies} from "../../store/selectors";
 import MovieList from "../movie-list/movie-list";
 import GenreList from "../genre-list/genre-list";
 import ShowMore from "../show-more/show-more";
+import UserBlock from "../user-block/user-block";
 
 import withActiveMovie from "../../hocs/with-active-movie";
 
@@ -53,11 +54,7 @@ class MainScreen extends PureComponent {
               </a>
             </div>
 
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </div>
+            <UserBlock />
           </header>
 
           <div className="movie-card__wrap">
@@ -130,9 +127,10 @@ class MainScreen extends PureComponent {
 
 const mapStateToProps = (state) => ({
   filteredMovies: getFilteredMovies(state),
-  promo: state.promo,
-  genres: state.genres,
-  currentGenre: state.currentGenre
+  promo: state.DATA.promo,
+  genres: state.DATA.genres,
+  currentGenre: state.DATA.currentGenre,
+  authorizationStatus: state.USER.authorizationStatus
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -150,7 +148,8 @@ MainScreen.propTypes = {
   onGenreFilterChange: typesMap.onGenreFilterChange,
   onShowMoreClick: typesMap.onShowMoreClick,
   showedMoviesCount: typesMap.showedMoviesCount,
-  resetShowedMovies: typesMap.resetShowedMovies
+  resetShowedMovies: typesMap.resetShowedMovies,
+  authorizationStatus: typesMap.authorizationStatus
 };
 
 export {MainScreen};

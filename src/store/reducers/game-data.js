@@ -1,9 +1,9 @@
 
-import {promoMovie} from "../mocks/promo";
-import {getGenres} from "../utils/movies";
-import {ActionType} from "./action";
-import {DEFAULT_GENRE} from "../const";
-import {adaptServerToClient} from "../utils/adapter";
+import {promoMovie} from "../../mocks/promo";
+import {getGenres} from "../../utils/movies";
+import {ActionType} from "../action";
+import {DEFAULT_GENRE} from "../../const";
+import {adaptServerToClient} from "../../utils/adapter";
 
 const initialState = {
   currentGenre: DEFAULT_GENRE,
