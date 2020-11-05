@@ -18,7 +18,6 @@ import {typesMap} from "../../prop-types/prop-types";
 const AddReviewScreenHOC = withReviewState(AddReviewScreen);
 const MainScreenHOC = withShowMoreCount(MainScreen);
 
-
 class App extends PureComponent {
   constructor(props) {
     super(props);
@@ -32,7 +31,6 @@ class App extends PureComponent {
           <Route exact path="/">
             <MainScreenHOC />
           </Route>
-
 
           <Route exact path="/login">
             {
@@ -70,4 +68,3 @@ App.propTypes = {
 
 export {App};
 export default connect(mapStateToProps)(App);
-
