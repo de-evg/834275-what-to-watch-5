@@ -11,6 +11,8 @@ import PlayerScreen from "../player-screen/player-screen";
 import withReviewState from "../../hocs/with-review-state";
 import withShowMoreCount from "../../hocs/with-show-more-count";
 
+import PrivateRoute from "../private-route/private-route";
+
 const AddReviewScreenHOC = withReviewState(AddReviewScreen);
 const MainScreenHOC = withShowMoreCount(MainScreen);
 
@@ -30,9 +32,14 @@ class App extends PureComponent {
           <Route exact path="/login">
             <AuthScreen />
           </Route>
-          <Route exact path="/myList">
-            <MyListScreen />
-          </Route>
+
+          <PrivateRoute
+            exact
+            path="/mylist"
+            render={() => (
+              <MyListScreen />
+            )}
+          />
           <Route exact path="/films/:id" component={MovieScreen} />
           <Route exact path="/films/:id/review" component={AddReviewScreenHOC} />
           <Route exact path="/player/:id">

@@ -3,7 +3,7 @@ const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   LOAD_MOVIES: `LOAD_MOVIES`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
-  ON_SUCCESS_AUTHORIZATION: `ON_SUCCESS_AUTHORIZATION`
+  SET_USER_INFO: `SET_USER_INFO`
 };
 
 const ActionCreator = {
@@ -23,8 +23,8 @@ const ActionCreator = {
     type: ActionType.REDIRECT_TO_ROUTE,
     payload: url
   }),
-  onSuccessAuthorization: (userInfo) => ({
-    type: ActionType.ON_SUCCESS_AUTHORIZATION,
+  setUserInfo: (userInfo) => ({
+    type: ActionType.SET_USER_INFO,
     payload: userInfo
   })
 };

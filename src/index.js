@@ -9,7 +9,7 @@ import thunk from "redux-thunk";
 import {createAPI} from "./services/api";
 import {ActionCreator} from "./store/action";
 import {AuthorizationStatus} from "./const";
-import {fetchMovieList} from "./store/api-actions";
+import {fetchMovieList, checkAuth} from "./store/api-actions";
 import {redirect} from "./store/middlewares/redirect";
 
 const api = createAPI(
@@ -25,7 +25,8 @@ const store = createStore(
 );
 
 Promise.all([
-  store.dispatch(fetchMovieList())
+  store.dispatch(fetchMovieList()),
+  store.dispatch(checkAuth())
 ])
   .then(() => {
     render(

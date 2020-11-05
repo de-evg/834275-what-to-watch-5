@@ -15,7 +15,7 @@ const user = (state = initialState, action) => {
       return Object.assign({}, state, {
         authorizationStatus: action.payload,
       });
-    case ActionType.ON_SUCCESS_AUTHORIZATION:
+    case ActionType.SET_USER_INFO:
       return Object.assign({}, state, {
         userID: action.payload.id,
         userName: action.payload.name,
