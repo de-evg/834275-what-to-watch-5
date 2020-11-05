@@ -1,4 +1,4 @@
-import React from "react";
+import React, {} from "react";
 import {typesMap} from "../../prop-types/prop-types";
 import {AuthorizationStatus} from "../../const";
 import {Link} from "react-router-dom";

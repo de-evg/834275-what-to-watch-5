@@ -10,7 +10,6 @@ import {createAPI} from "./services/api";
 import {ActionCreator} from "./store/action";
 import {AuthorizationStatus} from "./const";
 import {fetchMovieList, checkAuth} from "./store/api-actions";
-import {redirect} from "./store/middlewares/redirect";
 
 const api = createAPI(
     () => store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH))
@@ -19,8 +18,7 @@ const api = createAPI(
 const store = createStore(
     root,
     composeWithDevTools(
-        applyMiddleware(thunk.withExtraArgument(api)),
-        applyMiddleware(redirect)
+        applyMiddleware(thunk.withExtraArgument(api))
     )
 );
 

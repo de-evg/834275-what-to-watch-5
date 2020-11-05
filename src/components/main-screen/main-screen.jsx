@@ -136,7 +136,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onGenreFilterChange(filter) {
     dispatch(ActionCreator.changeFilter(filter));
-    dispatch(ActionCreator.filterMovies(filter));
   }
 });
 
