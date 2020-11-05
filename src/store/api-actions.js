@@ -1,5 +1,5 @@
 import {ActionCreator} from "./action";
-import {APIRoute} from "../const";
+import {APIRoute, AuthorizationStatus, AppRoute} from "../const";
 
 const fetchMovieList = () => (dispatch, _getState, api) => (
   api.get(APIRoute.FILMS)
@@ -15,4 +15,10 @@ const checkAuth = (dispatch, _getState, api) => (
     )
 );
 
-export {fetchMovieList, checkAuth};
+const login = ({login: email, password}) => (dispatch, _getState, api) => (
+  api.post(APIRoute.LOGIN, {email, password})
+    .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
+    .then(()=> dispatch(ActionCreator.redirectToRoute(AppRoute.ROOT)))
+);
+
+export {fetchMovieList, checkAuth, login};
