@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
+import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {typesMap} from "../../prop-types/prop-types";
-import {movies} from "../../mocks/movies";
 
 const reviewLength = {
   MIN: 50,
@@ -18,6 +18,7 @@ class AddReviewScreen extends PureComponent {
   }
 
   render() {
+    const {movies} = this.props;
     const currentMovie = movies.find((movie) => movie.id === +id);
     const {title, previewURL, posterURL} = currentMovie;
     const {renderRatingStars, renderReviewText, textReview, rating, match: {params: {id}}} = this.props;
@@ -100,7 +101,13 @@ AddReviewScreen.propTypes = {
   renderRatingStars: typesMap.renderRatingStars,
   renderReviewText: typesMap.renderReviewText,
   textReview: typesMap.textReview,
-  rating: typesMap.rating
+  rating: typesMap.rating,
+  movies: typesMap.movies
 };
 
-export default AddReviewScreen;
+const mapStateToProps = (state) => ({
+  movies: state.DATA.movies
+});
+
+export {AddReviewScreen};
+export default connect(mapStateToProps)(AddReviewScreen);

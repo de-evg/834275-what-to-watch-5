@@ -1,9 +1,9 @@
 
-import {promoMovie} from "../mocks/promo";
-import {getGenres} from "../utils/movies";
-import {ActionType} from "./action";
-import {DEFAULT_GENRE} from "../const";
-import {adaptServerToClient} from "../utils/adapter";
+import {promoMovie} from "../../mocks/promo";
+import {getGenres} from "../../utils/movies";
+import {ActionType} from "../action";
+import {DEFAULT_GENRE} from "../../const";
+import {adaptServerToClient} from "../../utils/adapter";
 
 const initialState = {
   currentGenre: DEFAULT_GENRE,
@@ -13,7 +13,7 @@ const initialState = {
   promo: promoMovie
 };
 
-const reducer = (state = initialState, action) => {
+const gameData = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.RESET:
       return Object.assign({}, state, initialState);
@@ -30,4 +30,4 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export {reducer};
+export {gameData};

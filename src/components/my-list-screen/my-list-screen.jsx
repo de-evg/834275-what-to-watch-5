@@ -1,10 +1,17 @@
 import React from "react";
+import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {typesMap} from "../../prop-types/prop-types";
+
 import MovieList from "../movie-list/movie-list";
+import UserBlock from "../user-block/user-block";
+
+import withActiveMovie from "../../hocs/with-active-movie";
+
+const MovieListHOC = withActiveMovie(MovieList);
 
 const MyListScreen = ({movies}) => {
-  movies = movies.filter((movie) => movie.isInWhatchList);
+  const filteredMovies = movies.filter((movie) => movie.isInWhatchList);
 
   return (
     <div className="user-page">
@@ -19,16 +26,12 @@ const MyListScreen = ({movies}) => {
 
         <h1 className="page-title user-page__title">My list</h1>
 
-        <div className="user-block">
-          <div className="user-block__avatar">
-            <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
-          </div>
-        </div>
+        <UserBlock />
       </header>
 
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-        <MovieList movies={movies} />
+        <MovieListHOC movies={filteredMovies} />
       </section>
 
       <footer className="page-footer">
@@ -52,4 +55,9 @@ MyListScreen.propTypes = {
   movies: typesMap.movies
 };
 
-export default MyListScreen;
+const mapStateToProps = (state) => ({
+  movies: state.DATA.movies,
+});
+
+export {MyListScreen};
+export default connect(mapStateToProps)(MyListScreen);

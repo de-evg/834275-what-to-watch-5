@@ -1,7 +1,8 @@
 const ActionType = {
   CHANGE_GENRE_FILTER: `CHANGE_GENRE_FILTER`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
-  LOAD_MOVIES: `LOAD_MOVIES`
+  LOAD_MOVIES: `LOAD_MOVIES`,
+  SET_USER_INFO: `SET_USER_INFO`
 };
 
 const ActionCreator = {
@@ -9,12 +10,17 @@ const ActionCreator = {
     type: ActionType.CHANGE_GENRE_FILTER,
     payload: filter
   }),
-  requireAuthorization: () => ({
-    type: ActionType.REQUIRED_AUTHORIZATION
+  requireAuthorization: (status) => ({
+    type: ActionType.REQUIRED_AUTHORIZATION,
+    payload: status
   }),
   loadMovies: (movies) => ({
     type: ActionType.LOAD_MOVIES,
     payload: movies
+  }),
+  setUserInfo: (userInfo) => ({
+    type: ActionType.SET_USER_INFO,
+    payload: userInfo
   })
 };
 

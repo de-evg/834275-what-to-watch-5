@@ -2,8 +2,8 @@ import {createSelector} from "reselect";
 import {DEFAULT_GENRE} from "../const";
 
 const getFilteredMovies = createSelector(
-    (state) => state.movies,
-    (state) => state.currentGenre,
+    (state) => state.DATA.movies,
+    (state) => state.DATA.currentGenre,
     (movies, currentGenre) => {
       if (currentGenre === DEFAULT_GENRE) {
         return movies;

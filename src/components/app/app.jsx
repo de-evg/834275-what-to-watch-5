@@ -1,5 +1,6 @@
 import React, {PureComponent} from "react";
-import {BrowserRouter, Switch, Route} from "react-router-dom";
+import {BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
+import {connect} from "react-redux";
 
 import MainScreen from "../main-screen/main-screen";
 import AuthScreen from "../auth-screen/auth-screen";
@@ -11,9 +12,11 @@ import PlayerScreen from "../player-screen/player-screen";
 import withReviewState from "../../hocs/with-review-state";
 import withShowMoreCount from "../../hocs/with-show-more-count";
 
+import PrivateRoute from "../private-route/private-route";
+import {typesMap} from "../../prop-types/prop-types";
+
 const AddReviewScreenHOC = withReviewState(AddReviewScreen);
 const MainScreenHOC = withShowMoreCount(MainScreen);
-
 
 class App extends PureComponent {
   constructor(props) {
@@ -21,18 +24,29 @@ class App extends PureComponent {
   }
 
   render() {
+    const {authorizationStatus} = this.props;
     return (
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
             <MainScreenHOC />
           </Route>
+
           <Route exact path="/login">
-            <AuthScreen />
+            {
+              authorizationStatus === `AUTH`
+                ? <Redirect to="/myList" />
+                : <AuthScreen />
+            }
           </Route>
-          <Route exact path="/myList">
-            <MyListScreen />
-          </Route>
+
+          <PrivateRoute
+            exact
+            path="/mylist"
+            render={() => (
+              <MyListScreen />
+            )}
+          />
           <Route exact path="/films/:id" component={MovieScreen} />
           <Route exact path="/films/:id/review" component={AddReviewScreenHOC} />
           <Route exact path="/player/:id">
@@ -44,6 +58,13 @@ class App extends PureComponent {
   }
 }
 
-App.propTypes = {};
+const mapStateToProps = (state) => ({
+  authorizationStatus: state.USER.authorizationStatus
+});
 
-export default App;
+App.propTypes = {
+  authorizationStatus: typesMap.authorizationStatus
+};
+
+export {App};
+export default connect(mapStateToProps)(App);
