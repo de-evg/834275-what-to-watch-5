@@ -8,6 +8,7 @@ import Tabs from "../tabs/tabs";
 
 import withActiveTab from "../../hocs/with-active-tab";
 import withActiveMovie from "../../hocs/with-active-movie";
+import UserBlock from "../user-block/user-block";
 
 const TabsHOC = withActiveTab(Tabs);
 const MovieListHOC = withActiveMovie(MovieList);
@@ -44,11 +45,7 @@ const MovieScreen = ({movies, match: {params: {id}}}) => {
               </Link>
             </div>
 
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </div>
+            <UserBlock />
           </header>
 
           <div className="movie-card__wrap">
@@ -60,12 +57,12 @@ const MovieScreen = ({movies, match: {params: {id}}}) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
+                <Link to={`/player/${id}`} className="btn btn--play movie-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s" />
                   </svg>
                   <span>Play</span>
-                </button>
+                </Link>
                 <button className="btn btn--list movie-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add" />

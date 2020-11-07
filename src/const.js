@@ -24,7 +24,7 @@ const AuthorizationStatus = {
 const APIRoute = {
   FILMS: `/films`,
   FILM: `/films/:id`,
-  PROMO: `films/promo`,
+  PROMO: `/films/promo`,
   FAVORITE: `/favorite`,
   CHANGE_FAVORITE: `/favorite/:film_id/:status`,
   COMMENTS: `/comments/:film_id`,

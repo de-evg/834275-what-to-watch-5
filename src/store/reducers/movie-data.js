@@ -25,6 +25,10 @@ const gameData = (state = initialState, action) => {
       const adaptedMovies = action.payload.map((movie) => adaptServerToClient(movie));
       const genres = getGenres(adaptedMovies);
       return Object.assign({}, state, {movies: adaptedMovies, genres, filteredMovies: adaptedMovies});
+
+    case ActionType.LOAD_PROMO:
+      const adaptedPromo = adaptServerToClient(action.payload);
+      return Object.assign({}, state, {promo: adaptedPromo});
   }
 
   return state;

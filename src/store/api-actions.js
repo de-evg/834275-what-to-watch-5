@@ -8,6 +8,13 @@ const fetchMovieList = () => (dispatch, _getState, api) => (
     )
 );
 
+const fetchPromo = () => (dispatch, _getState, api) => (
+  api.get(APIRoute.PROMO)
+    .then(
+        ({data}) => dispatch(ActionCreator.loadPromo(data))
+    )
+);
+
 const checkAuth = () => (dispatch, _getState, api) => (
   api.get(APIRoute.LOGIN)
     .then((response) => dispatch(ActionCreator.setUserInfo(response.data)))
@@ -23,4 +30,4 @@ const login = ({login: email, password}) => (dispatch, _getState, api) => (
     .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
 );
 
-export {fetchMovieList, checkAuth, login};
+export {fetchMovieList, fetchPromo, checkAuth, login};

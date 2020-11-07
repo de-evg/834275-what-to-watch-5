@@ -2,7 +2,8 @@ const ActionType = {
   CHANGE_GENRE_FILTER: `CHANGE_GENRE_FILTER`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   LOAD_MOVIES: `LOAD_MOVIES`,
-  SET_USER_INFO: `SET_USER_INFO`
+  SET_USER_INFO: `SET_USER_INFO`,
+  LOAD_PROMO: `LOAD_PROMO`
 };
 
 const ActionCreator = {
@@ -21,6 +22,10 @@ const ActionCreator = {
   setUserInfo: (userInfo) => ({
     type: ActionType.SET_USER_INFO,
     payload: userInfo
+  }),
+  loadPromo: (promo) => ({
+    type: ActionType.LOAD_PROMO,
+    payload: promo
   })
 };
 
