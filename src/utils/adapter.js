@@ -21,7 +21,7 @@ const adaptServerToClient = (movie) => {
       {},
       movie,
       {
-        title: name,
+        title: movie.name,
         posterURL: movie.poster_image,
         previewURL: movie.preview_image,
         videoURL: movie.video_link,
@@ -46,6 +46,7 @@ const adaptServerToClient = (movie) => {
   delete adaptedMovie.background_image;
   delete adaptedMovie.background_color;
   delete adaptedMovie.preview_video_link;
+  delete adaptedMovie.name;
 
   return adaptedMovie;
 };

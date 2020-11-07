@@ -49,9 +49,7 @@ class App extends PureComponent {
           />
           <Route exact path="/films/:id" component={MovieScreen} />
           <Route exact path="/films/:id/review" component={AddReviewScreenHOC} />
-          <Route exact path="/player/:id">
-            <PlayerScreen />
-          </Route>
+          <Route exact path="/player/:id" component={PlayerScreen} />
         </Switch>
       </BrowserRouter>
     );

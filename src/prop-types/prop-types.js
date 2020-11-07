@@ -34,6 +34,7 @@ const typesMap = {
   movies: PropTypes.arrayOf(movie),
   filteredMovies: PropTypes.arrayOf(movie),
   promo: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     release: PropTypes.number.isRequired,

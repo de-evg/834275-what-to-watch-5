@@ -34,7 +34,8 @@ const APIRoute = {
 const AppRoute = {
   ROOT: `/`,
   LOGIN: `/login`,
-  MY_LIST: `/myList`
+  MY_LIST: `/myList`,
+  PLAYER: `/player/:id`
 };
 
 export {DEFAULT_GENRE, DEFAULT_MOVIES_COUNT, Rating, RatingRange, AuthorizationStatus, APIRoute, AppRoute};
