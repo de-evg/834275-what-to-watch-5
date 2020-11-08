@@ -23,7 +23,7 @@ const movieReview = PropTypes.shape({
   userRating: PropTypes.string.isRequired
 });
 
-const movieReviews = PropTypes.arrayOf(movieReview);
+const movieReviews = PropTypes.array.isRequired;
 
 const review = PropTypes.shape({
   movieReviews
@@ -95,7 +95,9 @@ const typesMap = {
   authorizationStatus: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
   userAvatar: PropTypes.string,
-  authError: PropTypes.authError
+  authError: PropTypes.authError,
+  resetReviews: PropTypes.func.isRequired,
+  loadReviews: PropTypes.func.isRequired
 };
 
 export {typesMap};

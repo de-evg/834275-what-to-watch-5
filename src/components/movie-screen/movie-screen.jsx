@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {typesMap} from "../../prop-types/prop-types";
@@ -9,13 +9,15 @@ import Tabs from "../tabs/tabs";
 import withActiveTab from "../../hocs/with-active-tab";
 import withActiveMovie from "../../hocs/with-active-movie";
 import UserBlock from "../user-block/user-block";
+import {fetchReviews} from "../../store/api-actions";
+import {ActionCreator} from "../../store/action";
 
 const TabsHOC = withActiveTab(Tabs);
 const MovieListHOC = withActiveMovie(MovieList);
 
 const SIMILAR_COUNT = 4;
 
-const MovieScreen = ({movies, match: {params: {id}}}) => {
+const MovieScreen = ({movies, reviews, loadReviews, resetReviews, match: {params: {id}}}) => {
   const currentMovie = movies.find((movie) => movie.id === +id);
   const {
     title,
@@ -25,6 +27,12 @@ const MovieScreen = ({movies, match: {params: {id}}}) => {
     previewURL
   } = currentMovie;
   const similarMovies = movies.filter((movie) => movie.genre === genre && movie.id !== currentMovie.id).slice(0, SIMILAR_COUNT);
+
+  useEffect(() => {
+    loadReviews(id);
+
+    return () => resetReviews();
+  });
 
   return (
     <>
@@ -84,7 +92,7 @@ const MovieScreen = ({movies, match: {params: {id}}}) => {
               <img src={posterURL} alt={title} width="218" height="327" />
             </div>
 
-            <TabsHOC movie={currentMovie}/>
+            <TabsHOC movie={currentMovie} reviews={reviews}/>
           </div>
         </div>
       </section>
@@ -116,13 +124,26 @@ const MovieScreen = ({movies, match: {params: {id}}}) => {
 
 MovieScreen.propTypes = {
   match: typesMap.match,
-  movies: typesMap.movies
+  movies: typesMap.movies,
+  reviews: typesMap.movieReviews,
+  loadReviews: typesMap.loadReviews,
+  resetReviews: typesMap.resetReviews
 };
 
 
 const mapStateToProps = (state) => ({
-  movies: state.DATA.movies
+  movies: state.DATA.movies,
+  reviews: state.REVIEW.reviews
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  loadReviews(id) {
+    dispatch(fetchReviews(id));
+  },
+  resetReviews() {
+    dispatch(ActionCreator.resetReviews());
+  }
 });
 
 export {MovieScreen};
-export default connect(mapStateToProps)(MovieScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(MovieScreen);

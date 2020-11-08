@@ -27,7 +27,7 @@ const APIRoute = {
   PROMO: `/films/promo`,
   FAVORITE: `/favorite`,
   CHANGE_FAVORITE: `/favorite/:film_id/:status`,
-  COMMENTS: `/comments/:film_id`,
+  COMMENTS: `/comments/`,
   LOGIN: `/login`,
 };
 

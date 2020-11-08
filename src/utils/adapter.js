@@ -51,4 +51,23 @@ const adaptServerToClient = (movie) => {
   return adaptedMovie;
 };
 
-export {adaptServerToClient};
+const adaptReviewServerToClient = (review) => {
+  const adaptedReview = Object.assign(
+      {},
+      review,
+      {
+        text: review.comment,
+        author: review.user.name,
+        date: new Date(review.date),
+        userRating: `${review.rating}`
+      }
+  );
+
+  delete adaptedReview.comment;
+  delete adaptedReview.user;
+  delete adaptedReview.rating;
+
+  return adaptedReview;
+};
+
+export {adaptServerToClient, adaptReviewServerToClient};

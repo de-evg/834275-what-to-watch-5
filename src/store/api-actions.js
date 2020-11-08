@@ -15,6 +15,13 @@ const fetchPromo = () => (dispatch, _getState, api) => (
     )
 );
 
+const fetchReviews = (id) => (dispatch, _getState, api) => (
+  api.get(`${APIRoute.COMMENTS}${id}`)
+    .then(
+        ({data}) => dispatch(ActionCreator.loadReviews(data))
+    )
+);
+
 const checkAuth = () => (dispatch, _getState, api) => (
   api.get(APIRoute.LOGIN)
     .then((response) => dispatch(ActionCreator.setUserInfo(response.data)))
@@ -30,4 +37,4 @@ const login = ({login: email, password}) => (dispatch, _getState, api) => (
     .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
 );
 
-export {fetchMovieList, fetchPromo, checkAuth, login};
+export {fetchMovieList, fetchPromo, fetchReviews, checkAuth, login};
