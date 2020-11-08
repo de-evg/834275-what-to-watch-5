@@ -6,7 +6,8 @@ const initialState = {
   userID: ``,
   userName: ``,
   userAvatar: ``,
-  userEmail: ``
+  userEmail: ``,
+  authError: false
 };
 
 const user = (state = initialState, action) => {
@@ -20,7 +21,12 @@ const user = (state = initialState, action) => {
         userID: action.payload.id,
         userName: action.payload.name,
         userEmail: action.payload.email,
-        userAvatar: action.payload.avatar_url
+        userAvatar: action.payload.avatar_url,
+        authError: false
+      });
+    case ActionType.SHOW_AUTHORIZATION_ERROR:
+      return Object.assign({}, state, {
+        authError: true
       });
   }
 

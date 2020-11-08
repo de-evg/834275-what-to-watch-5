@@ -3,7 +3,8 @@ const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   LOAD_MOVIES: `LOAD_MOVIES`,
   SET_USER_INFO: `SET_USER_INFO`,
-  LOAD_PROMO: `LOAD_PROMO`
+  LOAD_PROMO: `LOAD_PROMO`,
+  SHOW_AUTHORIZATION_ERROR: `SHOW_AUTHORIZATION_ERROR`
 };
 
 const ActionCreator = {
@@ -26,6 +27,9 @@ const ActionCreator = {
   loadPromo: (promo) => ({
     type: ActionType.LOAD_PROMO,
     payload: promo
+  }),
+  showAuthrizationError: () => ({
+    type: ActionType.SHOW_AUTHORIZATION_ERROR
   })
 };
 

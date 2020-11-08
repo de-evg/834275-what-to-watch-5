@@ -12,7 +12,8 @@ import {AuthorizationStatus} from "./const";
 import {fetchMovieList, checkAuth, fetchPromo} from "./store/api-actions";
 
 const api = createAPI(
-    () => store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH))
+    () => store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH)),
+    () => store.dispatch(ActionCreator.showAuthrizationError())
 );
 
 const store = createStore(

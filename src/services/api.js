@@ -4,10 +4,11 @@ const BACKEND_URL = `https://5.react.pages.academy/wtw`;
 const REQUST_TIMEOUT = 5000;
 
 const HttpCode = {
-  UNAUTHORIZED: 401
+  UNAUTHORIZED: 401,
+  BAD_REQUEST: 400
 };
 
-const createAPI = (onUnauthorized) => {
+const createAPI = (onUnauthorized, onBadRequest) => {
   const api = axios.create({
     baseURL: BACKEND_URL,
     timeout: REQUST_TIMEOUT,
@@ -21,6 +22,11 @@ const createAPI = (onUnauthorized) => {
 
     if (response.status === HttpCode.UNAUTHORIZED) {
       onUnauthorized();
+      throw err;
+    }
+
+    if (response.status === HttpCode.BAD_REQUEST) {
+      onBadRequest();
       throw err;
     }
 

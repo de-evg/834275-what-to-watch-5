@@ -35,6 +35,7 @@ class AuthScreen extends PureComponent {
 
   render() {
     const {emailValid} = this.state;
+    const {authError} = this.props;
     return (
       <div className="user-page">
         <header className="page-header user-page__head">
@@ -56,6 +57,15 @@ class AuthScreen extends PureComponent {
                 ? (
                   <div className="sign-in__message">
                     <p>Please enter a valid email address</p>
+                  </div>
+                )
+                : null
+            }
+            {
+              authError
+                ? (
+                  <div className="sign-in__message">
+                    <p>We can’t recognize this email <br /> and password combination. Please try again.</p>
                   </div>
                 )
                 : null
@@ -98,6 +108,10 @@ AuthScreen.propTypes = {
   onSubmit: typesMap.onSubmit
 };
 
+const mapStateToProps = (state) => ({
+  authError: state.USER.authError
+});
+
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(authData) {
     dispatch(login(authData));
@@ -105,4 +119,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {AuthScreen};
-export default connect(null, mapDispatchToProps)(AuthScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(AuthScreen);
