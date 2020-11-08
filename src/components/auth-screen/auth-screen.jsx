@@ -105,7 +105,8 @@ class AuthScreen extends PureComponent {
 }
 
 AuthScreen.propTypes = {
-  onSubmit: typesMap.onSubmit
+  onSubmit: typesMap.onSubmit,
+  authError: typesMap.authError
 };
 
 const mapStateToProps = (state) => ({

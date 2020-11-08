@@ -94,7 +94,8 @@ const typesMap = {
   resetShowedMovies: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  userAvatar: PropTypes.string
+  userAvatar: PropTypes.string,
+  authError: PropTypes.authError
 };
 
 export {typesMap};
