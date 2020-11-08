@@ -23,7 +23,7 @@ const movieReview = PropTypes.shape({
   userRating: PropTypes.string.isRequired
 });
 
-const movieReviews = PropTypes.array.isRequired;
+const movieReviews = PropTypes.oneOf([PropTypes.array, PropTypes.arrayOf(movieReview)]).isRequired;
 
 const review = PropTypes.shape({
   movieReviews
