@@ -11,7 +11,7 @@ import withActiveMovie from "../../hocs/with-active-movie";
 const MovieListHOC = withActiveMovie(MovieList);
 
 const MyListScreen = ({movies}) => {
-  const filteredMovies = movies.filter((movie) => movie.isInWhatchList);
+  const filteredMovies = movies.filter((movie) => movie.isInWatchList);
 
   return (
     <div className="user-page">

@@ -29,7 +29,7 @@ const adaptServerToClient = (movie) => {
         actors: movie.starring,
         runTime: movie.run_time,
         release: movie.released,
-        isInWhatchList: movie.is_favorite,
+        isInWatchList: movie.is_favorite,
         bgImage: movie.background_image,
         bgColor: movie.background_color,
         previewVideoLink: movie.preview_video_link,

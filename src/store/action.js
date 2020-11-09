@@ -6,7 +6,9 @@ const ActionType = {
   LOAD_PROMO: `LOAD_PROMO`,
   SHOW_AUTHORIZATION_ERROR: `SHOW_AUTHORIZATION_ERROR`,
   LOAD_REVIEWS: `LOAD_REVIEWS`,
-  RESET_REVIEWS: `RESET_REVIEWS`
+  RESET_REVIEWS: `RESET_REVIEWS`,
+  LOAD_MOVIE: `LOAD_MOVIE`,
+  CHANGE_PROMO_FAVORITE_STATUS: `CHANGE_PROMO_FAVORITE_STATUS`
 };
 
 const ActionCreator = {
@@ -21,6 +23,10 @@ const ActionCreator = {
   loadMovies: (movies) => ({
     type: ActionType.LOAD_MOVIES,
     payload: movies
+  }),
+  loadMovie: (movie) => ({
+    type: ActionType.LOAD_MOVIE,
+    payload: movie
   }),
   setUserInfo: (userInfo) => ({
     type: ActionType.SET_USER_INFO,
@@ -39,6 +45,9 @@ const ActionCreator = {
   }),
   resetReviews: () => ({
     type: ActionType.RESET_REVIEWS
+  }),
+  changePromoFavoriteStatus: () => ({
+    type: ActionType.CHANGE_PROMO_FAVORITE_STATUS
   })
 };
 

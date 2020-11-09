@@ -1,16 +1,16 @@
 
-import {promoMovie} from "../../mocks/promo";
 import {getGenres} from "../../utils/movies";
 import {ActionType} from "../action";
 import {DEFAULT_GENRE} from "../../const";
 import {adaptServerToClient} from "../../utils/adapter";
+import {updateMovies} from "../../utils/movies";
 
 const initialState = {
   currentGenre: DEFAULT_GENRE,
   movies: [],
   filteredMovies: [],
   genres: [],
-  promo: promoMovie
+  promo: {}
 };
 
 const gameData = (state = initialState, action) => {
@@ -29,6 +29,15 @@ const gameData = (state = initialState, action) => {
     case ActionType.LOAD_PROMO:
       const adaptedPromo = adaptServerToClient(action.payload);
       return Object.assign({}, state, {promo: adaptedPromo});
+
+    case ActionType.LOAD_MOVIE:
+      const adaptedMovie = adaptServerToClient(action.payload);
+      const updatedMovies = updateMovies(state, adaptedMovie);
+      return Object.assign({}, state, {movies: updatedMovies});
+    case ActionType.CHANGE_PROMO_FAVORITE_STATUS:
+      const {promo} = state;
+      promo.isInWatchList = !state.promo.isInWatchList;
+      return Object.assign({}, state, {promo});
   }
 
   return state;

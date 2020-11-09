@@ -14,6 +14,7 @@ const movie = PropTypes.shape({
   director: PropTypes.string.isRequired,
   actors: PropTypes.array.isRequired,
   videoURL: PropTypes.string.isRequired,
+  isInWatchList: PropTypes.bool.isRequired
 });
 
 const movieReview = PropTypes.shape({
@@ -23,7 +24,7 @@ const movieReview = PropTypes.shape({
   userRating: PropTypes.string.isRequired
 });
 
-const movieReviews = PropTypes.oneOf([PropTypes.array, PropTypes.arrayOf(movieReview)]).isRequired;
+const movieReviews = PropTypes.oneOfType([PropTypes.array, PropTypes.arrayOf(movieReview)]).isRequired;
 
 const review = PropTypes.shape({
   movieReviews
@@ -97,7 +98,9 @@ const typesMap = {
   userAvatar: PropTypes.string,
   authError: PropTypes.authError,
   resetReviews: PropTypes.func.isRequired,
-  loadReviews: PropTypes.func.isRequired
+  loadReviews: PropTypes.func.isRequired,
+  onFavoriteStatusChange: PropTypes.func.isRequired,
+  onFavoriteStatusChanges: PropTypes.func.isRequired,
 };
 
 export {typesMap};
