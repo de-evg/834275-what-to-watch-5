@@ -1,7 +1,10 @@
 import React, {PureComponent} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
+import {AppRoute} from "../../const";
 import {typesMap} from "../../prop-types/prop-types";
+import {postReview} from "../../store/api-actions";
+import {UserBlock} from "../user-block/user-block";
 
 const reviewLength = {
   MIN: 50,
@@ -11,17 +14,21 @@ const reviewLength = {
 class AddReviewScreen extends PureComponent {
   constructor(props) {
     super(props);
+
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
   handleFormSubmit(evt) {
     evt.preventDefault();
+    const {onFormSubmit, textReview, rating, match: {params: {id}}} = this.props;
+    onFormSubmit(id, {rating, comment: textReview});
+    this.props.history.push(`${AppRoute.FILM}${id}`);
   }
 
   render() {
-    const {movies} = this.props;
+    const {movies, renderRatingStars, renderReviewText, textReview, rating, match: {params: {id}}} = this.props;
     const currentMovie = movies.find((movie) => movie.id === +id);
     const {title, previewURL, posterURL} = currentMovie;
-    const {renderRatingStars, renderReviewText, textReview, rating, match: {params: {id}}} = this.props;
 
     return (
       <section className="movie-card movie-card--full">
@@ -55,11 +62,7 @@ class AddReviewScreen extends PureComponent {
               </ul>
             </nav>
 
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </div>
+            <UserBlock />
           </header>
 
           <div className="movie-card__poster movie-card__poster--small">
@@ -102,12 +105,20 @@ AddReviewScreen.propTypes = {
   renderReviewText: typesMap.renderReviewText,
   textReview: typesMap.textReview,
   rating: typesMap.rating,
-  movies: typesMap.movies
+  movies: typesMap.movies,
+  onFormSubmit: typesMap.onFormSubmit,
+  onReviewReset: typesMap.onReviewReset
 };
 
 const mapStateToProps = (state) => ({
   movies: state.DATA.movies
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  onFormSubmit(id, body) {
+    dispatch(postReview(id, body));
+  }
+});
+
 export {AddReviewScreen};
-export default connect(mapStateToProps)(AddReviewScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(AddReviewScreen);

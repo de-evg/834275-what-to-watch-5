@@ -49,8 +49,10 @@ const typesMap = {
   }),
   match: PropTypes.shape({
     params: PropTypes.shape({
-      id: PropTypes.string.isRequired
-    })
+      id: PropTypes.string
+    }),
+    history: PropTypes.object,
+
   }),
   genre: PropTypes.string.isRequired,
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -101,6 +103,8 @@ const typesMap = {
   loadReviews: PropTypes.func.isRequired,
   onFavoriteStatusChange: PropTypes.func.isRequired,
   onFavoriteStatusChanges: PropTypes.func.isRequired,
+  onFormSubmit: PropTypes.func.isRequired,
+  onReviewReset: PropTypes.func.isRequired
 };
 
 export {typesMap};

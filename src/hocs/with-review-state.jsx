@@ -14,6 +14,7 @@ const withReviewState = (Component) => {
 
       this.handleTextReviewChange = this.handleTextReviewChange.bind(this);
       this.handlerRatingInputChange = this.handlerRatingInputChange.bind(this);
+      this.resetReview = this.resetReview.bind(this);
     }
 
     handleTextReviewChange(value) {
@@ -28,6 +29,13 @@ const withReviewState = (Component) => {
       });
     }
 
+    resetReview() {
+      this.setState({
+        textReview: ``,
+        rating: ``
+      });
+    }
+
     render() {
       const {textReview, rating} = this.state;
       return (
@@ -35,6 +43,7 @@ const withReviewState = (Component) => {
           {...this.props}
           textReview={textReview}
           rating={rating}
+          onReviewReset={this.resetReview}
           renderRatingStars={(value) => (
             <RatingStars
               activeStar={value}

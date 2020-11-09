@@ -26,8 +26,7 @@ const APIRoute = {
   FILM: `/films/:id`,
   PROMO: `/films/promo`,
   FAVORITE: `/favorite`,
-  CHANGE_FAVORITE: `/favorite/:film_id/:status`,
-  COMMENTS: `/comments/`,
+  COMMENTS: `/comments`,
   LOGIN: `/login`,
 };
 
@@ -35,7 +34,8 @@ const AppRoute = {
   ROOT: `/`,
   LOGIN: `/login`,
   MY_LIST: `/myList`,
-  PLAYER: `/player/:id`
+  PLAYER: `/player/:id`,
+  FILM: `/film/`
 };
 
 export {DEFAULT_GENRE, DEFAULT_MOVIES_COUNT, Rating, RatingRange, AuthorizationStatus, APIRoute, AppRoute};
