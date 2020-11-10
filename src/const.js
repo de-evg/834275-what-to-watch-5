@@ -23,7 +23,6 @@ const AuthorizationStatus = {
 
 const APIRoute = {
   FILMS: `/films`,
-  FILM: `/films/:id`,
   PROMO: `/films/promo`,
   FAVORITE: `/favorite`,
   COMMENTS: `/comments`,
@@ -35,7 +34,7 @@ const AppRoute = {
   LOGIN: `/login`,
   MY_LIST: `/myList`,
   PLAYER: `/player/:id`,
-  FILM: `/film/`
+  FILMS: `/films`
 };
 
 export {DEFAULT_GENRE, DEFAULT_MOVIES_COUNT, Rating, RatingRange, AuthorizationStatus, APIRoute, AppRoute};

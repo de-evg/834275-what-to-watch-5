@@ -22,11 +22,11 @@ class AddReviewScreen extends PureComponent {
     evt.preventDefault();
     const {onFormSubmit, textReview, rating, match: {params: {id}}} = this.props;
     onFormSubmit(id, {rating, comment: textReview});
-    this.props.history.push(`${AppRoute.FILM}${id}`);
+    this.props.history.push(`${AppRoute.FILMS}/${id}`);
   }
 
   render() {
-    const {movies, renderRatingStars, renderReviewText, textReview, rating, match: {params: {id}}} = this.props;
+    const {movies, renderRatingStars, renderReviewText, textReview, rating, user, match: {params: {id}}} = this.props;
     const currentMovie = movies.find((movie) => movie.id === +id);
     const {title, previewURL, posterURL} = currentMovie;
 
@@ -62,7 +62,7 @@ class AddReviewScreen extends PureComponent {
               </ul>
             </nav>
 
-            <UserBlock />
+            <UserBlock authorizationStatus={user.authorizationStatus} userAvatar={user.userAvatar}/>
           </header>
 
           <div className="movie-card__poster movie-card__poster--small">
@@ -83,7 +83,7 @@ class AddReviewScreen extends PureComponent {
                   <button
                     className="add-review__btn"
                     type="submit"
-                    disabled={textReview.length < reviewLength.MIN || textReview.length >= reviewLength.MAX}
+                    disabled={textReview.length < reviewLength.MIN || textReview.length >= reviewLength.MAX || rating === ``}
                   >
                     Post
                   </button>
@@ -101,17 +101,20 @@ class AddReviewScreen extends PureComponent {
 
 AddReviewScreen.propTypes = {
   match: typesMap.match,
+  history: typesMap.history,
   renderRatingStars: typesMap.renderRatingStars,
   renderReviewText: typesMap.renderReviewText,
   textReview: typesMap.textReview,
   rating: typesMap.rating,
   movies: typesMap.movies,
   onFormSubmit: typesMap.onFormSubmit,
-  onReviewReset: typesMap.onReviewReset
+  onReviewReset: typesMap.onReviewReset,
+  user: typesMap.user
 };
 
 const mapStateToProps = (state) => ({
-  movies: state.DATA.movies
+  movies: state.DATA.movies,
+  user: state.USER
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -50,10 +50,10 @@ const typesMap = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string
-    }),
-    history: PropTypes.object,
-
+    })
   }),
+  history: PropTypes.object.isRequired,
+  push: PropTypes.func.isRequired,
   genre: PropTypes.string.isRequired,
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
   isActive: PropTypes.bool.isRequired,
@@ -104,7 +104,15 @@ const typesMap = {
   onFavoriteStatusChange: PropTypes.func.isRequired,
   onFavoriteStatusChanges: PropTypes.func.isRequired,
   onFormSubmit: PropTypes.func.isRequired,
-  onReviewReset: PropTypes.func.isRequired
+  onReviewReset: PropTypes.func.isRequired,
+  user: PropTypes.shape({
+    authorizationStatus: PropTypes.string.isRequired,
+    userID: PropTypes.number.isRequired,
+    userName: PropTypes.string.isRequired,
+    userAvatar: PropTypes.string.isRequired,
+    userEmail: PropTypes.string.isRequired,
+    authError: PropTypes.bool.isRequired
+  })
 };
 
 export {typesMap};

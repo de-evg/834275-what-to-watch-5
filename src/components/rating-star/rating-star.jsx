@@ -8,7 +8,7 @@ const RatingStar = ({starId, starValue, isActive, onRatingInputChange}) => {
 
   return (
     <>
-      <input className="rating__input" id={starId} type="radio" name="rating" value={starValue} checked={isActive} onChange={handlerRatingInputChange} />
+      <input className="rating__input" id={starId} type="radio" name="rating" value={starValue} checked={isActive} onChange={handlerRatingInputChange} required/>
       <label className="rating__label" htmlFor={starId}>Rating {starValue}</label>
     </>
   );
