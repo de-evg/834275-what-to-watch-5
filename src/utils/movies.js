@@ -15,5 +15,3 @@ const updateMovies = (movies, updatedMovie) => {
 };
 
 export {getGenres, updateMovies};
-
-
