@@ -11,25 +11,18 @@ class UserBlock extends PureComponent {
 
   render() {
     const {authorizationStatus, userAvatar} = this.props;
-    let userBlock;
-    switch (authorizationStatus) {
-      case AuthorizationStatus.AUTH:
-        userBlock = (
-          <div className="user-block__avatar">
-            <Link to={`/myList`} >
-              <img src={userAvatar} alt="User avatar" width="63" height="63" />
-            </Link>
-          </div>
-        );
-        break;
-      case AuthorizationStatus.NO_AUTH:
-        userBlock = <Link to="/login" className="user-block__link">Sign in</Link>;
-        break;
-    }
     return (
       <div className="user-block">
         {
-          userBlock
+          authorizationStatus === AuthorizationStatus.AUTH
+            ? (
+              <div className="user-block__avatar">
+                <Link to={`/myList`} >
+                  <img src={userAvatar} alt="User avatar" width="63" height="63" />
+                </Link>
+              </div>
+            )
+            : <Link to="/login" className="user-block__link">Sign in</Link>
         }
       </div>
     );

@@ -1,4 +1,3 @@
-
 import {getGenres} from "../../utils/movies";
 import {ActionType} from "../action";
 import {DEFAULT_GENRE} from "../../const";
@@ -32,7 +31,7 @@ const gameData = (state = initialState, action) => {
 
     case ActionType.LOAD_MOVIE:
       const adaptedMovie = adaptServerToClient(action.payload);
-      const updatedMovies = updateMovies(state, adaptedMovie);
+      const updatedMovies = updateMovies(state.movies, adaptedMovie);
       return Object.assign({}, state, {movies: updatedMovies});
     case ActionType.CHANGE_PROMO_FAVORITE_STATUS:
       const {promo} = state;

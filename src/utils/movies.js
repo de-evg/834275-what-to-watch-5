@@ -8,17 +8,10 @@ const getGenres = (movies) => {
   return Array.from(genres);
 };
 
-const updateMovies = (state, updatedMovie) => {
-  const {movies} = state;
+const updateMovies = (movies, updatedMovie) => {
   const id = movies.findIndex((movie) => movie.id === updatedMovie.id);
 
-  const updatedMovies = [
-    ...movies.slice(0, id),
-    updatedMovie,
-    ...movies.slice(id + 1)
-  ];
-
-  return updatedMovies;
+  return [...movies.slice(0, id), updatedMovie, ...movies.slice(id + 1)];
 };
 
 export {getGenres, updateMovies};

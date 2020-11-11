@@ -25,7 +25,6 @@ const RatingStars = ({activeStar, onRatingInputChange}) => (
   </div>
 );
 
-
 RatingStars.propTypes = {
   activeStar: typesMap.activeStar,
   onRatingInputChange: typesMap.onRatingInputChange

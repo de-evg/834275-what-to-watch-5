@@ -29,7 +29,7 @@ class AddReviewScreen extends PureComponent {
     const {movies, renderRatingStars, renderReviewText, textReview, rating, user, match: {params: {id}}} = this.props;
     const currentMovie = movies.find((movie) => movie.id === +id);
     const {title, previewURL, posterURL} = currentMovie;
-
+    const isDisabled = textReview.length < reviewLength.MIN || textReview.length >= reviewLength.MAX || rating === ``;
     return (
       <section className="movie-card movie-card--full">
         <div className="movie-card__header">
@@ -83,7 +83,7 @@ class AddReviewScreen extends PureComponent {
                   <button
                     className="add-review__btn"
                     type="submit"
-                    disabled={textReview.length < reviewLength.MIN || textReview.length >= reviewLength.MAX || rating === ``}
+                    disabled={isDisabled}
                   >
                     Post
                   </button>
