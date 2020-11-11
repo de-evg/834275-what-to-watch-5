@@ -8,6 +8,30 @@ const fetchMovieList = () => (dispatch, _getState, api) => (
     )
 );
 
+const fetchPromo = () => (dispatch, _getState, api) => (
+  api.get(APIRoute.PROMO)
+    .then(
+        ({data}) => dispatch(ActionCreator.loadPromo(data))
+    )
+);
+
+const fetchReviews = (id) => (dispatch, _getState, api) => (
+  api.get(`${APIRoute.COMMENTS}/${id}`)
+    .then(
+        ({data}) => dispatch(ActionCreator.loadReviews(data))
+    )
+);
+
+const changeFavoriteStatus = (id, status) => (dispatch, _getState, api) => (
+  api.post(`${APIRoute.FAVORITE}/${id}/${status}`)
+    .then(({data}) => dispatch(ActionCreator.loadMovie(data)))
+);
+
+const postReview = (id, body) => (dispatch, _getState, api) => (
+  api.post(`${APIRoute.COMMENTS}/${id}`, body)
+    .then(({data}) => dispatch(ActionCreator.loadReviews(data)))
+);
+
 const checkAuth = () => (dispatch, _getState, api) => (
   api.get(APIRoute.LOGIN)
     .then((response) => dispatch(ActionCreator.setUserInfo(response.data)))
@@ -23,4 +47,4 @@ const login = ({login: email, password}) => (dispatch, _getState, api) => (
     .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
 );
 
-export {fetchMovieList, checkAuth, login};
+export {fetchMovieList, fetchPromo, fetchReviews, changeFavoriteStatus, postReview, checkAuth, login};

@@ -21,7 +21,7 @@ const adaptServerToClient = (movie) => {
       {},
       movie,
       {
-        title: name,
+        title: movie.name,
         posterURL: movie.poster_image,
         previewURL: movie.preview_image,
         videoURL: movie.video_link,
@@ -29,7 +29,7 @@ const adaptServerToClient = (movie) => {
         actors: movie.starring,
         runTime: movie.run_time,
         release: movie.released,
-        isInWhatchList: movie.is_favorite,
+        isInWatchList: movie.is_favorite,
         bgImage: movie.background_image,
         bgColor: movie.background_color,
         previewVideoLink: movie.preview_video_link,
@@ -46,8 +46,28 @@ const adaptServerToClient = (movie) => {
   delete adaptedMovie.background_image;
   delete adaptedMovie.background_color;
   delete adaptedMovie.preview_video_link;
+  delete adaptedMovie.name;
 
   return adaptedMovie;
 };
 
-export {adaptServerToClient};
+const adaptReviewServerToClient = (review) => {
+  const adaptedReview = Object.assign(
+      {},
+      review,
+      {
+        text: review.comment,
+        author: review.user.name,
+        date: new Date(review.date),
+        userRating: `${review.rating}`
+      }
+  );
+
+  delete adaptedReview.comment;
+  delete adaptedReview.user;
+  delete adaptedReview.rating;
+
+  return adaptedReview;
+};
+
+export {adaptServerToClient, adaptReviewServerToClient};

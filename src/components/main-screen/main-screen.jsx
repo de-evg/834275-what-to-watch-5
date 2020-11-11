@@ -11,6 +11,8 @@ import withActiveMovie from "../../hocs/with-active-movie";
 
 import {typesMap} from "../../prop-types/prop-types";
 import {ActionCreator} from "../../store/action";
+import {Link} from "react-router-dom";
+import {changeFavoriteStatus} from "../../store/api-actions";
 
 const MovieListHOC = withActiveMovie(MovieList);
 
@@ -19,6 +21,7 @@ class MainScreen extends PureComponent {
     super(props);
     this.handleShowMoreClick = this.handleShowMoreClick.bind(this);
     this.handleFilterChange = this.handleFilterChange.bind(this);
+    this.handleFavoriteBtnClick = this.handleFavoriteBtnClick.bind(this);
   }
 
   handleShowMoreClick() {
@@ -32,9 +35,15 @@ class MainScreen extends PureComponent {
     onGenreFilterChange(id);
   }
 
+  handleFavoriteBtnClick() {
+    const {onFavoriteStatusChange, promo} = this.props;
+    const updatedStatus = Number(!promo.isInWatchList);
+    onFavoriteStatusChange(promo.id, updatedStatus);
+  }
+
   render() {
     const {filteredMovies, promo, currentGenre, genres, showedMoviesCount} = this.props;
-    const {title, genre, release, posterURL, previewURL} = promo;
+    const {title, genre, release, posterURL, previewURL, id, isInWatchList} = promo;
 
     return (
       <>
@@ -71,15 +80,19 @@ class MainScreen extends PureComponent {
                 </p>
 
                 <div className="movie-card__buttons">
-                  <button className="btn btn--play movie-card__button" type="button">
+                  <Link to={`/player/${id}`} className="btn btn--play movie-card__button" type="button">
                     <svg viewBox="0 0 19 19" width="19" height="19">
                       <use xlinkHref="#play-s" />
                     </svg>
                     <span>Play</span>
-                  </button>
-                  <button className="btn btn--list movie-card__button" type="button">
+                  </Link>
+                  <button onClick={this.handleFavoriteBtnClick} className="btn btn--list movie-card__button" type="button">
                     <svg viewBox="0 0 19 20" width="19" height="20">
-                      <use xlinkHref="#add" />
+                      {
+                        isInWatchList
+                          ? <use xlinkHref="#in-list" />
+                          : <use xlinkHref="#add" />
+                      }
                     </svg>
                     <span>My list</span>
                   </button>
@@ -136,6 +149,10 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onGenreFilterChange(filter) {
     dispatch(ActionCreator.changeFilter(filter));
+  },
+  onFavoriteStatusChange(id, status) {
+    dispatch(changeFavoriteStatus(id, status));
+    dispatch(ActionCreator.changePromoFavoriteStatus());
   }
 });
 
@@ -148,7 +165,8 @@ MainScreen.propTypes = {
   onShowMoreClick: typesMap.onShowMoreClick,
   showedMoviesCount: typesMap.showedMoviesCount,
   resetShowedMovies: typesMap.resetShowedMovies,
-  authorizationStatus: typesMap.authorizationStatus
+  authorizationStatus: typesMap.authorizationStatus,
+  onFavoriteStatusChange: typesMap.onFavoriteStatusChange
 };
 
 export {MainScreen};

@@ -48,10 +48,14 @@ class App extends PureComponent {
             )}
           />
           <Route exact path="/films/:id" component={MovieScreen} />
-          <Route exact path="/films/:id/review" component={AddReviewScreenHOC} />
-          <Route exact path="/player/:id">
-            <PlayerScreen />
-          </Route>
+          <PrivateRoute
+            exact
+            path="/films/:id/review"
+            render={(props) => (
+              <AddReviewScreenHOC match={props.match} history={props.history} />
+            )}
+          />
+          <Route exact path="/player/:id" component={PlayerScreen} />
         </Switch>
       </BrowserRouter>
     );

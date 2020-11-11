@@ -1,7 +1,10 @@
 import React, {PureComponent} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
+import {AppRoute} from "../../const";
 import {typesMap} from "../../prop-types/prop-types";
+import {postReview} from "../../store/api-actions";
+import {UserBlock} from "../user-block/user-block";
 
 const reviewLength = {
   MIN: 50,
@@ -11,18 +14,22 @@ const reviewLength = {
 class AddReviewScreen extends PureComponent {
   constructor(props) {
     super(props);
+
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
   handleFormSubmit(evt) {
     evt.preventDefault();
+    const {onFormSubmit, textReview, rating, match: {params: {id}}} = this.props;
+    onFormSubmit(id, {rating, comment: textReview});
+    this.props.history.push(`${AppRoute.FILMS}/${id}`);
   }
 
   render() {
-    const {movies} = this.props;
+    const {movies, renderRatingStars, renderReviewText, textReview, rating, user, match: {params: {id}}} = this.props;
     const currentMovie = movies.find((movie) => movie.id === +id);
     const {title, previewURL, posterURL} = currentMovie;
-    const {renderRatingStars, renderReviewText, textReview, rating, match: {params: {id}}} = this.props;
-
+    const isDisabled = textReview.length < reviewLength.MIN || textReview.length >= reviewLength.MAX || rating === ``;
     return (
       <section className="movie-card movie-card--full">
         <div className="movie-card__header">
@@ -55,11 +62,7 @@ class AddReviewScreen extends PureComponent {
               </ul>
             </nav>
 
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </div>
+            <UserBlock authorizationStatus={user.authorizationStatus} userAvatar={user.userAvatar}/>
           </header>
 
           <div className="movie-card__poster movie-card__poster--small">
@@ -80,7 +83,7 @@ class AddReviewScreen extends PureComponent {
                   <button
                     className="add-review__btn"
                     type="submit"
-                    disabled={textReview.length < reviewLength.MIN || textReview.length >= reviewLength.MAX}
+                    disabled={isDisabled}
                   >
                     Post
                   </button>
@@ -98,16 +101,27 @@ class AddReviewScreen extends PureComponent {
 
 AddReviewScreen.propTypes = {
   match: typesMap.match,
+  history: typesMap.history,
   renderRatingStars: typesMap.renderRatingStars,
   renderReviewText: typesMap.renderReviewText,
   textReview: typesMap.textReview,
   rating: typesMap.rating,
-  movies: typesMap.movies
+  movies: typesMap.movies,
+  onFormSubmit: typesMap.onFormSubmit,
+  onReviewReset: typesMap.onReviewReset,
+  user: typesMap.user
 };
 
 const mapStateToProps = (state) => ({
-  movies: state.DATA.movies
+  movies: state.DATA.movies,
+  user: state.USER
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onFormSubmit(id, body) {
+    dispatch(postReview(id, body));
+  }
 });
 
 export {AddReviewScreen};
-export default connect(mapStateToProps)(AddReviewScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(AddReviewScreen);

@@ -14,6 +14,7 @@ const movie = PropTypes.shape({
   director: PropTypes.string.isRequired,
   actors: PropTypes.array.isRequired,
   videoURL: PropTypes.string.isRequired,
+  isInWatchList: PropTypes.bool.isRequired
 });
 
 const movieReview = PropTypes.shape({
@@ -23,7 +24,7 @@ const movieReview = PropTypes.shape({
   userRating: PropTypes.string.isRequired
 });
 
-const movieReviews = PropTypes.arrayOf(movieReview);
+const movieReviews = PropTypes.oneOfType([PropTypes.array, PropTypes.arrayOf(movieReview)]).isRequired;
 
 const review = PropTypes.shape({
   movieReviews
@@ -34,6 +35,7 @@ const typesMap = {
   movies: PropTypes.arrayOf(movie),
   filteredMovies: PropTypes.arrayOf(movie),
   promo: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     release: PropTypes.number.isRequired,
@@ -47,9 +49,11 @@ const typesMap = {
   }),
   match: PropTypes.shape({
     params: PropTypes.shape({
-      id: PropTypes.string.isRequired
+      id: PropTypes.string
     })
   }),
+  history: PropTypes.object.isRequired,
+  push: PropTypes.func.isRequired,
   genre: PropTypes.string.isRequired,
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
   isActive: PropTypes.bool.isRequired,
@@ -93,7 +97,22 @@ const typesMap = {
   resetShowedMovies: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  userAvatar: PropTypes.string
+  userAvatar: PropTypes.string,
+  authError: PropTypes.authError,
+  resetReviews: PropTypes.func.isRequired,
+  loadReviews: PropTypes.func.isRequired,
+  onFavoriteStatusChange: PropTypes.func.isRequired,
+  onFavoriteStatusChanges: PropTypes.func.isRequired,
+  onFormSubmit: PropTypes.func.isRequired,
+  onReviewReset: PropTypes.func.isRequired,
+  user: PropTypes.shape({
+    authorizationStatus: PropTypes.string.isRequired,
+    userID: PropTypes.number.isRequired,
+    userName: PropTypes.string.isRequired,
+    userAvatar: PropTypes.string.isRequired,
+    userEmail: PropTypes.string.isRequired,
+    authError: PropTypes.bool.isRequired
+  })
 };
 
 export {typesMap};

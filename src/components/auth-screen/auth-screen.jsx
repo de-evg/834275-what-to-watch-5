@@ -11,7 +11,18 @@ class AuthScreen extends PureComponent {
     this.loginRef = createRef();
     this.passwordRef = createRef();
 
+    this.validateEmail = this.validateEmail.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
+    this.state = {
+      emailValid: false
+    };
+  }
+
+  validateEmail() {
+    this.setState({
+      emailValid: this.loginRef.current.value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
+    });
   }
 
   handleSubmit(evt) {
@@ -23,6 +34,8 @@ class AuthScreen extends PureComponent {
   }
 
   render() {
+    const {emailValid} = this.state;
+    const {authError} = this.props;
     return (
       <div className="user-page">
         <header className="page-header user-page__head">
@@ -39,9 +52,27 @@ class AuthScreen extends PureComponent {
 
         <div className="sign-in user-page__content">
           <form onSubmit={this.handleSubmit} action="#" className="sign-in__form">
+            {
+              !emailValid && this.loginRef.current
+                ? (
+                  <div className="sign-in__message">
+                    <p>Please enter a valid email address</p>
+                  </div>
+                )
+                : null
+            }
+            {
+              authError
+                ? (
+                  <div className="sign-in__message">
+                    <p>We can’t recognize this email <br /> and password combination. Please try again.</p>
+                  </div>
+                )
+                : null
+            }
             <div className="sign-in__fields">
               <div className="sign-in__field">
-                <input ref={this.loginRef} className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" />
+                <input ref={this.loginRef} onInput={this.validateEmail} className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" />
                 <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
               </div>
               <div className="sign-in__field">
@@ -74,8 +105,13 @@ class AuthScreen extends PureComponent {
 }
 
 AuthScreen.propTypes = {
-  onSubmit: typesMap.onSubmit
+  onSubmit: typesMap.onSubmit,
+  authError: typesMap.authError
 };
+
+const mapStateToProps = (state) => ({
+  authError: state.USER.authError
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(authData) {
@@ -84,4 +120,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {AuthScreen};
-export default connect(null, mapDispatchToProps)(AuthScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(AuthScreen);

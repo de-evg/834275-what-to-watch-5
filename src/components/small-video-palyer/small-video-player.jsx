@@ -31,8 +31,7 @@ SmallVideoPlayer.propTypes = {
   movie: typesMap.movie,
   onMouseOut: PropTypes.func.isRequired,
   id: typesMap.id,
-  isPlaying: PropTypes.bool.isRequired,
-  removeTimeDelay: PropTypes.func.isRequired
+  isPlaying: PropTypes.bool.isRequired
 };
 
 export default SmallVideoPlayer;
