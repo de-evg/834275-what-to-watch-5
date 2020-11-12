@@ -3,8 +3,9 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {AppRoute} from "../../const";
 import {typesMap} from "../../prop-types/prop-types";
-import {postReview} from "../../store/api-actions";
+import {postReview, fetchMovie} from "../../store/api-actions";
 import {UserBlock} from "../user-block/user-block";
+import {Lines} from "react-preloaders";
 
 const reviewLength = {
   MIN: 50,
@@ -25,13 +26,18 @@ class AddReviewScreen extends PureComponent {
     this.props.history.push(`${AppRoute.FILMS}/${id}`);
   }
 
+  componentDidMount() {
+    const {loadMovie, match: {params: {id}}} = this.props;
+    loadMovie(id);
+  }
+
   render() {
-    const {movies, renderRatingStars, renderReviewText, textReview, rating, user, match: {params: {id}}} = this.props;
-    const currentMovie = movies.find((movie) => movie.id === +id);
-    const {title, previewURL, posterURL} = currentMovie;
-    const isDisabled = textReview.length < reviewLength.MIN || textReview.length >= reviewLength.MAX || rating === ``;
-    return (
-      <section className="movie-card movie-card--full">
+    if (this.props.movieIsLoaded) {
+      const {movie, renderRatingStars, renderReviewText, textReview, rating, user} = this.props;
+      const {title, previewURL, posterURL, id} = movie;
+      const isDisabled = textReview.length < reviewLength.MIN || textReview.length >= reviewLength.MAX || rating === ``;
+
+      return (<section className="movie-card movie-card--full">
         <div className="movie-card__header">
           <div className="movie-card__bg">
             <img src={previewURL} alt={title} />
@@ -85,7 +91,7 @@ class AddReviewScreen extends PureComponent {
                     type="submit"
                     disabled={isDisabled}
                   >
-                    Post
+                  Post
                   </button>
                 }
               </div>
@@ -94,8 +100,10 @@ class AddReviewScreen extends PureComponent {
           </form>
         </div>
 
-      </section>
-    );
+      </section>);
+    }
+
+    return <Lines />;
   }
 }
 
@@ -106,20 +114,26 @@ AddReviewScreen.propTypes = {
   renderReviewText: typesMap.renderReviewText,
   textReview: typesMap.textReview,
   rating: typesMap.rating,
-  movies: typesMap.movies,
+  movie: typesMap.movie,
   onFormSubmit: typesMap.onFormSubmit,
   onReviewReset: typesMap.onReviewReset,
-  user: typesMap.user
+  user: typesMap.user,
+  loadMovie: typesMap.loadMovie,
+  movieIsLoaded: typesMap.movieIsLoaded
 };
 
 const mapStateToProps = (state) => ({
-  movies: state.DATA.movies,
+  movie: state.DATA.movie,
+  movieIsLoaded: state.DATA.movieIsLoaded,
   user: state.USER
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onFormSubmit(id, body) {
     dispatch(postReview(id, body));
+  },
+  loadMovie(id) {
+    dispatch(fetchMovie(id));
   }
 });
 

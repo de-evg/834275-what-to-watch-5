@@ -9,7 +9,9 @@ const initialState = {
   movies: [],
   filteredMovies: [],
   genres: [],
-  promo: {}
+  promo: {},
+  movie: {},
+  movieIsLoaded: false
 };
 
 const gameData = (state = initialState, action) => {
@@ -25,14 +27,19 @@ const gameData = (state = initialState, action) => {
       const genres = getGenres(adaptedMovies);
       return Object.assign({}, state, {movies: adaptedMovies, genres, filteredMovies: adaptedMovies});
 
+    case ActionType.LOAD_MOVIE:
+      const loadedMovie = adaptServerToClient(action.payload);
+      return Object.assign({}, state, {movie: loadedMovie, movieIsLoaded: true});
+
     case ActionType.LOAD_PROMO:
       const adaptedPromo = adaptServerToClient(action.payload);
       return Object.assign({}, state, {promo: adaptedPromo});
 
-    case ActionType.LOAD_MOVIE:
+    case ActionType.UPDATE_MOVIE:
       const adaptedMovie = adaptServerToClient(action.payload);
       const updatedMovies = updateMovies(state.movies, adaptedMovie);
-      return Object.assign({}, state, {movies: updatedMovies});
+      return Object.assign({}, state, {movies: updatedMovies, movieIsLoaded: true});
+
     case ActionType.CHANGE_PROMO_FAVORITE_STATUS:
       const {promo} = state;
       promo.isInWatchList = !state.promo.isInWatchList;
