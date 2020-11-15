@@ -9,10 +9,10 @@ import UserBlock from "../user-block/user-block";
 
 import withActiveMovie from "../../hocs/with-active-movie";
 
-import {typesMap} from "../../prop-types/prop-types";
 import {ActionCreator} from "../../store/action";
 import {Link} from "react-router-dom";
 import {changeFavoriteStatus} from "../../store/api-actions";
+import mainScreenProps from "./main-screen.props";
 
 const MovieListHOC = withActiveMovie(MovieList);
 
@@ -156,18 +156,7 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-MainScreen.propTypes = {
-  currentGenre: typesMap.currentGenre,
-  promo: typesMap.promo,
-  filteredMovies: typesMap.filteredMovies,
-  genres: typesMap.genres,
-  onGenreFilterChange: typesMap.onGenreFilterChange,
-  onShowMoreClick: typesMap.onShowMoreClick,
-  showedMoviesCount: typesMap.showedMoviesCount,
-  resetShowedMovies: typesMap.resetShowedMovies,
-  authorizationStatus: typesMap.authorizationStatus,
-  onFavoriteStatusChange: typesMap.onFavoriteStatusChange
-};
+MainScreen.propTypes = mainScreenProps;
 
 export {MainScreen};
 export default connect(mapStateToProps, mapDispatchToProps)(MainScreen);

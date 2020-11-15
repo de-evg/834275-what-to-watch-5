@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import {typesMap} from "../../prop-types/prop-types";
+import movieScreenProps from "./movie-screen.props";
 
 import MovieList from "../movie-list/movie-list";
 import Tabs from "../tabs/tabs";
@@ -148,14 +148,7 @@ class MovieScreen extends PureComponent {
   }
 }
 
-MovieScreen.propTypes = {
-  match: typesMap.match,
-  movies: typesMap.movies,
-  reviews: typesMap.movieReviews,
-  loadReviews: typesMap.loadReviews,
-  resetReviews: typesMap.resetReviews,
-  onFavoriteStatusChange: typesMap.onFavoriteStatusChange
-};
+MovieScreen.propTypes = movieScreenProps;
 
 
 const mapStateToProps = (state) => ({

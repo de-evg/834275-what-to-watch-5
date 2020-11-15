@@ -1,8 +1,7 @@
 
 import React, {PureComponent} from "react";
 import {Link} from "react-router-dom";
-import PropTypes from "prop-types";
-import {typesMap} from "../../prop-types/prop-types";
+import smallMovieCardProps from "./small-movie-card.props";
 
 class SmallMovieCard extends PureComponent {
   constructor(props) {
@@ -48,12 +47,6 @@ class SmallMovieCard extends PureComponent {
   }
 }
 
-SmallMovieCard.propTypes = {
-  movie: typesMap.movie,
-  onMouseOver: PropTypes.func.isRequired,
-  onMouseOut: PropTypes.func.isRequired,
-  id: typesMap.id,
-  removeTimeDelay: PropTypes.func.isRequired
-};
+SmallMovieCard.propTypes = smallMovieCardProps;
 
 export default SmallMovieCard;

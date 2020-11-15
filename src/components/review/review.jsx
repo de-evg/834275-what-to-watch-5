@@ -1,5 +1,5 @@
 import React from "react";
-import {typesMap} from "../../prop-types/prop-types";
+import reviewProps from "./review.props";
 
 const Review = (props) => {
   const {text, date, author, userRating} = props.movieReview;
@@ -24,8 +24,6 @@ const Review = (props) => {
   );
 };
 
-Review.propTypes = {
-  movieReview: typesMap.movieReview
-};
+Review.propTypes = reviewProps;
 
 export default Review;

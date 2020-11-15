@@ -112,7 +112,9 @@ const typesMap = {
     userAvatar: PropTypes.string.isRequired,
     userEmail: PropTypes.string.isRequired,
     authError: PropTypes.bool.isRequired
-  })
+  }),
+  loadMovie: PropTypes.func.isRequired,
+  movieIsLoaded: PropTypes.bool.isRequired
 };
 
 export {typesMap};

@@ -1,5 +1,5 @@
 import React from "react";
-import {typesMap} from "../../prop-types/prop-types";
+import overviewProps from "./overview.props";
 
 const Overview = ({movie: {rating, ratingLevel, ratingCount, description, director, actors}}) => (
   <>
@@ -19,8 +19,6 @@ const Overview = ({movie: {rating, ratingLevel, ratingCount, description, direct
   </>
 );
 
-Overview.propTypes = {
-  movie: typesMap.movie
-};
+Overview.propTypes = overviewProps;
 
 export default Overview;

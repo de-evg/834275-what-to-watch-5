@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render Genre Should active NavItem render correctly 1`] = `
+<li
+  className="catalog__genres-item catalog__genres-item--active"
+>
+  <a
+    className="catalog__genres-link"
+    href="#"
+    id=""
+    onClick={[Function]}
+  >
+    
+  </a>
+</li>
+`;
+
+exports[`Render Genre Should unactive NavItem render correctly 1`] = `
+<li
+  className="catalog__genres-item "
+>
+  <a
+    className="catalog__genres-link"
+    href="#"
+    id=""
+    onClick={[Function]}
+  >
+    
+  </a>
+</li>
+`;

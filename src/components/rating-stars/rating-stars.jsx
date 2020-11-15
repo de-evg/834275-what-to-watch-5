@@ -1,6 +1,6 @@
 import React from "react";
-import {typesMap} from "../../prop-types/prop-types";
 import Star from "../rating-star/rating-star";
+import ratingStarsProps from "./rating-stars.props";
 
 const stars = new Array(5)
   .fill()
@@ -25,9 +25,6 @@ const RatingStars = ({activeStar, onRatingInputChange}) => (
   </div>
 );
 
-RatingStars.propTypes = {
-  activeStar: typesMap.activeStar,
-  onRatingInputChange: typesMap.onRatingInputChange
-};
+RatingStars.propTypes = ratingStarsProps;
 
 export default RatingStars;

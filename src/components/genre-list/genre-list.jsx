@@ -1,6 +1,6 @@
 import React from "react";
-import {typesMap} from "../../prop-types/prop-types";
 import Genre from "../genre/genre";
+import genreListProps from "./genre-list.props";
 
 const MAX_GENRES_COUNT = 11;
 
@@ -21,10 +21,6 @@ const GenreList = ({currentGenre, genres, onGenreFilterChange}) => (
   </ul>
 );
 
-GenreList.propTypes = {
-  genres: typesMap.genres,
-  currentGenre: typesMap.genre,
-  onGenreFilterChange: typesMap.onGenreFilterChange
-};
+GenreList.propTypes = genreListProps;
 
 export default GenreList;

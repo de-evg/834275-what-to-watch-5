@@ -1,5 +1,5 @@
 import React from "react";
-import {typesMap} from "../../prop-types/prop-types";
+import detailsProps from "./details.props";
 
 const Details = (props) => {
   const {release, genre, runTime, director, actors} = props.movie;
@@ -40,8 +40,6 @@ const Details = (props) => {
   );
 };
 
-Details.propTypes = {
-  movie: typesMap.movie
-};
+Details.propTypes = detailsProps;
 
 export default Details;

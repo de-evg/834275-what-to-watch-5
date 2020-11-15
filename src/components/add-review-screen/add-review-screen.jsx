@@ -2,9 +2,9 @@ import React, {PureComponent} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {AppRoute} from "../../const";
-import {typesMap} from "../../prop-types/prop-types";
 import {postReview, fetchMovie} from "../../store/api-actions";
 import {UserBlock} from "../user-block/user-block";
+import AddReviewScreenProps from "./add-review-screen.props";
 
 const reviewLength = {
   MIN: 50,
@@ -102,20 +102,7 @@ class AddReviewScreen extends PureComponent {
   }
 }
 
-AddReviewScreen.propTypes = {
-  match: typesMap.match,
-  history: typesMap.history,
-  renderRatingStars: typesMap.renderRatingStars,
-  renderReviewText: typesMap.renderReviewText,
-  textReview: typesMap.textReview,
-  rating: typesMap.rating,
-  movie: typesMap.movie,
-  onFormSubmit: typesMap.onFormSubmit,
-  onReviewReset: typesMap.onReviewReset,
-  user: typesMap.user,
-  loadMovie: typesMap.loadMovie,
-  movieIsLoaded: typesMap.movieIsLoaded
-};
+AddReviewScreen.propTypes = AddReviewScreenProps;
 
 const mapStateToProps = (state) => ({
   movie: state.DATA.movie,
