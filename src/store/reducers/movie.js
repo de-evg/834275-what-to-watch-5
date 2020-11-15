@@ -38,7 +38,7 @@ const gameData = (state = initialState, action) => {
     case ActionType.UPDATE_MOVIE:
       const adaptedMovie = adaptServerToClient(action.payload);
       const updatedMovies = updateMovies(state.movies, adaptedMovie);
-      return Object.assign({}, state, {movies: updatedMovies, movieIsLoaded: true});
+      return Object.assign({}, state, {movies: updatedMovies});
 
     case ActionType.CHANGE_PROMO_FAVORITE_STATUS:
       const {promo} = state;

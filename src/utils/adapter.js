@@ -47,6 +47,7 @@ const adaptServerToClient = (movie) => {
   delete adaptedMovie.background_color;
   delete adaptedMovie.preview_video_link;
   delete adaptedMovie.name;
+  delete adaptedMovie.is_favorite;
 
   return adaptedMovie;
 };
