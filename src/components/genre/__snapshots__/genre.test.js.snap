@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render Genre Should active NavItem render correctly 1`] = `
+exports[`Render Genre Should active Genre render correctly 1`] = `
 <li
   className="catalog__genres-item catalog__genres-item--active"
 >
@@ -15,7 +15,7 @@ exports[`Render Genre Should active NavItem render correctly 1`] = `
 </li>
 `;
 
-exports[`Render Genre Should unactive NavItem render correctly 1`] = `
+exports[`Render Genre Should unactive Genre render correctly 1`] = `
 <li
   className="catalog__genres-item "
 >

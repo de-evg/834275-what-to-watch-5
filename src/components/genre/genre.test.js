@@ -4,24 +4,24 @@ import Genre from "./genre";
 
 
 describe(`Render Genre`, () => {
-  it(`Should active NavItem render correctly`, () => {
+  it(`Should active Genre render correctly`, () => {
     const tree = renderer
           .create(<Genre
             genre={``}
             isActive={true}
-            onGenreFilterChang={() => {}}
+            onGenreFilterChange={() => {}}
           />)
           .toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 
-  it(`Should unactive NavItem render correctly`, () => {
+  it(`Should unactive Genre render correctly`, () => {
     const tree = renderer
           .create(<Genre
             genre={``}
             isActive={false}
-            onGenreFilterChang={() => {}}
+            onGenreFilterChange={() => {}}
           />)
           .toJSON();
 

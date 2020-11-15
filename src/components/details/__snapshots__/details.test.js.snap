@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should NavItem render correctly 1`] = `
+exports[`Should Details render correctly 1`] = `
 <div
   className="movie-card__text movie-card__row"
 >
@@ -75,7 +75,9 @@ exports[`Should NavItem render correctly 1`] = `
       </strong>
       <span
         className="movie-card__details-value"
-      />
+      >
+        0
+      </span>
     </p>
   </div>
 </div>
