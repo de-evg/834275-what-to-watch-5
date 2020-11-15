@@ -31,6 +31,9 @@ class AddReviewScreen extends PureComponent {
   }
 
   render() {
+    if (this.props.movie === ``) {
+      return null;
+    }
     const {movie, renderRatingStars, renderReviewText, textReview, rating, user} = this.props;
     const {title, previewURL, posterURL, id} = movie;
     const isDisabled = textReview.length < reviewLength.MIN || textReview.length >= reviewLength.MAX || rating === ``;
@@ -106,7 +109,6 @@ AddReviewScreen.propTypes = AddReviewScreenProps;
 
 const mapStateToProps = (state) => ({
   movie: state.DATA.movie,
-  movieIsLoaded: state.DATA.movieIsLoaded,
   user: state.USER
 });
 

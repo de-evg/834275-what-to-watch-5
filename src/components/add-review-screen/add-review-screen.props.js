@@ -13,20 +13,20 @@ const AddReviewScreenProps = {
   rating: PropTypes.string.isRequired,
   movie: PropTypes.oneOfType([PropTypes.shape({
     id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    release: PropTypes.number.isRequired,
+    title: PropTypes.string,
+    genre: PropTypes.string,
+    release: PropTypes.number,
     posterURL: PropTypes.string.isRequired,
     previewURL: PropTypes.string.isRequired,
-    rating: PropTypes.string.isRequired,
-    ratingLevel: PropTypes.string.isRequired,
-    ratingCount: PropTypes.number.isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    actors: PropTypes.array.isRequired,
-    videoURL: PropTypes.string.isRequired,
-    isInWatchList: PropTypes.bool.isRequired
-  }), PropTypes.object]),
+    rating: PropTypes.string,
+    ratingLevel: PropTypes.string,
+    ratingCount: PropTypes.number,
+    description: PropTypes.string,
+    director: PropTypes.string,
+    actors: PropTypes.array,
+    videoURL: PropTypes.string,
+    isInWatchList: PropTypes.bool
+  }), PropTypes.string]),
   onFormSubmit: PropTypes.func.isRequired,
   onReviewReset: PropTypes.func.isRequired,
   user: PropTypes.shape({
@@ -37,8 +37,7 @@ const AddReviewScreenProps = {
     userEmail: PropTypes.string.isRequired,
     authError: PropTypes.bool.isRequired
   }),
-  loadMovie: PropTypes.func.isRequired,
-  movieIsLoaded: PropTypes.bool.isRequired
+  loadMovie: PropTypes.func.isRequired
 };
 
 export default AddReviewScreenProps;

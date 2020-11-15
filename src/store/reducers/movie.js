@@ -10,7 +10,7 @@ const initialState = {
   filteredMovies: [],
   genres: [],
   promo: {},
-  movie: {},
+  movie: ``,
   movieIsLoaded: false
 };
 
