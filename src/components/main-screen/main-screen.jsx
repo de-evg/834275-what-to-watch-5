@@ -37,8 +37,9 @@ class MainScreen extends PureComponent {
 
   handleFavoriteBtnClick() {
     const {onFavoriteStatusChange, promo} = this.props;
-    const updatedStatus = Number(!promo.isInWatchList);
-    onFavoriteStatusChange(promo.id, updatedStatus);
+    const {isInWatchList, id} = promo;
+    const updatedStatus = Number(!isInWatchList);
+    onFavoriteStatusChange(id, updatedStatus);
   }
 
   render() {

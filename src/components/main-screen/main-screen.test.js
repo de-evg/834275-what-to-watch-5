@@ -1,19 +1,58 @@
 import React from "react";
-import {BrowserRouter} from "react-router-dom";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
 import renderer from "react-test-renderer";
 import {MainScreen} from "./main-screen";
+import {BrowserRouter} from "react-router-dom";
 
 const SHOWED_MOVIES_COUNT = 8;
 
 describe(`Render MainScreen`, () => {
-  it(`Render MainScreen`, () => {
-    const tree = renderer
+  const mockStore = configureStore([]);
+  let store = null;
+  let MainScreenComponent = null;
+
+  beforeEach(() => {
+    store = mockStore({
+      DATA: {
+        currentGenre: `All genres`,
+        movies: [],
+        filteredMovies: [],
+        genres: [],
+        promo: {
+          title: ``,
+          genre: ``,
+          release: 0,
+          posterURL: ``,
+          previewURL: ``,
+          id: ``,
+          isInWatchList: false
+        },
+        movie: ``,
+        movieIsLoaded: false
+      },
+      REVIEW: {
+        reviews: []
+      },
+      USER: {
+        authorizationStatus: `AUTH`,
+        userID: ``,
+        userName: ``,
+        userAvatar: ``,
+        userEmail: ``,
+        authError: false
+      }
+    });
+
+    store.dispatch = jest.fn();
+
+    MainScreenComponent = renderer
       .create(
-          <BrowserRouter>
-            <MainScreen
-              filteredMovies={[]}
-              promo={
-                {
+          <Provider store={store}>
+            <BrowserRouter>
+              <MainScreen
+                filteredMovies={[]}
+                promo={{
                   title: ``,
                   genre: ``,
                   release: 0,
@@ -21,22 +60,22 @@ describe(`Render MainScreen`, () => {
                   previewURL: ``,
                   id: 0,
                   isInWatchList: false
-                }
-              }
-              currentGenre={``}
-              genres={[]}
-              showedMoviesCount={SHOWED_MOVIES_COUNT}
-              authorizationStatus={`AUTH`}
-              onShowMoreClick={() => {}}
-              onGenreFilterChange={() => {}}
-              resetShowedMovies={() => {}}
-              onFavoriteStatusChange={() => {}}
-            />
-          </BrowserRouter>, {
-            createNodeMock: () => {}
-          })
-      .toJSON();
+                }}
+                currentGenre={``}
+                genres={[]}
+                showedMoviesCount={SHOWED_MOVIES_COUNT}
+                authorizationStatus={``}
+                onShowMoreClick={() => {}}
+                onGenreFilterChange={() => {}}
+                resetShowedMovies={() => {}}
+                onFavoriteStatusChange={() => {}}
+              />
+            </BrowserRouter>
+          </Provider>
+      );
+  });
 
-    expect(tree).toMatchSnapshot();
+  it(`Should MainScreen connected to store render correctly`, () => {
+    expect(MainScreenComponent.toJSON()).toMatchSnapshot();
   });
 });
