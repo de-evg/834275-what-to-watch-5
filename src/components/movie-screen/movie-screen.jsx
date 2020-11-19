@@ -6,8 +6,8 @@ import movieScreenProps from "./movie-screen.props";
 import MovieList from "../movie-list/movie-list";
 import Tabs from "../tabs/tabs";
 
-import withActiveTab from "../../hocs/with-active-tab";
-import withActiveMovie from "../../hocs/with-active-movie";
+import withActiveTab from "../../hocs/with-active-tab/with-active-tab";
+import withActiveMovie from "../../hocs/with-active-movie/with-active-movie";
 import UserBlock from "../user-block/user-block";
 import {fetchReviews} from "../../store/api-actions";
 import {ActionCreator} from "../../store/action";

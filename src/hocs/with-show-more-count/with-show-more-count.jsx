@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react";
-import {DEFAULT_MOVIES_COUNT} from "../const.js";
+import {DEFAULT_MOVIES_COUNT} from "../../const.js";
 
 const SHOW_MORE_STEP = 8;
 

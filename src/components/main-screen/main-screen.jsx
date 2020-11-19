@@ -7,7 +7,7 @@ import GenreList from "../genre-list/genre-list";
 import ShowMore from "../show-more/show-more";
 import UserBlock from "../user-block/user-block";
 
-import withActiveMovie from "../../hocs/with-active-movie";
+import withActiveMovie from "../../hocs/with-active-movie/with-active-movie";
 
 import {ActionCreator} from "../../store/action";
 import {Link} from "react-router-dom";

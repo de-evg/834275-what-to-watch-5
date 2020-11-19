@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
-import RatingStars from "../components/rating-stars/rating-stars";
-import ReviewText from "../components/review-text/review-text";
+import RatingStars from "../../components/rating-stars/rating-stars";
+import ReviewText from "../../components/review-text/review-text";
 
 const withReviewState = (Component) => {
   class WithReviewState extends PureComponent {

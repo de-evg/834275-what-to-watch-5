@@ -6,7 +6,7 @@ import myListScreenProps from "./my-list-screen.props";
 import MovieList from "../movie-list/movie-list";
 import UserBlock from "../user-block/user-block";
 
-import withActiveMovie from "../../hocs/with-active-movie";
+import withActiveMovie from "../../hocs/with-active-movie/with-active-movie";
 
 const MovieListHOC = withActiveMovie(MovieList);
 

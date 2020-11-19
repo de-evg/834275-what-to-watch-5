@@ -10,8 +10,8 @@ import MovieScreen from "../movie-screen/movie-screen";
 import AddReviewScreen from "../add-review-screen/add-review-screen";
 import PlayerScreen from "../player-screen/player-screen";
 
-import withReviewState from "../../hocs/with-review-state";
-import withShowMoreCount from "../../hocs/with-show-more-count";
+import withReviewState from "../../hocs/with-review-state/with-review-state";
+import withShowMoreCount from "../../hocs/with-show-more-count/with-show-more-count";
 
 import PrivateRoute from "../private-route/private-route";
 

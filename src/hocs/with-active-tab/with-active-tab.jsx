@@ -1,8 +1,8 @@
 import React, {PureComponent} from "react";
 
-import Overview from "../components/overview/overview";
-import Details from "../components/details/details";
-import Reviews from "../components/reviews/reviews";
+import Overview from "../../components/overview/overview";
+import Details from "../../components/details/details";
+import Reviews from "../../components/reviews/reviews";
 const DEFAULT_ACTIVE = `Overview`;
 
 const TabMap = {

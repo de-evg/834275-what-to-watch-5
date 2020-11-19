@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
-import SmallMovieCard from "../components/small-movie-card/small-movie-card";
-import SmallVideoPlayer from "../components/small-video-palyer/small-video-player";
+import SmallMovieCard from "../../components/small-movie-card/small-movie-card";
+import SmallVideoPlayer from "../../components/small-video-palyer/small-video-player";
 
 const withActiveMovie = (Component) => {
   class WithActiveMovie extends PureComponent {

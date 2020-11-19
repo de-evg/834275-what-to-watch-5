@@ -52,16 +52,16 @@ const playerWidthProps = (Component) => {
   />;
 };
 
-
 it(`Should MovieList render correctly`, () => {
   const tree = renderer
     .create(
-        <BrowserRouter><MovieList
-          movies={movies}
-          activeMovieID={0}
-          renderSmallMovieCard={() => cardWidthProps(SmallMovieCard)}
-          renderSmallVideoPlayer={() => playerWidthProps(SmallVideoPlayer)}
-        />
+        <BrowserRouter>
+          <MovieList
+            movies={movies}
+            activeMovieID={0}
+            renderSmallMovieCard={() => cardWidthProps(SmallMovieCard)}
+            renderSmallVideoPlayer={() => playerWidthProps(SmallVideoPlayer)}
+          />
         </BrowserRouter>)
     .toJSON();
 
