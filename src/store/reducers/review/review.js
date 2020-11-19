@@ -1,5 +1,5 @@
-import {ActionType} from "../action";
-import {adaptReviewServerToClient} from "../../utils/adapter";
+import {ActionType} from "../../action";
+import {adaptReviewServerToClient} from "../../../utils/adapter";
 
 const initialState = {
   reviews: []

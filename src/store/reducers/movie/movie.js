@@ -1,8 +1,8 @@
-import {getGenres} from "../../utils/movies";
-import {ActionType} from "../action";
-import {DEFAULT_GENRE} from "../../const";
-import {adaptServerToClient} from "../../utils/adapter";
-import {updateMovies} from "../../utils/movies";
+import {getGenres} from "../../../utils/movies";
+import {ActionType} from "../../action";
+import {DEFAULT_GENRE} from "../../../const";
+import {adaptServerToClient} from "../../../utils/adapter";
+import {updateMovies} from "../../../utils/movies";
 
 const initialState = {
   currentGenre: DEFAULT_GENRE,
