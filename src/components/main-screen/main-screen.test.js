@@ -25,7 +25,7 @@ describe(`Render MainScreen`, () => {
           release: 0,
           posterURL: ``,
           previewURL: ``,
-          id: ``,
+          id: 0,
           isInWatchList: false
         },
         movie: ``,

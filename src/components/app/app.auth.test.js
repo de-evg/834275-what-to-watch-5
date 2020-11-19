@@ -16,7 +16,15 @@ describe(`Render App`, () => {
         movies: [],
         filteredMovies: [],
         genres: [],
-        promo: {},
+        promo: {
+          title: ``,
+          genre: ``,
+          release: 0,
+          posterURL: ``,
+          previewURL: ``,
+          id: 0,
+          isInWatchList: false
+        },
         movie: ``,
         movieIsLoaded: false
       },

@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should RatingStar unactive render correctly 1`] = `
+Array [
+  <input
+    checked={false}
+    className="rating__input"
+    id="star-0"
+    name="rating"
+    onChange={[Function]}
+    required={true}
+    type="radio"
+    value={1}
+  />,
+  <label
+    className="rating__label"
+    htmlFor="star-0"
+  >
+    Rating 
+    1
+  </label>,
+]
+`;

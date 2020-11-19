@@ -8,7 +8,10 @@ Array [
     <div
       className="movie-card__bg"
     >
-      <img />
+      <img
+        alt=""
+        src=""
+      />
     </div>
     <h1
       className="visually-hidden"
@@ -71,7 +74,9 @@ Array [
           className="movie-card__poster"
         >
           <img
+            alt=""
             height="327"
+            src=""
             width="218"
           />
         </div>
@@ -80,23 +85,29 @@ Array [
         >
           <h2
             className="movie-card__title"
-          />
+          >
+            
+          </h2>
           <p
             className="movie-card__meta"
           >
             <span
               className="movie-card__genre"
-            />
+            >
+              
+            </span>
             <span
               className="movie-card__year"
-            />
+            >
+              0
+            </span>
           </p>
           <div
             className="movie-card__buttons"
           >
             <a
               className="btn btn--play movie-card__button"
-              href="/player/undefined"
+              href="/player/0"
               onClick={[Function]}
               type="button"
             >

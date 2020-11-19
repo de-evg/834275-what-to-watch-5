@@ -37,4 +37,6 @@ const AppRoute = {
   FILMS: `/films`
 };
 
-export {DEFAULT_GENRE, DEFAULT_MOVIES_COUNT, Rating, RatingRange, AuthorizationStatus, APIRoute, AppRoute};
+const NAV_ITEMS = [`Overview`, `Details`, `Reviews`];
+
+export {DEFAULT_GENRE, DEFAULT_MOVIES_COUNT, Rating, RatingRange, AuthorizationStatus, APIRoute, AppRoute, NAV_ITEMS};
