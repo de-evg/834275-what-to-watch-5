@@ -14,7 +14,7 @@ const initialState = {
   movieIsLoaded: false
 };
 
-const gameData = (state = initialState, action) => {
+const movieData = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.RESET:
       return Object.assign({}, state, initialState);
@@ -49,4 +49,4 @@ const gameData = (state = initialState, action) => {
   return state;
 };
 
-export {gameData};
+export {movieData};
