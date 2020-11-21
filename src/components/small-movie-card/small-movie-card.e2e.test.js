@@ -55,7 +55,7 @@ describe(`handlers small-movie-card`, () => {
       id={movie.id}
     />);
 
-    component.simulate(`mousever`, {
+    component.simulate(`mouseover`, {
       target: {
         parentElement: {
           parentElement: {
