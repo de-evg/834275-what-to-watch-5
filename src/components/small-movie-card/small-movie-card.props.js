@@ -19,8 +19,7 @@ const smallMovieCardProps = {
   }),
   onMouseOver: PropTypes.func.isRequired,
   onMouseOut: PropTypes.func.isRequired,
-  id: PropTypes.number.isRequired,
-  removeTimeDelay: PropTypes.func.isRequired
+  id: PropTypes.number.isRequired
 };
 
 export default smallMovieCardProps;

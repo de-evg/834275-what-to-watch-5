@@ -22,18 +22,18 @@ MockComponent.propTypes = {
   ]).isRequired,
 };
 
-const MockComponentWrapped = withReviewState(MockComponent);
+const MockComponentHOC = withReviewState(MockComponent);
 
 it(`withReviewState is rendered correctly`, () => {
   const tree = renderer.create((
-    <MockComponentWrapped
+    <MockComponentHOC
       textReview={`Some text`}
       rating={`10`}
       onReviewReset={noop}
       renderRatingStars={noop}
     >
       <React.Fragment />
-    </MockComponentWrapped>
+    </MockComponentHOC>
   )).toJSON();
 
   expect(tree).toMatchSnapshot();

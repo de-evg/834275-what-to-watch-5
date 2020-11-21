@@ -28,7 +28,6 @@ const AddReviewScreenProps = {
     isInWatchList: PropTypes.bool
   }), PropTypes.string]),
   onFormSubmit: PropTypes.func.isRequired,
-  onReviewReset: PropTypes.func.isRequired,
   user: PropTypes.shape({
     authorizationStatus: PropTypes.string.isRequired,
     userID: PropTypes.number.isRequired,

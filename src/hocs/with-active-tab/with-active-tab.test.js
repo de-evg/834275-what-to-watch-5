@@ -23,16 +23,16 @@ MockComponent.propTypes = {
   ]).isRequired,
 };
 
-const MockComponentWrapped = withActiveTab(MockComponent);
+const MockComponentHOC = withActiveTab(MockComponent);
 
 it(`withActiveTab is rendered correctly`, () => {
   const tree = renderer.create((
-    <MockComponentWrapped
+    <MockComponentHOC
       activeNavItem={DEFAULT_ACTIVE}
       handleNavItemChange={noop}
     >
       <React.Fragment />
-    </MockComponentWrapped>
+    </MockComponentHOC>
   )).toJSON();
 
   expect(tree).toMatchSnapshot();

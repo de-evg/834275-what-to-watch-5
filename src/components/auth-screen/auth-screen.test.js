@@ -9,7 +9,7 @@ describe(`Render AuthScreen`, () => {
       .create(<BrowserRouter>
         <AuthScreen
           authError={true}
-          onSubmit={() => {}}
+          onSubmitLogin={() => {}}
         />
       </BrowserRouter>, {
         createNodeMock: () => {
@@ -26,7 +26,7 @@ describe(`Render AuthScreen`, () => {
       .create(<BrowserRouter>
         <AuthScreen
           authError={false}
-          onSubmit={() => {}}
+          onSubmitLogin={() => {}}
         />
       </BrowserRouter>, {
         createNodeMock: () => {

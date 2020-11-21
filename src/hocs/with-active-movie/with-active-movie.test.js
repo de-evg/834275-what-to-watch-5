@@ -22,17 +22,17 @@ MockComponent.propTypes = {
   ]).isRequired,
 };
 
-const MockComponentWrapped = withActiveMovie(MockComponent);
+const MockComponentHOC = withActiveMovie(MockComponent);
 
 it(`withActiveMovie is rendered correctly`, () => {
   const tree = renderer.create((
-    <MockComponentWrapped
+    <MockComponentHOC
       activeMovieID={0}
       renderSmallVideoPlayer={noop}
       renderSmallMovieCard={noop}
     >
       <React.Fragment />
-    </MockComponentWrapped>
+    </MockComponentHOC>
   )).toJSON();
 
   expect(tree).toMatchSnapshot();

@@ -1,7 +1,7 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import SmallMovieCard from "./small-movie-card";
-import {BrowserRouter} from "react-router-dom";
+import {configure, shallow} from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+import {MovieScreen} from "./movie-screen";
 
 const movie = {
   id: 0,
@@ -21,19 +21,21 @@ const movie = {
   runTime: 146
 };
 
+configure({adapter: new Adapter()});
 
-it(`Should SmallMovieCard render correctly`, () => {
-  const tree = renderer
-    .create(
-        <BrowserRouter>
-          <SmallMovieCard
-            movie={movie}
-            onMouseOut={() => {}}
-            onMouseOver={() => {}}
-            id={movie.id}
-          />
-        </BrowserRouter>)
-    .toJSON();
+it(`on favorite btn click`, () => {
+  const handleFavoriteBtnClick = jest.fn();
+  const component = shallow(<MovieScreen
+    movies={[movie]}
+    reviews={[]}
+    authorizationStatus={``}
+    resetReviews={() => {}}
+    loadReviews={() => {}}
+    onFavoriteStatusChange={handleFavoriteBtnClick}
+    match={{params: {id: `0`}}}
+  />);
 
-  expect(tree).toMatchSnapshot();
+  const favoriteBtn = component.find(`button.movie-card__button`);
+  favoriteBtn.simulate(`click`);
+  expect(handleFavoriteBtnClick).toHaveBeenCalledTimes(1);
 });

@@ -45,7 +45,6 @@ describe(`Render AddReviewScreen`, () => {
             }
           }
           loadMovie={() => {}}
-          onReviewReset={() => {}}
           onFormSubmit={() => {}}
         />
       </BrowserRouter>, {
@@ -93,7 +92,6 @@ describe(`Render AddReviewScreen`, () => {
             }
           }
           loadMovie={() => {}}
-          onReviewReset={() => {}}
           onFormSubmit={() => {}}
         />
       </BrowserRouter>, {
@@ -141,7 +139,6 @@ describe(`Render AddReviewScreen`, () => {
             }
           }
           loadMovie={() => {}}
-          onReviewReset={() => {}}
           onFormSubmit={() => {}}
         />
       </BrowserRouter>, {

@@ -1,7 +1,7 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import SmallMovieCard from "./small-movie-card";
-import {BrowserRouter} from "react-router-dom";
+import {configure, shallow} from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+import SmallVideoPlayer from "./small-video-player";
 
 const movie = {
   id: 0,
@@ -21,19 +21,19 @@ const movie = {
   runTime: 146
 };
 
+configure({adapter: new Adapter()});
 
-it(`Should SmallMovieCard render correctly`, () => {
-  const tree = renderer
-    .create(
-        <BrowserRouter>
-          <SmallMovieCard
-            movie={movie}
-            onMouseOut={() => {}}
-            onMouseOver={() => {}}
-            id={movie.id}
-          />
-        </BrowserRouter>)
-    .toJSON();
 
-  expect(tree).toMatchSnapshot();
+it(`on small-video-player mouseOut`, () => {
+  const handleMouseOut = jest.fn();
+  const component = shallow(<SmallVideoPlayer
+    movie={movie}
+    isPlaying={false}
+    onMouseOut={handleMouseOut}
+    id={movie.id}
+  />);
+
+  const video = component.find(`video`);
+  video.simulate(`mouseout`);
+  expect(handleMouseOut).toHaveBeenCalledTimes(1);
 });

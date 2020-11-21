@@ -23,17 +23,17 @@ MockComponent.propTypes = {
   ]).isRequired,
 };
 
-const MockComponentWrapped = withShowMoreCount(MockComponent);
+const MockComponentHOC = withShowMoreCount(MockComponent);
 
 it(`withShowMoreCount is rendered correctly`, () => {
   const tree = renderer.create((
-    <MockComponentWrapped
+    <MockComponentHOC
       onShowMoreClick={noop}
       resetShowedMovies={noop}
       showedMoviesCount={SHOW_MORE_STEP}
     >
       <React.Fragment />
-    </MockComponentWrapped>
+    </MockComponentHOC>
   )).toJSON();
 
   expect(tree).toMatchSnapshot();
