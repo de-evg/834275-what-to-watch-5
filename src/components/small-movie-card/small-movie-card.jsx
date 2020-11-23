@@ -24,7 +24,7 @@ class SmallMovieCard extends PureComponent {
 
     return (
       <article
-        key = {`smallCard-${id}`}
+        key={`smallCard-${id}`}
         id={id}
         className="small-movie-card catalog__movies-card"
         onMouseOver={this.handleMouseOver}

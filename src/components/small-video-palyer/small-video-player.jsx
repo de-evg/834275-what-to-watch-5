@@ -4,7 +4,7 @@ import smallVideoPlayerProps from "./small-video-player.props";
 
 const SmallVideoPlayer = ({movie: {videoURL, previewURL}, isPlaying, onMouseOut, id}) => (
   <article
-    key = {`smallPlayer-${id}`}
+    key={`smallPlayer-${id}`}
     id={id}
     className="small-movie-card catalog__movies-card"
   >

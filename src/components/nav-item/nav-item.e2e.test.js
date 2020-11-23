@@ -11,7 +11,7 @@ it(`on nav item change`, () => {
   const handleNavItemChange = jest.fn();
   const component = shallow(<NavItem
     onNavItemChange={handleNavItemChange}
-    isActive={Math.random < 0.5}
+    isActive={Math.random() < 0.5}
     title={DEFAULT_TITLE}
   />);
 
