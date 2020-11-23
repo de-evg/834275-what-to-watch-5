@@ -7,22 +7,22 @@ const MAX_DURATION_PERCENT = 100;
 
 const PlayerScreen = (props) => {
   const initialState = {
-    isFullScreen: false,
     duration: 0,
     currentPercent: 0,
     isPlaying: false
   };
   const [playerProperties, setPlayerProperties] = useState(initialState);
-  const {isFullScreen, duration, currentPercent, isPlaying} = playerProperties;
+  const {duration, currentPercent, isPlaying} = playerProperties;
   const videoRef = useRef();
 
   const togglePlayPause = useCallback(() => {
+    const video = videoRef.current;
     return video.paused ? video.play() : video.pause();
-  }, [video]);
+  }, [videoRef]);
 
   const changeToFullScreen = useCallback(() => {
-    video.requestFullscreen();
-  }, [video]);
+    videoRef.current.requestFullscreen();
+  }, [videoRef]);
 
   const handelBtnPlayClick = useCallback(() => {
     togglePlayPause(videoRef.current);
@@ -35,7 +35,7 @@ const PlayerScreen = (props) => {
 
   const handleVideoClick = useCallback((evt) => {
     if (evt.target.tagName === `VIDEO`) {
-      togglePlayPause(evt.target);
+      togglePlayPause();
       setPlayerProperties(Object.assign(
           {},
           playerProperties,
@@ -46,7 +46,9 @@ const PlayerScreen = (props) => {
 
   const handleDurationChange = useCallback((evt) => {
     const {currentTime} = evt.target;
-    const percent = currentTime * MAX_DURATION_PERCENT / duration;
+    const percent = duration
+      ? currentTime * MAX_DURATION_PERCENT / duration
+      : 0;
     setPlayerProperties(Object.assign(
         {},
         playerProperties,
@@ -63,8 +65,8 @@ const PlayerScreen = (props) => {
   });
 
   const handleFullScreenChange = useCallback(() => {
-    changeToFullScreen(videoRef.current);
-  }, [videoRef]);
+    changeToFullScreen();
+  });
 
   const {movies, match: {params: {id}}} = props;
   const currentMovie = movies.find((movie) => movie.id === +id);
