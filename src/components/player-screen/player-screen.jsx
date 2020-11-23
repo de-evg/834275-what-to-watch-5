@@ -9,10 +9,11 @@ const PlayerScreen = (props) => {
   const initialState = {
     duration: 0,
     currentPercent: 0,
+    playedTime: 0,
     isPlaying: false
   };
   const [playerProperties, setPlayerProperties] = useState(initialState);
-  const {duration, currentPercent, isPlaying} = playerProperties;
+  const {playedTime, currentPercent, isPlaying} = playerProperties;
   const videoRef = useRef();
 
   const togglePlayPause = useCallback(() => {
@@ -46,22 +47,25 @@ const PlayerScreen = (props) => {
 
   const handleDurationChange = useCallback((evt) => {
     const {currentTime} = evt.target;
-    const percent = duration
-      ? currentTime * MAX_DURATION_PERCENT / duration
+    const percent = runTime
+      ? currentTime * MAX_DURATION_PERCENT / runTime
       : 0;
     setPlayerProperties(Object.assign(
         {},
         playerProperties,
-        {currentPercent: percent}
-    ), [setPlayerProperties, playerProperties]);
+        {
+          currentPercent: percent,
+          playedTime: currentTime
+        }
+    ), [setPlayerProperties, playerProperties, runTime]);
   });
 
   const handleMoiveCanPlay = useCallback(() => {
     setPlayerProperties(Object.assign(
         {},
         playerProperties,
-        duration
-    ), [setPlayerProperties, playerProperties, duration]);
+        runTime
+    ), [setPlayerProperties, playerProperties, runTime]);
   });
 
   const handleFullScreenChange = useCallback(() => {
@@ -70,10 +74,10 @@ const PlayerScreen = (props) => {
 
   const {movies, match: {params: {id}}} = props;
   const currentMovie = movies.find((movie) => movie.id === +id);
-  const {videoURL, previewURL, title} = currentMovie;
-  const hours = Math.floor(duration / 3600);
-  const minutes = Math.floor(duration % 3600 / 60);
-  const seconds = Math.floor(duration % 3600 % 60);
+  const {videoURL, previewURL, title, runTime} = currentMovie;
+  const hours = Math.floor(runTime / 3600) - Math.floor(playedTime / 3600);
+  const minutes = Math.floor(runTime % 3600 / 60) - Math.floor(playedTime % 3600 / 60);
+  const seconds = Math.floor(runTime % 3600 % 60) - Math.floor(playedTime % 3600 % 60);
 
   return (
     <div className="player">
@@ -133,7 +137,7 @@ const PlayerScreen = (props) => {
       </div>
     </div>
   );
-}
+};
 
 PlayerScreen.propTypes = playerScreenProps;
 
