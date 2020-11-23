@@ -134,8 +134,8 @@ const MovieScreen = ({movies, reviews, onFavoriteStatusChange, loadReviews, rese
 MovieScreen.propTypes = movieScreenProps;
 
 const mapStateToProps = (state) => ({
-  movies: state.DATA.movies,
-  reviews: state.REVIEW.reviews
+  movies: state.MOVIE.movies,
+  reviews: state.REVIEWS.reviews
 });
 
 const mapDispatchToProps = (dispatch) => ({

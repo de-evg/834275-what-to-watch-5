@@ -128,9 +128,9 @@ const MainScreen = ({showedMoviesCount, onShowMoreClick, onGenreFilterChange, re
 
 const mapStateToProps = (state) => ({
   filteredMovies: getFilteredMovies(state),
-  promo: state.DATA.promo,
-  genres: state.DATA.genres,
-  currentGenre: state.DATA.currentGenre,
+  promo: state.MOVIE.promo,
+  genres: state.MOVIE.genres,
+  currentGenre: state.MOVIE.currentGenre,
   authorizationStatus: state.USER.authorizationStatus
 });
 

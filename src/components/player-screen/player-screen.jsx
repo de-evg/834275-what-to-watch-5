@@ -142,7 +142,7 @@ const PlayerScreen = (props) => {
 PlayerScreen.propTypes = playerScreenProps;
 
 const mapStateToProps = (state) => ({
-  movies: state.DATA.movies
+  movies: state.MOVIE.movies
 });
 
 export {PlayerScreen};

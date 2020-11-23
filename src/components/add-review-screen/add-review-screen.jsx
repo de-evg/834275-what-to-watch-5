@@ -106,7 +106,7 @@ const AddReviewScreen = (props) => {
 AddReviewScreen.propTypes = AddReviewScreenProps;
 
 const mapStateToProps = (state) => ({
-  movie: state.DATA.movie,
+  movie: state.MOVIE.movie,
   user: state.USER
 });
 
