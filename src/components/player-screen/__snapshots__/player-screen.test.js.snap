@@ -54,7 +54,7 @@ exports[`Render PlayerScreen Should PlayerScreen connected to store render corre
       <div
         className="player__time-value"
       >
-        0:0:0
+        0:2:26
       </div>
     </div>
     <div

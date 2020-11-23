@@ -73,26 +73,6 @@ const AuthScreen = ({authError, onSubmit}) => {
           </div>
         </form>
       </div>
-<<<<<<< HEAD
-=======
-
-      <footer className="page-footer">
-        <div className="logo">
-          <Link to="/" className="logo__link logo__link--light">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </Link>
-        </div>
-
-        <div className="copyright">
-          <p>© 2019 What to watch Ltd.</p>
-        </div>
-      </footer>
-    </div>
-  );
-};
->>>>>>> de2d7ed47c206caaa4d0a957d4cf6588872a5e51
 
       <footer className="page-footer">
         <div className="logo">
