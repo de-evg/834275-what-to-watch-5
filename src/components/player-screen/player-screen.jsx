@@ -64,7 +64,7 @@ const PlayerScreen = (props) => {
     setPlayerProperties(Object.assign(
         {},
         playerProperties,
-        runTime
+        {playedTime: runTime}
     ), [setPlayerProperties, playerProperties, runTime]);
   });
 
