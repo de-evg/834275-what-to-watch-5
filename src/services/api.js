@@ -31,11 +31,6 @@ const createAPI = (onUnauthorized, onBadRequest) => {
       throw err;
     }
 
-    if (response.status === HttpCode.INTERNAL_SERVER) {
-      onBadRequest();
-      throw err;
-    }
-
     throw err;
   };
 

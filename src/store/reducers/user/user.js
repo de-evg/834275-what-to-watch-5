@@ -24,9 +24,9 @@ const user = (state = initialState, action) => {
         userAvatar: action.payload.avatar_url,
         authError: false
       });
-    case ActionType.SHOW_REQUEST_ERROR:
+    case ActionType.SHOW_AUTHORIZATION_ERROR:
       return Object.assign({}, state, {
-        requestEror: true
+        authError: true
       });
   }
 

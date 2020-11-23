@@ -4,7 +4,7 @@ import {login} from "../../store/api-actions";
 import {connect} from "react-redux";
 import authScreenProps from "./auth-screen.props";
 
-const AuthScreen = ({requestError, onSubmit}) => {
+const AuthScreen = ({authError, onSubmit}) => {
   const [emailValid, setEmailValid] = useState(false);
 
   const loginRef = useRef();
@@ -50,7 +50,7 @@ const AuthScreen = ({requestError, onSubmit}) => {
               : null
           }
           {
-            requestError
+            authError
               ? (
                 <div className="sign-in__message">
                   <p>We can’t recognize this email <br /> and password combination. Please try again.</p>
@@ -94,7 +94,7 @@ const AuthScreen = ({requestError, onSubmit}) => {
 AuthScreen.propTypes = authScreenProps;
 
 const mapStateToProps = (state) => ({
-  authError: state.USER.requestError
+  authError: state.USER.authError
 });
 
 const mapDispatchToProps = (dispatch) => ({
