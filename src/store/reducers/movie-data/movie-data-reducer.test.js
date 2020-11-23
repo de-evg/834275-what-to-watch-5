@@ -1,6 +1,6 @@
 import MockAdapter from "axios-mock-adapter";
 import {createAPI} from "../../../services/api";
-import {movieData} from "./movie";
+import {movieData} from "./movie-data";
 import {ActionType} from "../../action";
 import {fetchMovieList, fetchMovie, fetchPromo, updateMovie} from "../../api-actions";
 import {APIRoute} from "../../../const";

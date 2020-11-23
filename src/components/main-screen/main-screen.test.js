@@ -14,7 +14,7 @@ describe(`Render MainScreen`, () => {
 
   beforeEach(() => {
     store = mockStore({
-      DATA: {
+      MOVIE: {
         currentGenre: `All genres`,
         movies: [],
         filteredMovies: [],
@@ -31,7 +31,7 @@ describe(`Render MainScreen`, () => {
         movie: ``,
         movieIsLoaded: false
       },
-      REVIEW: {
+      REVIEWS: {
         reviews: []
       },
       USER: {

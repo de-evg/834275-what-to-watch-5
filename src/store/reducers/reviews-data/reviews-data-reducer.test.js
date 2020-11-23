@@ -1,6 +1,6 @@
 import MockAdapter from "axios-mock-adapter";
 import {createAPI} from "../../../services/api";
-import {reviewsData} from "./review";
+import {reviewsData} from "./reviews-data";
 import {ActionType} from "../../action";
 import {fetchReviews} from "../../api-actions";
 import {APIRoute} from "../../../const";

@@ -53,7 +53,7 @@ it(`Should Tabs render correctly`, () => {
       renderTab={() => {}}
       movie={movie}
       activeNavItem={`Overview`}
-      handleNavItemChange={() => {}}
+      onNavItemChange={() => {}}
       reviews={reviews}
     />, {
       createNodeMock: () => {
