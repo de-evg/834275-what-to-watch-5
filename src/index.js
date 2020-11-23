@@ -4,6 +4,7 @@ import {createStore, applyMiddleware} from "redux";
 import {composeWithDevTools} from "redux-devtools-extension";
 import {Provider} from "react-redux";
 import App from "./components/app/app";
+import Error from "./components/error/error";
 import root from "./store/reducers/root";
 import thunk from "redux-thunk";
 import {createAPI} from "./services/api";
@@ -13,7 +14,7 @@ import {fetchMovieList, checkAuth, fetchPromo} from "./store/api-actions";
 
 const api = createAPI(
     () => store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH)),
-    () => store.dispatch(ActionCreator.showAuthrizationError())
+    () => store.dispatch(ActionCreator.showRequestError())
 );
 
 const store = createStore(
@@ -33,6 +34,12 @@ Promise.all([
         <Provider store={store}>
           <App />
         </Provider>,
+        document.getElementById(`root`)
+    );
+  })
+  .catch(() => {
+    render(
+        <Error />,
         document.getElementById(`root`)
     );
   });

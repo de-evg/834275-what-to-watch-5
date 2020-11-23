@@ -4,7 +4,7 @@ const ActionType = {
   LOAD_MOVIES: `LOAD_MOVIES`,
   SET_USER_INFO: `SET_USER_INFO`,
   LOAD_PROMO: `LOAD_PROMO`,
-  SHOW_AUTHORIZATION_ERROR: `SHOW_AUTHORIZATION_ERROR`,
+  SHOW_REQUEST_ERROR: `SHOW_REQUEST_ERROR`,
   LOAD_REVIEWS: `LOAD_REVIEWS`,
   RESET_REVIEWS: `RESET_REVIEWS`,
   LOAD_MOVIE: `LOAD_MOVIE`,
@@ -41,8 +41,8 @@ const ActionCreator = {
     type: ActionType.LOAD_PROMO,
     payload: promo
   }),
-  showAuthrizationError: () => ({
-    type: ActionType.SHOW_AUTHORIZATION_ERROR
+  showRequestError: () => ({
+    type: ActionType.SHOW_REQUEST_ERROR
   }),
   loadReviews: (reviews) => ({
     type: ActionType.LOAD_REVIEWS,

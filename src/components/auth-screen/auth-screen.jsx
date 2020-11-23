@@ -4,7 +4,7 @@ import {login} from "../../store/api-actions";
 import {connect} from "react-redux";
 import authScreenProps from "./auth-screen.props";
 
-const AuthScreen = ({authError, onSubmit}) => {
+const AuthScreen = ({requestError, onSubmit}) => {
   const [emailValid, setEmailValid] = useState(false);
 
   const loginRef = useRef();
@@ -50,7 +50,7 @@ const AuthScreen = ({authError, onSubmit}) => {
               : null
           }
           {
-            authError
+            requestError
               ? (
                 <div className="sign-in__message">
                   <p>We can’t recognize this email <br /> and password combination. Please try again.</p>
@@ -60,11 +60,11 @@ const AuthScreen = ({authError, onSubmit}) => {
           }
           <div className="sign-in__fields">
             <div className="sign-in__field">
-              <input ref={loginRef} onInput={validateEmail} className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" />
+              <input ref={loginRef} onInput={validateEmail} className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" required/>
               <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
             </div>
             <div className="sign-in__field">
-              <input ref={passwordRef} className="sign-in__input" type="password" placeholder="Password" name="user-password" id="user-password" />
+              <input ref={passwordRef} className="sign-in__input" type="password" placeholder="Password" name="user-password" id="user-password" required/>
               <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
             </div>
           </div>
@@ -94,7 +94,7 @@ const AuthScreen = ({authError, onSubmit}) => {
 AuthScreen.propTypes = authScreenProps;
 
 const mapStateToProps = (state) => ({
-  authError: state.USER.authError
+  authError: state.USER.requestError
 });
 
 const mapDispatchToProps = (dispatch) => ({
