@@ -98,7 +98,7 @@ const typesMap = {
   authorizationStatus: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
   userAvatar: PropTypes.string,
-  authError: PropTypes.authError,
+  authError: PropTypes.bool.isRequired,
   resetReviews: PropTypes.func.isRequired,
   loadReviews: PropTypes.func.isRequired,
   onFavoriteStatusChange: PropTypes.func.isRequired,
