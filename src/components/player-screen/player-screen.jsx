@@ -5,12 +5,12 @@ import {Link} from "react-router-dom";
 
 const MAX_DURATION_PERCENT = 100;
 
-const PlayerScreen = () => {
+const PlayerScreen = (props) => {
   const initialState = {
     isFullScreen: false,
-      duration: 0,
-      currentPercent: 0,
-      isPlaying: false
+    duration: 0,
+    currentPercent: 0,
+    isPlaying: false
   };
   const [playerProperties, setPlayerProperties] = useState(initialState);
   const {isFullScreen, duration, currentPercent, isPlaying} = playerProperties;
@@ -27,9 +27,9 @@ const PlayerScreen = () => {
   const handelBtnPlayClick = useCallback(() => {
     togglePlayPause(videoRef.current);
     setPlayerProperties(Object.assign(
-      {},
-      playerProperties,
-      {isPlaying: !isPlaying}
+        {},
+        playerProperties,
+        {isPlaying: !isPlaying}
     ), [setPlayerProperties, playerProperties, isPlaying]);
   });
 
@@ -37,34 +37,33 @@ const PlayerScreen = () => {
     if (evt.target.tagName === `VIDEO`) {
       togglePlayPause(evt.target);
       setPlayerProperties(Object.assign(
-        {},
-        playerProperties,
-        {isPlaying: !isPlaying}
+          {},
+          playerProperties,
+          {isPlaying: !isPlaying}
       ), [setPlayerProperties, playerProperties, isPlaying]);
     }
   });
 
   const handleDurationChange = useCallback((evt) => {
-    const {duration, currentTime} = evt.target;
-    const currentPercent = currentTime * MAX_DURATION_PERCENT / duration;
+    const {currentTime} = evt.target;
+    const percent = currentTime * MAX_DURATION_PERCENT / duration;
     setPlayerProperties(Object.assign(
-      {},
-      playerProperties,
-      currentPercent
-    ), [setPlayerProperties, playerProperties, currentPercent]);
+        {},
+        playerProperties,
+        {currentPercent: percent}
+    ), [setPlayerProperties, playerProperties]);
   });
 
-  const handleMoiveCanPlay = useCallback((evt) => {
-    const {duration} = evt.target;
+  const handleMoiveCanPlay = useCallback(() => {
     setPlayerProperties(Object.assign(
-      {},
-      playerProperties,
-      duration
+        {},
+        playerProperties,
+        duration
     ), [setPlayerProperties, playerProperties, duration]);
   });
 
   const handleFullScreenChange = useCallback(() => {
-    this.changeToFullScreen(videoRef.current);
+    changeToFullScreen(videoRef.current);
   }, [videoRef]);
 
   const {movies, match: {params: {id}}} = props;
@@ -77,13 +76,13 @@ const PlayerScreen = () => {
   return (
     <div className="player">
       <video
-        ref={this.videoRef}
+        ref={videoRef}
         className="player__video"
         poster={previewURL}
         src={videoURL}
-        onClick={this.handleVideoClick}
-        onTimeUpdate={this.handleDurationChange}
-        onCanPlay={this.handleMoiveCanPlay}
+        onClick={handleVideoClick}
+        onTimeUpdate={handleDurationChange}
+        onCanPlay={handleMoiveCanPlay}
         autoPlay={true}
       />
 
@@ -92,14 +91,14 @@ const PlayerScreen = () => {
       <div className="player__controls">
         <div className="player__controls-row">
           <div className="player__time">
-            <progress className="player__progress" value={this.state.currentPercent} max="100"></progress>
-            <div className="player__toggler" style={{left: `${this.state.currentPercent}%`}}>Toggler</div>
+            <progress className="player__progress" value={currentPercent} max="100"></progress>
+            <div className="player__toggler" style={{left: `${currentPercent}%`}}>Toggler</div>
           </div>
           <div className="player__time-value">{`${hours}:${minutes}:${seconds}`}</div>
         </div>
 
         <div className="player__controls-row">
-          <button onClick={this.handelBtnPlayClick} type="button" className="player__play">
+          <button onClick={handelBtnPlayClick} type="button" className="player__play">
             {
               isPlaying
                 ? (
@@ -122,7 +121,7 @@ const PlayerScreen = () => {
           </button>
           <div className="player__name">{title}</div>
 
-          <button onClick={this.handleFullScreenChange} type="button" className="player__full-screen">
+          <button onClick={handleFullScreenChange} type="button" className="player__full-screen">
             <svg viewBox="0 0 27 27" width="27" height="27">
               <use xlinkHref="#full-screen" />
             </svg>
