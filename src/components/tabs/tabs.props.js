@@ -19,7 +19,7 @@ const tabsProps = {
   }),
   renderTab: PropTypes.func.isRequired,
   activeNavItem: PropTypes.string.isRequired,
-  handleNavItemChange: PropTypes.func.isRequired,
+  onNavItemChange: PropTypes.func.isRequired,
   reviews: PropTypes.oneOfType([PropTypes.array, PropTypes.arrayOf(PropTypes.shape({
     text: PropTypes.string.isRequired,
     date: PropTypes.object.isRequired,
