@@ -1,4 +1,4 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import {BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import appProps from "./app.props";
@@ -18,49 +18,42 @@ import PrivateRoute from "../private-route/private-route";
 const AddReviewScreenHOC = withReviewState(AddReviewScreen);
 const MainScreenHOC = withShowMoreCount(MainScreen);
 
-class App extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
+const App = ({authorizationStatus}) => {
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          <MainScreenHOC />
+        </Route>
 
-  render() {
-    const {authorizationStatus} = this.props;
-    return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/">
-            <MainScreenHOC />
-          </Route>
+        <Route exact path="/login">
+          {
+            authorizationStatus === `AUTH`
+              ? <Redirect to="/myList" />
+              : <AuthScreen />
+          }
+        </Route>
 
-          <Route exact path="/login">
-            {
-              authorizationStatus === `AUTH`
-                ? <Redirect to="/myList" />
-                : <AuthScreen />
-            }
-          </Route>
-
-          <PrivateRoute
-            exact
-            path="/mylist"
-            render={() => (
-              <MyListScreen />
-            )}
-          />
-          <Route exact path="/films/:id" component={MovieScreen} />
-          <PrivateRoute
-            exact
-            path="/films/:id/review"
-            render={(props) => (
-              <AddReviewScreenHOC match={props.match} history={props.history} />
-            )}
-          />
-          <Route exact path="/player/:id" component={PlayerScreen} />
-        </Switch>
-      </BrowserRouter>
-    );
-  }
-}
+        <PrivateRoute
+          exact
+          path="/mylist"
+          render={() => (
+            <MyListScreen />
+          )}
+        />
+        <Route exact path="/films/:id" component={MovieScreen} />
+        <PrivateRoute
+          exact
+          path="/films/:id/review"
+          render={(props) => (
+            <AddReviewScreenHOC match={props.match} history={props.history} />
+          )}
+        />
+        <Route exact path="/player/:id" component={PlayerScreen} />
+      </Switch>
+    </BrowserRouter>
+  );
+};
 
 App.propTypes = appProps;
 
