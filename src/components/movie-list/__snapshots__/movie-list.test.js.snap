@@ -23,7 +23,6 @@ exports[`Should MovieList render correctly 1`] = `
         <source
           src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
           type="video/mp4"
-          width={480}
         />
       </video>
     </a>
