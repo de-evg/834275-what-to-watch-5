@@ -62,11 +62,11 @@ class App extends PureComponent {
   }
 }
 
+App.propTypes = appProps;
+
 const mapStateToProps = (state) => ({
   authorizationStatus: state.USER.authorizationStatus
 });
-
-App.propTypes = appProps;
 
 export {App};
 export default connect(mapStateToProps)(App);

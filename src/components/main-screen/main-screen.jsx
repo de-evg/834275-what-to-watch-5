@@ -126,6 +126,8 @@ const MainScreen = ({showedMoviesCount, onShowMoreClick, onGenreFilterChange, re
   );
 };
 
+MainScreen.propTypes = mainScreenProps;
+
 const mapStateToProps = (state) => ({
   filteredMovies: getFilteredMovies(state),
   promo: state.MOVIE.promo,
@@ -143,8 +145,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.changePromoFavoriteStatus());
   }
 });
-
-MainScreen.propTypes = mainScreenProps;
 
 export {MainScreen};
 export default connect(mapStateToProps, mapDispatchToProps)(MainScreen);
