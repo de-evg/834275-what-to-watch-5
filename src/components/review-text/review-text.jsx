@@ -1,5 +1,5 @@
 import React, {useCallback} from "react";
-import {typesMap} from "../../prop-types/prop-types";
+import reviewTextProps from "./review-text.props";
 
 const reviewLength = {
   MIN: 50,
@@ -25,9 +25,5 @@ const ReviewText = ({value, onTextInput}) => {
   );
 };
 
-ReviewText.propTypes = {
-  value: typesMap.value,
-  onTextInput: typesMap.onTextInput
-};
-
+ReviewText.propTypes = reviewTextProps;
 export default ReviewText;

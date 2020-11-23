@@ -1,0 +1,128 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should GenreList render correctly 1`] = `
+<ul
+  className="catalog__genres-list"
+>
+  <li
+    className="catalog__genres-item "
+  >
+    <a
+      className="catalog__genres-link"
+      href="#"
+      id="genre"
+      onClick={[Function]}
+    >
+      genre
+    </a>
+  </li>
+  <li
+    className="catalog__genres-item "
+  >
+    <a
+      className="catalog__genres-link"
+      href="#"
+      id="genre"
+      onClick={[Function]}
+    >
+      genre
+    </a>
+  </li>
+  <li
+    className="catalog__genres-item "
+  >
+    <a
+      className="catalog__genres-link"
+      href="#"
+      id="genre"
+      onClick={[Function]}
+    >
+      genre
+    </a>
+  </li>
+  <li
+    className="catalog__genres-item "
+  >
+    <a
+      className="catalog__genres-link"
+      href="#"
+      id="genre"
+      onClick={[Function]}
+    >
+      genre
+    </a>
+  </li>
+  <li
+    className="catalog__genres-item "
+  >
+    <a
+      className="catalog__genres-link"
+      href="#"
+      id="genre"
+      onClick={[Function]}
+    >
+      genre
+    </a>
+  </li>
+  <li
+    className="catalog__genres-item "
+  >
+    <a
+      className="catalog__genres-link"
+      href="#"
+      id="genre"
+      onClick={[Function]}
+    >
+      genre
+    </a>
+  </li>
+  <li
+    className="catalog__genres-item "
+  >
+    <a
+      className="catalog__genres-link"
+      href="#"
+      id="genre"
+      onClick={[Function]}
+    >
+      genre
+    </a>
+  </li>
+  <li
+    className="catalog__genres-item "
+  >
+    <a
+      className="catalog__genres-link"
+      href="#"
+      id="genre"
+      onClick={[Function]}
+    >
+      genre
+    </a>
+  </li>
+  <li
+    className="catalog__genres-item "
+  >
+    <a
+      className="catalog__genres-link"
+      href="#"
+      id="genre"
+      onClick={[Function]}
+    >
+      genre
+    </a>
+  </li>
+  <li
+    className="catalog__genres-item "
+  >
+    <a
+      className="catalog__genres-link"
+      href="#"
+      id="genre"
+      onClick={[Function]}
+    >
+      genre
+    </a>
+  </li>
+</ul>
+`;

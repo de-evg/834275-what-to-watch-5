@@ -7,12 +7,12 @@ import GenreList from "../genre-list/genre-list";
 import ShowMore from "../show-more/show-more";
 import UserBlock from "../user-block/user-block";
 
-import withActiveMovie from "../../hocs/with-active-movie";
+import withActiveMovie from "../../hocs/with-active-movie/with-active-movie";
 
-import {typesMap} from "../../prop-types/prop-types";
 import {ActionCreator} from "../../store/action";
 import {Link} from "react-router-dom";
 import {changeFavoriteStatus} from "../../store/api-actions";
+import mainScreenProps from "./main-screen.props";
 
 const MovieListHOC = withActiveMovie(MovieList);
 
@@ -37,8 +37,9 @@ class MainScreen extends PureComponent {
 
   handleFavoriteBtnClick() {
     const {onFavoriteStatusChange, promo} = this.props;
-    const updatedStatus = Number(!promo.isInWatchList);
-    onFavoriteStatusChange(promo.id, updatedStatus);
+    const {isInWatchList, id} = promo;
+    const updatedStatus = Number(!isInWatchList);
+    onFavoriteStatusChange(id, updatedStatus);
   }
 
   render() {
@@ -156,18 +157,7 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-MainScreen.propTypes = {
-  currentGenre: typesMap.currentGenre,
-  promo: typesMap.promo,
-  filteredMovies: typesMap.filteredMovies,
-  genres: typesMap.genres,
-  onGenreFilterChange: typesMap.onGenreFilterChange,
-  onShowMoreClick: typesMap.onShowMoreClick,
-  showedMoviesCount: typesMap.showedMoviesCount,
-  resetShowedMovies: typesMap.resetShowedMovies,
-  authorizationStatus: typesMap.authorizationStatus,
-  onFavoriteStatusChange: typesMap.onFavoriteStatusChange
-};
+MainScreen.propTypes = mainScreenProps;
 
 export {MainScreen};
 export default connect(mapStateToProps, mapDispatchToProps)(MainScreen);

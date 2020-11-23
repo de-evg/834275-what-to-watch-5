@@ -2,9 +2,9 @@ import React, {PureComponent} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {AppRoute} from "../../const";
-import {typesMap} from "../../prop-types/prop-types";
-import {postReview} from "../../store/api-actions";
+import {postReview, fetchMovie} from "../../store/api-actions";
 import {UserBlock} from "../user-block/user-block";
+import AddReviewScreenProps from "./add-review-screen.props";
 
 const reviewLength = {
   MIN: 50,
@@ -25,101 +25,99 @@ class AddReviewScreen extends PureComponent {
     this.props.history.push(`${AppRoute.FILMS}/${id}`);
   }
 
+  componentDidMount() {
+    const {loadMovie, match: {params: {id}}} = this.props;
+    loadMovie(id);
+  }
+
   render() {
-    const {movies, renderRatingStars, renderReviewText, textReview, rating, user, match: {params: {id}}} = this.props;
-    const currentMovie = movies.find((movie) => movie.id === +id);
-    const {title, previewURL, posterURL} = currentMovie;
+    if (this.props.movie === ``) {
+      return null;
+    }
+    const {movie, renderRatingStars, renderReviewText, textReview, rating, user} = this.props;
+    const {title, previewURL, posterURL, id} = movie;
     const isDisabled = textReview.length < reviewLength.MIN || textReview.length >= reviewLength.MAX || rating === ``;
-    return (
-      <section className="movie-card movie-card--full">
-        <div className="movie-card__header">
-          <div className="movie-card__bg">
-            <img src={previewURL} alt={title} />
-          </div>
 
-          <h1 className="visually-hidden">WTW</h1>
-
-          <header className="page-header">
-            <div className="logo">
-              <Link to="/" className="logo__link">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </Link>
-            </div>
-
-            <nav className="breadcrumbs">
-              <ul className="breadcrumbs__list">
-                <li className="breadcrumbs__item">
-                  <Link
-                    to={`/films/${id}`}
-                    className="breadcrumbs__link">{title}
-                  </Link>
-                </li>
-                <li className="breadcrumbs__item">
-                  <a className="breadcrumbs__link">Add review</a>
-                </li>
-              </ul>
-            </nav>
-
-            <UserBlock authorizationStatus={user.authorizationStatus} userAvatar={user.userAvatar}/>
-          </header>
-
-          <div className="movie-card__poster movie-card__poster--small">
-            <img src={posterURL} alt={title} width="218" height="327" />
-          </div>
+    return (<section className="movie-card movie-card--full">
+      <div className="movie-card__header">
+        <div className="movie-card__bg">
+          <img src={previewURL} alt={title} />
         </div>
 
-        <div className="add-review">
-          <form action="#" className="add-review__form" onSubmit={this.handleFormSubmit}>
-            <div className="rating">
-              {renderRatingStars(rating)}
-            </div>
+        <h1 className="visually-hidden">WTW</h1>
 
-            <div className="add-review__text">
-              {renderReviewText(textReview)}
-              <div className="add-review__submit">
-                {
-                  <button
-                    className="add-review__btn"
-                    type="submit"
-                    disabled={isDisabled}
-                  >
-                    Post
-                  </button>
-                }
-              </div>
+        <header className="page-header">
+          <div className="logo">
+            <Link to="/" className="logo__link">
+              <span className="logo__letter logo__letter--1">W</span>
+              <span className="logo__letter logo__letter--2">T</span>
+              <span className="logo__letter logo__letter--3">W</span>
+            </Link>
+          </div>
 
-            </div>
-          </form>
+          <nav className="breadcrumbs">
+            <ul className="breadcrumbs__list">
+              <li className="breadcrumbs__item">
+                <Link
+                  to={`/films/${id}`}
+                  className="breadcrumbs__link">{title}
+                </Link>
+              </li>
+              <li className="breadcrumbs__item">
+                <a className="breadcrumbs__link">Add review</a>
+              </li>
+            </ul>
+          </nav>
+
+          <UserBlock authorizationStatus={user.authorizationStatus} userAvatar={user.userAvatar}/>
+        </header>
+
+        <div className="movie-card__poster movie-card__poster--small">
+          <img src={posterURL} alt={title} width="218" height="327" />
         </div>
+      </div>
 
-      </section>
-    );
+      <div className="add-review">
+        <form action="#" className="add-review__form" onSubmit={this.handleFormSubmit}>
+          <div className="rating">
+            {renderRatingStars(rating)}
+          </div>
+
+          <div className="add-review__text">
+            {renderReviewText(textReview)}
+            <div className="add-review__submit">
+              {
+                <button
+                  className="add-review__btn"
+                  type="submit"
+                  disabled={isDisabled}
+                >
+                  Post
+                </button>
+              }
+            </div>
+
+          </div>
+        </form>
+      </div>
+
+    </section>);
   }
 }
 
-AddReviewScreen.propTypes = {
-  match: typesMap.match,
-  history: typesMap.history,
-  renderRatingStars: typesMap.renderRatingStars,
-  renderReviewText: typesMap.renderReviewText,
-  textReview: typesMap.textReview,
-  rating: typesMap.rating,
-  movies: typesMap.movies,
-  onFormSubmit: typesMap.onFormSubmit,
-  onReviewReset: typesMap.onReviewReset,
-  user: typesMap.user
-};
+AddReviewScreen.propTypes = AddReviewScreenProps;
 
 const mapStateToProps = (state) => ({
-  movies: state.DATA.movies,
+  movie: state.DATA.movie,
   user: state.USER
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onFormSubmit(id, body) {
     dispatch(postReview(id, body));
+  },
+  loadMovie(id) {
+    dispatch(fetchMovie(id));
   }
 });
 

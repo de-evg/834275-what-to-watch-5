@@ -8,7 +8,8 @@ const ActionType = {
   LOAD_REVIEWS: `LOAD_REVIEWS`,
   RESET_REVIEWS: `RESET_REVIEWS`,
   LOAD_MOVIE: `LOAD_MOVIE`,
-  CHANGE_PROMO_FAVORITE_STATUS: `CHANGE_PROMO_FAVORITE_STATUS`
+  UPDATE_MOVIE: `UPDATE_MOVIE`,
+  CHANGE_PROMO_FAVORITE_STATUS: `CHANGE_PROMO_FAVORITE_STATUS`,
 };
 
 const ActionCreator = {
@@ -26,6 +27,10 @@ const ActionCreator = {
   }),
   loadMovie: (movie) => ({
     type: ActionType.LOAD_MOVIE,
+    payload: movie
+  }),
+  updateMovie: (movie) => ({
+    type: ActionType.UPDATE_MOVIE,
     payload: movie
   }),
   setUserInfo: (userInfo) => ({

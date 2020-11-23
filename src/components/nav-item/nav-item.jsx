@@ -1,5 +1,5 @@
 import React, {useCallback} from "react";
-import {typesMap} from "../../prop-types/prop-types";
+import navItemProps from "./nav-item.props";
 
 const NavItem = ({isActive, title, onNavItemChange}) => {
   const acitveClass = isActive ? `movie-nav__item--active` : ``;
@@ -17,10 +17,6 @@ const NavItem = ({isActive, title, onNavItemChange}) => {
   );
 };
 
-NavItem.propTypes = {
-  isActive: typesMap.isActive,
-  title: typesMap.title,
-  onNavItemChange: typesMap.onNavItemChange
-};
+NavItem.propTypes = navItemProps;
 
 export default NavItem;

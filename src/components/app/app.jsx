@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import {BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
+import appProps from "./app.props";
 
 import MainScreen from "../main-screen/main-screen";
 import AuthScreen from "../auth-screen/auth-screen";
@@ -9,11 +10,10 @@ import MovieScreen from "../movie-screen/movie-screen";
 import AddReviewScreen from "../add-review-screen/add-review-screen";
 import PlayerScreen from "../player-screen/player-screen";
 
-import withReviewState from "../../hocs/with-review-state";
-import withShowMoreCount from "../../hocs/with-show-more-count";
+import withReviewState from "../../hocs/with-review-state/with-review-state";
+import withShowMoreCount from "../../hocs/with-show-more-count/with-show-more-count";
 
 import PrivateRoute from "../private-route/private-route";
-import {typesMap} from "../../prop-types/prop-types";
 
 const AddReviewScreenHOC = withReviewState(AddReviewScreen);
 const MainScreenHOC = withShowMoreCount(MainScreen);
@@ -66,9 +66,7 @@ const mapStateToProps = (state) => ({
   authorizationStatus: state.USER.authorizationStatus
 });
 
-App.propTypes = {
-  authorizationStatus: typesMap.authorizationStatus
-};
+App.propTypes = appProps;
 
 export {App};
 export default connect(mapStateToProps)(App);

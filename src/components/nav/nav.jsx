@@ -1,6 +1,6 @@
 import React from "react";
-import {typesMap} from "../../prop-types/prop-types";
 import NavItem from "../nav-item/nav-item";
+import navProps from "./nav.props";
 
 const Nav = ({navItems, activeItem, onNavItemChange}) => (
   <nav className="movie-nav movie-card__nav">
@@ -18,11 +18,6 @@ const Nav = ({navItems, activeItem, onNavItemChange}) => (
   </nav>
 );
 
-
-Nav.propTypes = {
-  navItems: typesMap.navItems,
-  activeItem: typesMap.activeItem,
-  onNavItemChange: typesMap.onNavItemChange
-};
+Nav.propTypes = navProps;
 
 export default Nav;

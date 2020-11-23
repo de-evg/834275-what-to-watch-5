@@ -1,7 +1,7 @@
 import {combineReducers} from "redux";
-import {user} from "./user";
-import {gameData} from "./movie";
-import {reviewsData} from "./review";
+import {user} from "./user/user";
+import {movieData} from "./movie/movie";
+import {reviewsData} from "./review/review";
 
 const NameSpace = {
   DATA: `DATA`,
@@ -11,7 +11,7 @@ const NameSpace = {
 
 export {NameSpace};
 export default combineReducers({
-  [NameSpace.DATA]: gameData,
+  [NameSpace.DATA]: movieData,
   [NameSpace.USER]: user,
   [NameSpace.REVIEW]: reviewsData,
 });

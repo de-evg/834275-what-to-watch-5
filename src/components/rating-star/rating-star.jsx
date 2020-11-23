@@ -1,5 +1,5 @@
 import React, {useCallback} from "react";
-import {typesMap} from "../../prop-types/prop-types";
+import ratingStarProps from "./rating-star.props";
 
 const RatingStar = ({starId, starValue, isActive, onRatingInputChange}) => {
   const handlerRatingInputChange = useCallback((evt) => {
@@ -14,11 +14,6 @@ const RatingStar = ({starId, starValue, isActive, onRatingInputChange}) => {
   );
 };
 
-RatingStar.propTypes = {
-  starId: typesMap.starId,
-  starValue: typesMap.starValue,
-  onRatingInputChange: typesMap.onRatingInputChange,
-  isActive: typesMap.isActive
-};
+RatingStar.propTypes = ratingStarProps;
 
 export default RatingStar;

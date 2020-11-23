@@ -1,8 +1,7 @@
 import React from "react";
-import {typesMap} from "../../prop-types/prop-types";
 import Nav from "../nav/nav";
-
-const NAV_ITEMS = [`Overview`, `Details`, `Reviews`];
+import tabsProps from "./tabs.props";
+import {NAV_ITEMS} from "../../const";
 
 const Tabs = ({renderTab, movie, activeNavItem, handleNavItemChange, reviews}) => (
   <div className="movie-card__desc">
@@ -11,12 +10,6 @@ const Tabs = ({renderTab, movie, activeNavItem, handleNavItemChange, reviews}) =
   </div>
 );
 
-Tabs.propTypes = {
-  movie: typesMap.movie,
-  renderTab: typesMap.renderTab,
-  activeNavItem: typesMap.activeNavItem,
-  handleNavItemChange: typesMap.handleNavItemChange,
-  reviews: typesMap.movieReviews
-};
+Tabs.propTypes = tabsProps;
 
 export default Tabs;

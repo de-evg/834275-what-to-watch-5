@@ -1,12 +1,12 @@
 import React from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import {typesMap} from "../../prop-types/prop-types";
+import myListScreenProps from "./my-list-screen.props";
 
 import MovieList from "../movie-list/movie-list";
 import UserBlock from "../user-block/user-block";
 
-import withActiveMovie from "../../hocs/with-active-movie";
+import withActiveMovie from "../../hocs/with-active-movie/with-active-movie";
 
 const MovieListHOC = withActiveMovie(MovieList);
 
@@ -51,9 +51,7 @@ const MyListScreen = ({movies}) => {
   );
 };
 
-MyListScreen.propTypes = {
-  movies: typesMap.movies
-};
+MyListScreen.propTypes = myListScreenProps;
 
 const mapStateToProps = (state) => ({
   movies: state.DATA.movies,

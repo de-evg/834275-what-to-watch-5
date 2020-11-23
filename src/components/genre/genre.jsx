@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react";
-import {typesMap} from "../../prop-types/prop-types";
+import genreProps from "./genre.props";
 
 class Genre extends PureComponent {
   constructor(props) {
@@ -26,10 +26,6 @@ class Genre extends PureComponent {
   }
 }
 
-Genre.propTypes = {
-  genre: typesMap.genre,
-  isActive: typesMap.isActive,
-  onGenreFilterChange: typesMap.onGenreFilterChange
-};
+Genre.propTypes = genreProps;
 
 export default Genre;

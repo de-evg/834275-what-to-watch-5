@@ -1,8 +1,8 @@
 import React, {PureComponent} from "react";
-import {typesMap} from "../../prop-types/prop-types";
 import {AuthorizationStatus} from "../../const";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
+import userBlockProps from "./user-block.props";
 
 class UserBlock extends PureComponent {
   constructor(props) {
@@ -29,10 +29,7 @@ class UserBlock extends PureComponent {
   }
 }
 
-UserBlock.propTypes = {
-  authorizationStatus: typesMap.authorizationStatus,
-  userAvatar: typesMap.userAvatar
-};
+UserBlock.propTypes = userBlockProps;
 
 const mapStateToProps = (state) => ({
   authorizationStatus: state.USER.authorizationStatus,

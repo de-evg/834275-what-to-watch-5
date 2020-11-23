@@ -2,7 +2,7 @@ import React, {PureComponent, createRef} from "react";
 import {Link} from "react-router-dom";
 import {login} from "../../store/api-actions";
 import {connect} from "react-redux";
-import {typesMap} from "../../prop-types/prop-types";
+import authScreenProps from "./auth-screen.props";
 
 class AuthScreen extends PureComponent {
   constructor(props) {
@@ -104,10 +104,7 @@ class AuthScreen extends PureComponent {
   }
 }
 
-AuthScreen.propTypes = {
-  onSubmit: typesMap.onSubmit,
-  authError: typesMap.authError
-};
+AuthScreen.propTypes = authScreenProps;
 
 const mapStateToProps = (state) => ({
   authError: state.USER.authError

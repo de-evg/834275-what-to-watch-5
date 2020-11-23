@@ -1,10 +1,10 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import PropTypes from "prop-types";
-import {typesMap} from "../../prop-types/prop-types";
+import smallVideoPlayerProps from "./small-video-player.props";
 
 const SmallVideoPlayer = ({movie: {videoURL, previewURL}, isPlaying, onMouseOut, id}) => (
   <article
+    key={`smallPlayer-${id}`}
     id={id}
     className="small-movie-card catalog__movies-card"
   >
@@ -27,11 +27,6 @@ const SmallVideoPlayer = ({movie: {videoURL, previewURL}, isPlaying, onMouseOut,
   </article>
 );
 
-SmallVideoPlayer.propTypes = {
-  movie: typesMap.movie,
-  onMouseOut: PropTypes.func.isRequired,
-  id: typesMap.id,
-  isPlaying: PropTypes.bool.isRequired
-};
+SmallVideoPlayer.propTypes = smallVideoPlayerProps;
 
 export default SmallVideoPlayer;

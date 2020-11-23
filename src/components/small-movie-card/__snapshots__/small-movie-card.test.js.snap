@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should SmallMovieCard render correctly 1`] = `
+<article
+  className="small-movie-card catalog__movies-card"
+  id={0}
+  onMouseOut={[Function]}
+  onMouseOver={[Function]}
+>
+  <div
+    className="small-movie-card__image"
+  >
+    <a
+      className="small-movie-card__image"
+      href="/films/0"
+      onClick={[Function]}
+      style={
+        Object {
+          "display": "block",
+          "zIndex": 4,
+        }
+      }
+    >
+      <img
+        alt="The Grand Budapest"
+        height="175"
+        src="/img/bg-the-grand-budapest-hotel.jpg"
+        width="280"
+      />
+    </a>
+  </div>
+  <h3
+    className="small-movie-card__title"
+  >
+    <a
+      className="small-movie-card__link"
+      href="/films/0"
+      onClick={[Function]}
+    >
+      The Grand Budapest
+    </a>
+  </h3>
+</article>
+`;

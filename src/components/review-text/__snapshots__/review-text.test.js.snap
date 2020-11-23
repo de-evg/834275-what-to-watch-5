@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should ReviewText render correctly 1`] = `
+<textarea
+  className="add-review__textarea"
+  defaultValue="Some value"
+  id="review-text"
+  maxLength={400}
+  minLength={50}
+  name="review-text"
+  onInput={[Function]}
+  placeholder="Review text"
+/>
+`;

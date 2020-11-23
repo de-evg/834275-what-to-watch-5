@@ -1,5 +1,5 @@
 import React from "react";
-import {typesMap} from "../../prop-types/prop-types";
+import showMoreProps from "./show-more.props";
 
 const ShowMore = ({onClick}) => (
   <div className="catalog__more">
@@ -7,8 +7,6 @@ const ShowMore = ({onClick}) => (
   </div>
 );
 
-ShowMore.propTypes = {
-  onClick: typesMap.onClick
-};
+ShowMore.propTypes = showMoreProps;
 
 export default ShowMore;

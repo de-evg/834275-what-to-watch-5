@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should MovieList render correctly 1`] = `
+<div
+  className="catalog__movies-list"
+>
+  <article
+    className="small-movie-card catalog__movies-card"
+    id={0}
+  >
+    <a
+      className="small-movie-card__image"
+      href="/films/0"
+      onClick={[Function]}
+    >
+      <video
+        autoPlay={false}
+        className="small-movie-card__image"
+        muted={true}
+        onMouseOut={[Function]}
+        poster="/img/bg-the-grand-budapest-hotel.jpg"
+      >
+        <source
+          src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+          type="video/mp4"
+          width={480}
+        />
+      </video>
+    </a>
+  </article>
+  <article
+    className="small-movie-card catalog__movies-card"
+    id={1}
+    onMouseOut={[Function]}
+    onMouseOver={[Function]}
+  >
+    <div
+      className="small-movie-card__image"
+    >
+      <a
+        className="small-movie-card__image"
+        href="/films/1"
+        onClick={[Function]}
+        style={
+          Object {
+            "display": "block",
+            "zIndex": 4,
+          }
+        }
+      >
+        <img
+          alt="The Grand Budapest"
+          height="175"
+          src="/img/bg-the-grand-budapest-hotel.jpg"
+          width="280"
+        />
+      </a>
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+        href="/films/1"
+        onClick={[Function]}
+      >
+        The Grand Budapest
+      </a>
+    </h3>
+  </article>
+</div>
+`;

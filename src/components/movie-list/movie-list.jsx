@@ -1,25 +1,20 @@
 import React from "react";
-import {typesMap} from "../../prop-types/prop-types";
+import movieListProps from "./movie-list.props";
 
 const MovieList = ({movies, activeMovieID, renderSmallMovieCard, renderSmallVideoPlayer}) => (
   <div className="catalog__movies-list">
     {
-      movies.map((movie) => {
+      movies.map((movie, key) => {
         return (
           activeMovieID !== movie.id
-            ? renderSmallMovieCard(movie, movie.id)
-            : renderSmallVideoPlayer(movie, movie.id)
+            ? renderSmallMovieCard(movie, movie.id, key)
+            : renderSmallVideoPlayer(movie, movie.id, key)
         );
       })
     }
   </div>
 );
 
-MovieList.propTypes = {
-  activeMovieID: typesMap.activeMovieID,
-  renderSmallMovieCard: typesMap.renderSmallMovieCard,
-  renderSmallVideoPlayer: typesMap.renderSmallVideoPlayer,
-  movies: typesMap.movies
-};
+MovieList.propTypes = movieListProps;
 
 export default MovieList;

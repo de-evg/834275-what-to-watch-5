@@ -1,7 +1,7 @@
 import React, {createRef, PureComponent} from "react";
-import {typesMap} from "../../prop-types/prop-types";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
+import playerScreenProps from "./player-screen.props";
 
 const MAX_DURATION_PERCENT = 100;
 
@@ -139,11 +139,7 @@ class PlayerScreen extends PureComponent {
   }
 }
 
-PlayerScreen.propTypes = {
-  movie: typesMap.movie,
-  match: typesMap.match,
-  movies: typesMap.movies
-};
+PlayerScreen.propTypes = playerScreenProps;
 
 const mapStateToProps = (state) => ({
   movies: state.DATA.movies
