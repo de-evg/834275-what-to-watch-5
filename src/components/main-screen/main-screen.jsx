@@ -24,10 +24,10 @@ const MainScreen = ({showedMoviesCount, onShowMoreClick, onGenreFilterChange, re
     onShowMoreClick(showedMoviesCount);
   }, [showedMoviesCount, onShowMoreClick]);
 
-  const handleFilterChange = useCallback(() => {
+  const handleFilterChange = useCallback((filter) => {
     resetShowedMovies();
-    onGenreFilterChange(id);
-  }, [onGenreFilterChange, resetShowedMovies, id]);
+    onGenreFilterChange(filter);
+  }, [onGenreFilterChange, resetShowedMovies]);
 
   const handleFavoriteBtnClick = useCallback(() => {
     const updatedStatus = Number(!isInWatchList);
