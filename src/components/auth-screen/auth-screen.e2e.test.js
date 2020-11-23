@@ -1,6 +1,6 @@
 import React from "react";
 import {BrowserRouter} from "react-router-dom";
-import {configure, mount, shallow} from "enzyme";
+import {configure, mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import {AuthScreen} from "./auth-screen";
 
@@ -23,18 +23,5 @@ describe(`auth handlers`, () => {
     });
 
     expect(handleFormSubmit).toHaveBeenCalledTimes(1);
-  });
-
-  it(`on email input validate`, () => {
-    const screen = shallow(
-        <AuthScreen
-          authError={false}
-          onSubmit={() => {}}
-        />
-    );
-    const emailInput = screen.find(`[type="email"]`);
-    emailInput.simulate(`change`);
-
-    expect(screen.state().emailValid).toEqual(false);
   });
 });
