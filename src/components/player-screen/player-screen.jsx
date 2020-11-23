@@ -27,46 +27,45 @@ const PlayerScreen = (props) => {
   const handelBtnPlayClick = useCallback(() => {
     togglePlayPause(videoRef.current);
     setPlayerProperties(Object.assign(
-        {},
-        playerProperties,
-        {isPlaying: !isPlaying}
+      {},
+      playerProperties,
+      {isPlaying: !isPlaying}
     ), [setPlayerProperties, playerProperties, isPlaying]);
   });
 
   const handleVideoClick = useCallback((evt) => {
     if (evt.target.tagName === `VIDEO`) {
-      togglePlayPause();
+      togglePlayPause(evt.target);
       setPlayerProperties(Object.assign(
-          {},
-          playerProperties,
-          {isPlaying: !isPlaying}
+        {},
+        playerProperties,
+        {isPlaying: !isPlaying}
       ), [setPlayerProperties, playerProperties, isPlaying]);
     }
   });
 
   const handleDurationChange = useCallback((evt) => {
-    const {currentTime} = evt.target;
-    const percent = duration
-      ? currentTime * MAX_DURATION_PERCENT / duration
-      : 0;
+    const {duration, currentTime} = evt.target;
+    const currentPercent = currentTime * MAX_DURATION_PERCENT / duration;
     setPlayerProperties(Object.assign(
-        {},
-        playerProperties,
-        {currentPercent: percent}
-    ), [setPlayerProperties, playerProperties]);
+      {},
+      playerProperties,
+      currentPercent
+    ), [setPlayerProperties, playerProperties, currentPercent]);
   });
 
-  const handleMoiveCanPlay = useCallback(() => {
+  const handleMoiveCanPlay = useCallback((evt) => {
+    const {duration} = evt.target;
     setPlayerProperties(Object.assign(
-        {},
-        playerProperties,
-        duration
+      {},
+      playerProperties,
+      duration
     ), [setPlayerProperties, playerProperties, duration]);
   });
 
   const handleFullScreenChange = useCallback(() => {
-    changeToFullScreen();
-  });
+    this.changeToFullScreen(videoRef.current);
+  }, [videoRef]);
 
   const {movies, match: {params: {id}}} = props;
   const currentMovie = movies.find((movie) => movie.id === +id);
@@ -133,7 +132,7 @@ const PlayerScreen = (props) => {
       </div>
     </div>
   );
-};
+}
 
 PlayerScreen.propTypes = playerScreenProps;
 
