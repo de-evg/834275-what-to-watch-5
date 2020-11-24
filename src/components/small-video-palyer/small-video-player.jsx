@@ -20,7 +20,7 @@ const SmallVideoPlayer = ({movie: {videoURL, previewURL}, isPlaying, onMouseOut,
           muted
           onMouseOut={onMouseOut}
         >
-          <source src={videoURL} width={480} type={`video/mp4`}/>
+          <source src={videoURL} type={`video/mp4`}/>
         </video>
       }
     </Link>

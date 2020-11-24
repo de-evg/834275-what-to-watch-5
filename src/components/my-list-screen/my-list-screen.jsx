@@ -54,7 +54,7 @@ const MyListScreen = ({movies}) => {
 MyListScreen.propTypes = myListScreenProps;
 
 const mapStateToProps = (state) => ({
-  movies: state.DATA.movies,
+  movies: state.MOVIE.movies,
 });
 
 export {MyListScreen};

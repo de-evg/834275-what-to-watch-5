@@ -26,4 +26,5 @@ const ReviewText = ({value, onTextInput}) => {
 };
 
 ReviewText.propTypes = reviewTextProps;
+
 export default ReviewText;

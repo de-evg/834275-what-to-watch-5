@@ -59,7 +59,7 @@ exports[`Render AddReviewScreen Should AddreviewScreen with disabled (max length
           >
             <a
               className="breadcrumbs__link"
-              href="/films/0"
+              href="/films/"
               onClick={[Function]}
             >
               
@@ -197,7 +197,7 @@ exports[`Render AddReviewScreen Should AddreviewScreen with disabled (min length
           >
             <a
               className="breadcrumbs__link"
-              href="/films/0"
+              href="/films/"
               onClick={[Function]}
             >
               
@@ -335,7 +335,7 @@ exports[`Render AddReviewScreen Should AddreviewScreen with enabled submit butto
           >
             <a
               className="breadcrumbs__link"
-              href="/films/0"
+              href="/films/"
               onClick={[Function]}
             >
               

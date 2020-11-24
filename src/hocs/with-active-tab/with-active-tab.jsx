@@ -35,7 +35,7 @@ const withActiveTab = (Component) => {
         <Component
           {...this.props}
           activeNavItem={this.state.activeNavItem}
-          handleNavItemChange={this.handleNavItemChange}
+          onNavItemChange={this.handleNavItemChange}
           renderTab={(currentMovie, movieReviews) => (
             <Tab
               movie={currentMovie}

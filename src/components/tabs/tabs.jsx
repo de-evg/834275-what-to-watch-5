@@ -3,9 +3,9 @@ import Nav from "../nav/nav";
 import tabsProps from "./tabs.props";
 import {NAV_ITEMS} from "../../const";
 
-const Tabs = ({renderTab, movie, activeNavItem, handleNavItemChange, reviews}) => (
+const Tabs = ({renderTab, movie, activeNavItem, onNavItemChange, reviews}) => (
   <div className="movie-card__desc">
-    <Nav onNavItemChange={handleNavItemChange} navItems={NAV_ITEMS} activeItem={activeNavItem} />
+    <Nav onNavItemChange={onNavItemChange} navItems={NAV_ITEMS} activeItem={activeNavItem} />
     {renderTab(movie, reviews)}
   </div>
 );

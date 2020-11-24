@@ -5,7 +5,8 @@ const REQUST_TIMEOUT = 5000;
 
 const HttpCode = {
   UNAUTHORIZED: 401,
-  BAD_REQUEST: 400
+  BAD_REQUEST: 400,
+  INTERNAL_SERVER: 500
 };
 
 const createAPI = (onUnauthorized, onBadRequest) => {

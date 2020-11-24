@@ -11,7 +11,7 @@ describe(`Render App`, () => {
 
   beforeEach(() => {
     store = mockStore({
-      DATA: {
+      MOVIE: {
         currentGenre: `All genres`,
         movies: [],
         filteredMovies: [],
@@ -28,7 +28,7 @@ describe(`Render App`, () => {
         movie: ``,
         movieIsLoaded: false
       },
-      REVIEW: {
+      REVIEWS: {
         reviews: []
       },
       USER: {
@@ -59,7 +59,7 @@ describe(`Render App`, () => {
                     isInWatchList: false
                   }
                 }
-              />)
+              />
             </Provider>
         );
   });

@@ -1,17 +1,17 @@
 import {combineReducers} from "redux";
 import {user} from "./user/user";
-import {movieData} from "./movie/movie";
-import {reviewsData} from "./review/review";
+import {movieData} from "./movie-data/movie-data";
+import {reviewsData} from "./reviews-data/reviews-data";
 
 const NameSpace = {
-  DATA: `DATA`,
+  MOVIE: `MOVIE`,
   USER: `USER`,
-  REVIEW: `REVIEW`
+  REVIEWS: `REVIEWS`
 };
 
 export {NameSpace};
 export default combineReducers({
-  [NameSpace.DATA]: movieData,
+  [NameSpace.MOVIE]: movieData,
   [NameSpace.USER]: user,
-  [NameSpace.REVIEW]: reviewsData,
+  [NameSpace.REVIEWS]: reviewsData,
 });
