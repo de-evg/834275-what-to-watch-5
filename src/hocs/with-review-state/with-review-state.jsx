@@ -1,71 +1,65 @@
-import React, {PureComponent} from "react";
+import React, {useCallback, useState} from "react";
 import RatingStars from "../../components/rating-stars/rating-stars";
 import ReviewText from "../../components/review-text/review-text";
 
+
 const withReviewState = (Component) => {
-  class WithReviewState extends PureComponent {
-    constructor(props) {
-      super(props);
 
-      this.state = {
-        textReview: ``,
-        rating: ``
-      };
+  const WithReviewState = (props) => {
+    const initialState = {
+      textReview: ``,
+      rating: ``
+    };
 
-      this.handleTextReviewChange = this.handleTextReviewChange.bind(this);
-      this.handlerRatingInputChange = this.handlerRatingInputChange.bind(this);
-      this.resetReview = this.resetReview.bind(this);
-      this.checkRating = this.checkRating.bind(this);
-    }
+    const [review, setReview] = useState(initialState);
+    const {textReview, rating} = review;
 
-    handleTextReviewChange(value) {
-      this.setState({
-        textReview: value
-      });
-    }
+    const handleTextReviewChange = useCallback((value) => {
+      setReview(Object.assign(
+          {},
+          review,
+          {textReview: value}
+      ));
+    });
 
-    handlerRatingInputChange(value) {
-      this.setState({
-        rating: value
-      });
-    }
+    const handlerRatingInputChange = useCallback((value) => {
+      setReview(Object.assign(
+          {},
+          review,
+          {rating: value}
+      ));
+    });
 
-    resetReview() {
-      this.setState({
-        textReview: ``,
-        rating: ``
-      });
-    }
+    const resetReview = useCallback(() => {
+      setReview(initialState);
+    });
 
-    checkRating() {
-      return this.state !== ``;
-    }
+    const checkRating = useCallback(() => {
+      return rating !== ``;
+    }, [rating]);
 
-    render() {
-      const {textReview, rating} = this.state;
-      return (
-        <Component
-          {...this.props}
-          textReview={textReview}
-          rating={rating}
-          onReviewReset={this.resetReview}
-          renderRatingStars={(value) => (
-            <RatingStars
-              activeStar={value}
-              onRatingInputChange={this.handlerRatingInputChange}
-              checkRating={this.checkRating}
-            />
-          )}
-          renderReviewText={(value) => (
-            <ReviewText
-              value={value}
-              onTextInput={this.handleTextReviewChange}
-            />
-          )}
-        />
-      );
-    }
-  }
+    return (
+      <Component
+        {...props}
+        textReview={textReview}
+        rating={rating}
+        onReviewReset={resetReview}
+        renderRatingStars={(value) => (
+          <RatingStars
+            activeStar={value}
+            onRatingInputChange={handlerRatingInputChange}
+            checkRating={checkRating}
+          />
+        )}
+        renderReviewText={(value) => (
+          <ReviewText
+            value={value}
+            onTextInput={handleTextReviewChange}
+          />
+        )}
+      />
+    );
+  };
 
   return WithReviewState;
 };
