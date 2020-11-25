@@ -15,7 +15,6 @@ const withActiveMovie = (Component) => {
 
     const resetState = (timout) => {
       clearTimeout(timout);
-      setMovieSettings(initialState);
     };
 
     const handleMouseOver = useCallback((movieID) => {
@@ -30,8 +29,9 @@ const withActiveMovie = (Component) => {
     });
 
     const handleMouseOut = useCallback(() => {
-      setMouseStatus({isMouseOver: false});
-    }, [setMouseStatus]);
+      setMouseStatus(false);
+      setMovieSettings(initialState);
+    });
 
     useEffect(() => {
       let delay = null;
@@ -45,7 +45,7 @@ const withActiveMovie = (Component) => {
         }, 1000);
       }
       return () => resetState(delay);
-    }, [isMouseOver]);
+    });
 
     return (
       <Component
