@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import {movieProps} from "../../prop-types/prop-types";
 
 const AddReviewScreenProps = {
   match: PropTypes.shape({
@@ -12,7 +11,11 @@ const AddReviewScreenProps = {
   renderReviewText: PropTypes.func.isRequired,
   textReview: PropTypes.string.isRequired,
   rating: PropTypes.string.isRequired,
-  movie: PropTypes.oneOfType([movieProps, PropTypes.string]),
+  movie: PropTypes.oneOfType([PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    posterURL: PropTypes.string.isRequired,
+    previewURL: PropTypes.string.isRequired,
+  }), PropTypes.string]),
   onFormSubmit: PropTypes.func.isRequired,
   user: PropTypes.shape({
     authorizationStatus: PropTypes.string.isRequired,
