@@ -1,81 +1,72 @@
-import React, {PureComponent} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import SmallMovieCard from "../../components/small-movie-card/small-movie-card";
 import SmallVideoPlayer from "../../components/small-video-palyer/small-video-player";
 
 const withActiveMovie = (Component) => {
-  class WithActiveMovie extends PureComponent {
-    constructor(props) {
-      super(props);
+  const WithActiveMovie = (props) => {
+    const initialState = {
+      activeMovieID: -1,
+      isPlaying: false,
+      isMouseOver: false
+    };
 
-      this.handleMouseOver = this.handleMouseOver.bind(this);
-      this.handleMouseOut = this.handleMouseOut.bind(this);
+    const [movieSettings, setMovieSettings] = useState(initialState);
+    const {activeMovieID, isPlaying, isMouseOver} = movieSettings;
 
-      this.state = {
-        activeMovieID: -1,
-        isPlaying: false
-      };
-    }
+    const handleMouseOver = useCallback((movieID) => {
+      setMovieSettings(Object.assign(
+          {},
+          movieSettings,
+          {
+            activeMovieID: movieID,
+            isMouseOver: true
+          }
+      ));
+    });
 
-    componentWillUnmount() {
-      this.removeTimeDelay();
-    }
+    const handleMouseOut = useCallback(() => {
+      setMovieSettings(initialState);
+    });
 
-    handleMouseOver(movieID) {
-      this.timeDelay(movieID);
-    }
+    useEffect(() => {
+      let delay = null;
+      if (isMouseOver) {
+        delay = setTimeout(() => {
+          setMovieSettings(Object.assign(
+              {},
+              movieSettings,
+              {isPlaying: true}
+          ));
+        }, 1000);
+      }
+      return () => clearTimeout(delay);
+    }, [isMouseOver]);
 
-    handleMouseOut() {
-      this.removeTimeDelay();
-      this.setState({
-        activeMovieID: -1,
-        isPlaying: false
-      });
-    }
-
-    timeDelay(movieID) {
-      this.delay = setTimeout(() => {
-        this.setState({
-          activeMovieID: movieID,
-          isPlaying: true
-        });
-      }, 1000);
-    }
-
-    removeTimeDelay() {
-      clearTimeout(this.delay);
-    }
-
-    render() {
-      const {activeMovieID, isPlaying} = this.state;
-      return (
-        <Component
-          {...this.props}
-          activeMovieID={activeMovieID}
-          renderSmallVideoPlayer={(currentMovie, id) => (
-            <SmallVideoPlayer
-              movie={currentMovie}
-              id={id}
-              key={`player-${id}`}
-              isPlaying={isPlaying}
-              onMouseOut={this.handleMouseOut}
-              removeTimeDelay={this.removeTimeDelay}
-            />
-          )}
-          renderSmallMovieCard={(currentMovie, id) => (
-            <SmallMovieCard
-              movie={currentMovie}
-              id={id}
-              key={`card-${id}`}
-              onMouseOver={this.handleMouseOver}
-              onMouseOut={this.handleMouseOut}
-              removeTimeDelay={this.removeTimeDelay}
-            />
-          )}
-        />
-      );
-    }
-  }
-
+    return (
+      <Component
+        {...props}
+        activeMovieID={activeMovieID}
+        renderSmallVideoPlayer={(currentMovie, id) => (
+          <SmallVideoPlayer
+            movie={currentMovie}
+            id={id}
+            key={`player-${id}`}
+            isPlaying={isPlaying}
+            onMouseOut={handleMouseOut}
+          />
+        )}
+        renderSmallMovieCard={(currentMovie, id) => (
+          <SmallMovieCard
+            movie={currentMovie}
+            id={id}
+            key={`card-${id}`}
+            onMouseOver={handleMouseOver}
+            onMouseOut={handleMouseOut}
+          />
+        )}
+      />
+    );
+  };
   return WithActiveMovie;
 };
 
