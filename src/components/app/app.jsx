@@ -46,7 +46,13 @@ const App = ({authorizationStatus}) => {
             <MyListScreen />
           )}
         />
-        <Route exact path="/films/:id" component={MovieScreen} />
+        <Route
+          exact
+          path="/films/:id"
+          render={(props) => (
+            <MovieScreen match={props.match} history={props.history}/>
+          )}>
+        </Route>
         <PrivateRoute
           exact
           path="/films/:id/review"

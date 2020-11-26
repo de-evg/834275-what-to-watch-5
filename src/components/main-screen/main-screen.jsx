@@ -86,7 +86,7 @@ const MainScreen = ({showedMoviesCount, onShowMoreClick, onGenreFilterChange, re
                 <button onClick={handleFavoriteBtnClick} className="btn btn--list movie-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     {
-                      isInWatchList
+                      isInWatchList && authorizationStatus === AuthorizationStatus.AUTH
                         ? <use xlinkHref="#in-list" />
                         : <use xlinkHref="#add" />
                     }
