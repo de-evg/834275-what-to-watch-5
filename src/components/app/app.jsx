@@ -22,8 +22,13 @@ const App = ({authorizationStatus}) => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/">
-          <MainScreenHOC />
+        <Route
+          exact
+          path="/"
+          render={(props) => (
+            <MainScreenHOC history={props.history}/>
+          )}>
+
         </Route>
 
         <Route exact path="/login">

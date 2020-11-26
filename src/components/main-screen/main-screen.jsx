@@ -13,11 +13,12 @@ import {ActionCreator} from "../../store/action";
 import {Link} from "react-router-dom";
 import {changeFavoriteStatus} from "../../store/api-actions";
 import mainScreenProps from "./main-screen.props";
+import {AppRoute, AuthorizationStatus} from "../../const";
 
 const MovieListHOC = withActiveMovie(MovieList);
 
 const MainScreen = ({showedMoviesCount, onShowMoreClick, onGenreFilterChange, resetShowedMovies,
-  onFavoriteStatusChange, promo, filteredMovies, currentGenre, genres}) => {
+  onFavoriteStatusChange, promo, filteredMovies, currentGenre, genres, authorizationStatus, history}) => {
   const {title, genre, release, posterURL, previewURL, id, isInWatchList} = promo;
 
   const handleShowMoreClick = useCallback(() => {
@@ -30,9 +31,16 @@ const MainScreen = ({showedMoviesCount, onShowMoreClick, onGenreFilterChange, re
   }, [onGenreFilterChange, resetShowedMovies]);
 
   const handleFavoriteBtnClick = useCallback(() => {
-    const updatedStatus = Number(!isInWatchList);
-    onFavoriteStatusChange(id, updatedStatus);
-  }, [onFavoriteStatusChange, isInWatchList, id]);
+    switch (authorizationStatus) {
+      case AuthorizationStatus.AUTH:
+        const updatedStatus = Number(!isInWatchList);
+        onFavoriteStatusChange(id, updatedStatus);
+        break;
+      case AuthorizationStatus.NO_AUTH:
+        history.push(AppRoute.LOGIN);
+        break;
+    }
+  }, [onFavoriteStatusChange, isInWatchList, id, authorizationStatus]);
 
   return (
     <>
