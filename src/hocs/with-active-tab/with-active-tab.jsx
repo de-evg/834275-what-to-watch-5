@@ -1,4 +1,4 @@
-import React, {PureComponent} from "react";
+import React, {useCallback, useState} from "react";
 
 import Overview from "../../components/overview/overview";
 import Details from "../../components/details/details";
@@ -12,41 +12,28 @@ const TabMap = {
 };
 
 const withActiveTab = (Component) => {
-  class WithActiveTab extends PureComponent {
-    constructor(props) {
-      super(props);
+  const WithActiveTab = (props) => {
+    const [activeNavItem, setActiveNavItem] = useState(DEFAULT_ACTIVE);
 
-      this.handleNavItemChange = this.handleNavItemChange.bind(this);
+    const handleNavItemChange = useCallback((newActiveItem) => {
+      setActiveNavItem(newActiveItem);
+    });
 
-      this.state = {
-        activeNavItem: DEFAULT_ACTIVE
-      };
-    }
-
-    handleNavItemChange(newActiveItem) {
-      this.setState({
-        activeNavItem: newActiveItem
-      });
-    }
-
-    render() {
-      const Tab = TabMap[this.state.activeNavItem];
-      return (
-        <Component
-          {...this.props}
-          activeNavItem={this.state.activeNavItem}
-          onNavItemChange={this.handleNavItemChange}
-          renderTab={(currentMovie, movieReviews) => (
-            <Tab
-              movie={currentMovie}
-              movieReviews={movieReviews}
-            />
-          )}
-        />
-      );
-    }
-  }
-
+    const Tab = TabMap[activeNavItem];
+    return (
+      <Component
+        {...props}
+        activeNavItem={activeNavItem}
+        onNavItemChange={handleNavItemChange}
+        renderTab={(currentMovie, movieReviews) => (
+          <Tab
+            movie={currentMovie}
+            movieReviews={movieReviews}
+          />
+        )}
+      />
+    );
+  };
   return WithActiveTab;
 };
 
