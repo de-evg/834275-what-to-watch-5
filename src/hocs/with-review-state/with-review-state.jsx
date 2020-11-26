@@ -24,7 +24,7 @@ const withReviewState = (Component) => {
       });
     }
 
-    handlerRatingInputChange(value) {
+    handleRatingInputChange(value) {
       this.setState({
         rating: value
       });
@@ -52,7 +52,7 @@ const withReviewState = (Component) => {
           renderRatingStars={(value) => (
             <RatingStars
               activeStar={value}
-              onRatingInputChange={this.handlerRatingInputChange}
+              onRatingInputChange={this.handleRatingInputChange}
               checkRating={this.checkRating}
             />
           )}
