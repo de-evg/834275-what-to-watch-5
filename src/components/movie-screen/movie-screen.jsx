@@ -12,13 +12,15 @@ import UserBlock from "../user-block/user-block";
 import {fetchReviews} from "../../store/api-actions";
 import {ActionCreator} from "../../store/action";
 import {changeFavoriteStatus} from "../../store/api-actions";
+import {AppRoute, AuthorizationStatus} from "../../const";
 
 const TabsHOC = withActiveTab(Tabs);
 const MovieListHOC = withActiveMovie(MovieList);
 
 const SIMILAR_COUNT = 4;
+const DEFAULT_FAVORITE = 0;
 
-const MovieScreen = ({movies, reviews, onFavoriteStatusChange, loadReviews, resetReviews, match: {params: {id}}}) => {
+const MovieScreen = ({movies, reviews, onFavoriteStatusChange, loadReviews, resetReviews, authorizationStatus, history, match: {params: {id}}}) => {
   const currentMovie = movies.find((movie) => movie.id === +id);
   const {
     title,
@@ -36,8 +38,16 @@ const MovieScreen = ({movies, reviews, onFavoriteStatusChange, loadReviews, rese
   }, [loadReviews, resetReviews, id]);
 
   const handleFavoriteBtnClick = useCallback(() => {
-    onFavoriteStatusChange(id, Number(!isInWatchList));
-  }, [id, isInWatchList, onFavoriteStatusChange]);
+    switch (authorizationStatus) {
+      case AuthorizationStatus.AUTH:
+        onFavoriteStatusChange(id, Number(!isInWatchList));
+        break;
+      case AuthorizationStatus.NO_AUTH:
+        onFavoriteStatusChange(id, DEFAULT_FAVORITE);
+        history.push(AppRoute.LOGIN);
+        break;
+    }
+  }, [id, isInWatchList, onFavoriteStatusChange, authorizationStatus]);
 
   return (
     <>
@@ -79,7 +89,7 @@ const MovieScreen = ({movies, reviews, onFavoriteStatusChange, loadReviews, rese
                 <button onClick={handleFavoriteBtnClick} className="btn btn--list movie-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     {
-                      isInWatchList
+                      isInWatchList && authorizationStatus === AuthorizationStatus.AUTH
                         ? <use xlinkHref="#in-list" />
                         : <use xlinkHref="#add" />
                     }
@@ -135,7 +145,8 @@ MovieScreen.propTypes = movieScreenProps;
 
 const mapStateToProps = (state) => ({
   movies: state.MOVIE.movies,
-  reviews: state.REVIEWS.reviews
+  reviews: state.REVIEWS.reviews,
+  authorizationStatus: state.USER.authorizationStatus
 });
 
 const mapDispatchToProps = (dispatch) => ({

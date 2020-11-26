@@ -22,8 +22,13 @@ const App = ({authorizationStatus}) => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/">
-          <MainScreenHOC />
+        <Route
+          exact
+          path="/"
+          render={(props) => (
+            <MainScreenHOC history={props.history}/>
+          )}>
+
         </Route>
 
         <Route exact path="/login">
@@ -41,7 +46,13 @@ const App = ({authorizationStatus}) => {
             <MyListScreen />
           )}
         />
-        <Route exact path="/films/:id" component={MovieScreen} />
+        <Route
+          exact
+          path="/films/:id"
+          render={(props) => (
+            <MovieScreen match={props.match} history={props.history}/>
+          )}>
+        </Route>
         <PrivateRoute
           exact
           path="/films/:id/review"
