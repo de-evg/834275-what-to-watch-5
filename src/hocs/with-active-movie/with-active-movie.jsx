@@ -12,9 +12,6 @@ const withActiveMovie = (Component) => {
 
     const [movieSettings, setMovieSettings] = useState(initialState);
     const {activeMovieID, isPlaying, isMouseOver} = movieSettings;
-    // const resetState = (timout) => {
-    //   clearTimeout(timout);
-    // };
 
     const handleMouseOver = useCallback((movieID) => {
       setMovieSettings(Object.assign(
