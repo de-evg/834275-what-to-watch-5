@@ -2,20 +2,20 @@ import PropTypes from "prop-types";
 
 const smallVideoPlayerProps = {
   movie: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    release: PropTypes.number.isRequired,
-    posterURL: PropTypes.string.isRequired,
+    id: PropTypes.number,
+    title: PropTypes.string,
+    genre: PropTypes.string,
+    release: PropTypes.number,
+    posterURL: PropTypes.string,
     previewURL: PropTypes.string.isRequired,
-    rating: PropTypes.string.isRequired,
-    ratingLevel: PropTypes.string.isRequired,
-    ratingCount: PropTypes.number.isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    actors: PropTypes.array.isRequired,
+    rating: PropTypes.string,
+    ratingLevel: PropTypes.string,
+    ratingCount: PropTypes.number,
+    description: PropTypes.string,
+    director: PropTypes.string,
+    actors: PropTypes.array,
     videoURL: PropTypes.string.isRequired,
-    isInWatchList: PropTypes.bool.isRequired
+    isInWatchList: PropTypes.bool
   }),
   id: PropTypes.number.isRequired,
   onMouseOut: PropTypes.func.isRequired,

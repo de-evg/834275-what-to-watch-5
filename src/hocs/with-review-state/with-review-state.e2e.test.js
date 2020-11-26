@@ -11,11 +11,11 @@ configure({adapter: new Adapter()});
 describe(`state review`, () => {
   it(`should textReview eq ""`, () => {
     const wrapper = shallow(<MockComponentHOC />);
-    expect(wrapper.state().textReview).toEqual(``);
+    expect(wrapper.props().textReview).toEqual(``);
   });
 
   it(`should rating eq ""`, () => {
     const wrapper = shallow(<MockComponentHOC />);
-    expect(wrapper.state().rating).toEqual(``);
+    expect(wrapper.props().rating).toEqual(``);
   });
 });
