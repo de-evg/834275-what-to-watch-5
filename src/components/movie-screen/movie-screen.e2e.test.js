@@ -28,7 +28,7 @@ it(`on favorite btn click`, () => {
   const component = shallow(<MovieScreen
     movies={[movie]}
     reviews={[]}
-    authorizationStatus={``}
+    authorizationStatus={`AUTH`}
     resetReviews={() => {}}
     loadReviews={() => {}}
     onFavoriteStatusChange={handleFavoriteBtnClick}
