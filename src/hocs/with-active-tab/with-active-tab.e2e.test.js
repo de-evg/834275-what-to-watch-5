@@ -12,6 +12,6 @@ configure({adapter: new Adapter()});
 
 it(`should activeNavItem eq Overview`, () => {
   const wrapper = shallow(<MockComponentHOC />);
-  expect(wrapper.state().activeNavItem).toEqual(DEFAULT_ACTIVE);
+  expect(wrapper.props().activeNavItem).toEqual(DEFAULT_ACTIVE);
 });
 

@@ -6,30 +6,25 @@ const withActiveMovie = (Component) => {
   const WithActiveMovie = (props) => {
     const initialState = {
       activeMovieID: -1,
-      isPlaying: false
+      isPlaying: false,
+      isMouseOver: false
     };
 
     const [movieSettings, setMovieSettings] = useState(initialState);
-    const {activeMovieID, isPlaying} = movieSettings;
-    const [isMouseOver, setMouseStatus] = useState(false);
-
-    const resetState = (timout) => {
-      clearTimeout(timout);
-    };
+    const {activeMovieID, isPlaying, isMouseOver} = movieSettings;
 
     const handleMouseOver = useCallback((movieID) => {
       setMovieSettings(Object.assign(
           {},
           movieSettings,
           {
-            activeMovieID: movieID
+            activeMovieID: movieID,
+            isMouseOver: true
           }
       ));
-      setMouseStatus({isMouseOver: true});
     });
 
     const handleMouseOut = useCallback(() => {
-      setMouseStatus(false);
       setMovieSettings(initialState);
     });
 
@@ -44,8 +39,8 @@ const withActiveMovie = (Component) => {
           ));
         }, 1000);
       }
-      return () => resetState(delay);
-    });
+      return () => clearTimeout(delay);
+    }, [isMouseOver]);
 
     return (
       <Component
